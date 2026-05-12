@@ -371,7 +371,7 @@ export default function LoginRoute() {
             </p>
           )}
         {CONTROLLED_ENVIRONMENT && <ItarLoginDisclaimer />}
-        {CarbonEdition !== Edition.Community && (
+        {/*{CarbonEdition !== Edition.Community && (
           <p>
             <Trans>
               By signing in, you agree to the{" "}
@@ -394,7 +394,7 @@ export default function LoginRoute() {
               </a>
             </Trans>
           </p>
-        )}
+        )}*/}
       </div>
     </>
   );

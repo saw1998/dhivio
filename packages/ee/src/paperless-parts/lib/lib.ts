@@ -162,7 +162,7 @@ async function determineMaterialSubstance(
       schema: substanceSchema,
       prompt: `
       Based on the following material information, determine the best matching material substance from the available options.
-      
+
       Material Information:
       - Description: ${materialInfo.description}
       - Material Name: ${materialInfo.materialName}
@@ -170,10 +170,10 @@ async function determineMaterialSubstance(
       - Material Family: ${materialInfo.materialFamily}
       - Material Class: ${materialInfo.materialClass}
       - Process Name: ${materialInfo.processName}
-      
+
       Available Material Substances:
       ${availableSubstances}
-      
+
       Select the substance that best matches the material information provided. Consider material type, grade, and common industry terminology.
       `,
       temperature: 0.2
@@ -434,7 +434,7 @@ async function determineMaterialProperties(
     Based on the following material information, determine the best matching material properties from the available options.
 
     If the material is sheet metal, the quantity returned should be the parts per sheet. Use the materialFormId from the dimension to determine the formId to return.
-    
+
     Material Information:
     - Description: ${materialInfo.description}
     - Material Name: ${materialInfo.material?.name}
@@ -452,7 +452,7 @@ async function determineMaterialProperties(
       )
       .filter(Boolean)
       .join("\n")}
-    
+
     Available Material Properties:
     - Grades: ${grades.map((g) => `${g.id}: ${g.name}`).join("\n")}
     - Dimensions: ${dimensions
@@ -460,7 +460,7 @@ async function determineMaterialProperties(
       .join("\n")}
     - Finishes: ${finishes.map((f) => `${f.id}: ${f.name}`).join("\n")}
     - Types: ${types.map((t) => `${t.id}: ${t.name}`).join("\n")}
-    
+
     Select the properties that best match the material information provided. Consider material type, grade, and common industry terminology.
     `,
     temperature: 0.2
@@ -1323,10 +1323,10 @@ export async function getCustomerIdAndContactId(
 
         if (newCustomer.error || !newCustomer.data) {
           console.error(
-            "Failed to create customer in Carbon",
+            "Failed to create customer in Dhivio",
             newCustomer.error
           );
-          throw new Error("Failed to create customer in Carbon");
+          throw new Error("Failed to create customer in Dhivio");
         }
 
         customerId = newCustomer.data.id;
@@ -1396,7 +1396,7 @@ export async function getCustomerIdAndContactId(
         .single();
 
       if (updatedContact.error || !updatedContact.data) {
-        console.error("Failed to update contact in Carbon", updatedContact);
+        console.error("Failed to update contact in Dhivio", updatedContact);
         return {
           customerContactId: null,
           customerId
@@ -1429,7 +1429,7 @@ export async function getCustomerIdAndContactId(
         .single();
 
       if (newContact.error || !newContact.data) {
-        console.error("Failed to create contact in Carbon", newContact);
+        console.error("Failed to create contact in Dhivio", newContact);
         return {
           customerContactId: null,
           customerId
@@ -1580,10 +1580,10 @@ export async function getCustomerLocationIds(
 
           if (newAddress.error || !newAddress.data) {
             console.error(
-              "Failed to create billing address in Carbon",
+              "Failed to create billing address in Dhivio",
               newAddress.error
             );
-            throw new Error("Failed to create billing address in Carbon");
+            throw new Error("Failed to create billing address in Dhivio");
           }
 
           addressId = newAddress.data.id;
@@ -1605,7 +1605,7 @@ export async function getCustomerLocationIds(
 
         if (newCustomerLocation.error || !newCustomerLocation.data) {
           throw new Error(
-            "Failed to create customer billing location in Carbon"
+            "Failed to create customer billing location in Dhivio"
           );
         }
 
@@ -1702,10 +1702,10 @@ export async function getCustomerLocationIds(
 
           if (newAddress.error || !newAddress.data) {
             console.error(
-              "Failed to create shipping address in Carbon",
+              "Failed to create shipping address in Dhivio",
               newAddress.error
             );
-            throw new Error("Failed to create shipping address in Carbon");
+            throw new Error("Failed to create shipping address in Dhivio");
           }
 
           addressId = newAddress.data.id;
@@ -1728,7 +1728,7 @@ export async function getCustomerLocationIds(
 
         if (newCustomerLocation.error || !newCustomerLocation.data) {
           throw new Error(
-            "Failed to create customer shipping location in Carbon"
+            "Failed to create customer shipping location in Dhivio"
           );
         }
 

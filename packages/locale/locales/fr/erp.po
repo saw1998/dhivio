@@ -1719,10 +1719,6 @@ msgstr "par {byUser}"
 msgid "By accepting the invite, you agree to the <0>Terms of Service</0> and <1>Privacy Policy</1>."
 msgstr "En acceptant l'invitation, vous acceptez les <0>Conditions d'utilisation</0> et la <1>Politique de confidentialité</1>."
 
-#: apps/erp/app/routes/_public+/login.tsx:376
-msgid "By signing in, you agree to the <0>Terms of Service</0> and <1>Privacy Policy.</1>"
-msgstr "En vous connectant, vous acceptez les <0>Conditions d'utilisation</0> et la <1>Politique de confidentialité.</1>"
-
 #: apps/erp/app/modules/items/ui/Parts/PartForm.tsx:343
 #: apps/erp/app/modules/items/ui/Tools/ToolForm.tsx:333
 #: apps/erp/app/routes/x+/part+/$itemId.details.tsx:334
@@ -2515,8 +2511,8 @@ msgid "Confirm Password"
 msgstr "Confirmer le mot de passe"
 
 #: apps/erp/app/modules/settings/ui/Integrations/IntegrationsList.tsx:139
-msgid "Connect Carbon to your accounting, project, and CAD tools and much more."
-msgstr "Connectez Carbon à vos outils comptables, de gestion de projet, de CAO et bien d'autres."
+msgid "Connect Dhivio to your accounting, project, and CAD tools and much more."
+msgstr ""
 
 #: apps/erp/app/modules/quality/ui/Issue/Jira/IssueDialog.tsx:83
 msgid "Connect Jira issue"
@@ -10157,8 +10153,8 @@ msgid "Publish"
 msgstr "Publier"
 
 #: apps/erp/app/modules/settings/ui/Integrations/IntegrationForm.tsx:617
-msgid "Published by Carbon"
-msgstr "Publié par Carbon"
+msgid "Published by Dhivio"
+msgstr ""
 
 #: apps/erp/app/modules/production/ui/Jobs/JobBillOfMaterial.tsx:906
 #: apps/erp/app/modules/sales/ui/Quotes/QuoteBillOfMaterial.tsx:912
@@ -12006,8 +12002,8 @@ msgid "Self Managed"
 msgstr "Autogéré"
 
 #: apps/erp/app/routes/onboarding+/plan.tsx:37
-msgid "Self-Onboarding with Carbon Academy"
-msgstr "Intégration autonome avec Carbon Academy"
+msgid "Self-Onboarding with Dhivio Academy"
+msgstr ""
 
 #: apps/erp/app/components/Layout/Topbar/Suggestion.tsx:224
 #: apps/erp/app/modules/production/ui/Jobs/JobBillOfProcess.tsx:3411
@@ -14884,8 +14880,8 @@ msgid "Weighted average cost over last year calculated when the invoice is poste
 msgstr "Coût moyen pondéré de l'année dernière calculé lors de la validation de la facture"
 
 #: apps/erp/app/routes/_public+/invite.$code.tsx:166
-msgid "Welcome to Carbon"
-msgstr "Bienvenue dans Carbon"
+msgid "Welcome to Dhivio"
+msgstr ""
 
 #: apps/erp/app/modules/settings/ui/AuditLog/AuditLogTable.tsx:275
 msgid "When"

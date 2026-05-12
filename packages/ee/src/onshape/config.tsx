@@ -10,8 +10,8 @@ export const Onshape = defineIntegration({
   category: "CAD",
   logo: Logo,
   description:
-    "Onshape is a browser-based CAD/PLM software for modern engineering teams. This integration will sync data from Onshape to Carbon.",
-  shortDescription: "Sync data from Onshape to Carbon.",
+    "Onshape is a browser-based CAD/PLM software for modern engineering teams. This integration will sync data from Onshape to Dhivio.",
+  shortDescription: "Sync data from Onshape to Dhivio.",
   images: [],
   settings: [],
   schema: z.object({}),

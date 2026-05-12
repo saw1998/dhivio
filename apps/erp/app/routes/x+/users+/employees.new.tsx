@@ -98,9 +98,9 @@ export async function action({ request }: ActionFunctionArgs) {
   }
 
   await sendEmail({
-    from: `Carbon <no-reply@${RESEND_DOMAIN}>`,
+    from: `Dhivio <no-reply@${RESEND_DOMAIN}>`,
     to: email,
-    subject: `You have been invited to join ${company.data?.name} on Carbon`,
+    subject: `You have been invited to join ${company.data?.name} on Dhivio`,
     headers: {
       "X-Entity-Ref-ID": nanoid()
     },

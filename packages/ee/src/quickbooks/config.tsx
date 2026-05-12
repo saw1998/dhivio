@@ -10,7 +10,7 @@ export const QuickBooks = defineIntegration({
   category: "Accounting",
   logo: Logo,
   description:
-    "Integrating Carbon with QuickBooks enables you to post transactions from sales invoices and purchase invoices into your existing accounting software, neatly organizing everything in your bookkeeping software.",
+    "Integrating Dhivio with QuickBooks enables you to post transactions from sales invoices and purchase invoices into your existing accounting software, neatly organizing everything in your bookkeeping software.",
   shortDescription:
     "Automatically post transactions from sales and purchase invoices.",
   images: [],

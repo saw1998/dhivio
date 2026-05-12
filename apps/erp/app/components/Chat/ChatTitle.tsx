@@ -10,7 +10,7 @@ export function ChatTitle() {
   const [chatTitle] = useDataPart<ChatTitleData>("chat-title", {
     onData: (dataPart) => {
       if (dataPart.data.title) {
-        document.title = `${dataPart.data.title} - Carbon`;
+        document.title = `${dataPart.data.title} - Dhivio`;
       }
     }
   });

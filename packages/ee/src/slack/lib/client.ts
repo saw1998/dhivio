@@ -171,7 +171,7 @@ export async function postToSlackThread({
     channel: channelId,
     thread_ts: threadTs,
     blocks,
-    text: text || "Message from Carbon",
+    text: text || "Message from Dhivio",
     unfurl_links: false,
     unfurl_media: false
   });
@@ -196,7 +196,7 @@ export async function createSlackThread({
   return client.chat.postMessage({
     channel: channelId,
     blocks,
-    text: text || "New thread from Carbon",
+    text: text || "New thread from Dhivio",
     unfurl_links: false,
     unfurl_media: false
   });
@@ -224,7 +224,7 @@ export async function updateSlackMessage({
     channel: channelId,
     ts,
     blocks,
-    text: text || "Updated message from Carbon"
+    text: text || "Updated message from Dhivio"
   });
 }
 

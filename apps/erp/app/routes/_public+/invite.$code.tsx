@@ -27,7 +27,7 @@ import { acceptInvite } from "~/modules/users/users.server";
 import { path } from "~/utils/path";
 
 export const meta: MetaFunction = () => {
-  return [{ title: "Accept Invite | Carbon" }];
+  return [{ title: "Accept Invite | Dhivio" }];
 };
 
 export async function loader({ request, params }: LoaderFunctionArgs) {
@@ -163,7 +163,7 @@ export default function Invite() {
           size="h1"
           className="m-0"
         >
-          <Trans>Welcome to Carbon</Trans>
+          <Trans>Welcome to Dhivio</Trans>
         </Heading>
 
         <Form method="post">

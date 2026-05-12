@@ -27,7 +27,7 @@ export const useCarbon = () => {
   }
 
   if (!store) {
-    throw new Error("useCarbon must be used within a CarbonProvider");
+    throw new Error("useCarbon must be used within a DhivioProvider");
   }
 
   return useStore(store);

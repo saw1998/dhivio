@@ -314,7 +314,7 @@ export class SalesOrderSyncer extends BaseEntitySyncer<
     _remote: Xero.Quote
   ): Promise<Partial<Accounting.SalesOrder>> {
     throw new Error(
-      "Sales orders are push-only. Cannot map from Xero to Carbon."
+      "Sales orders are push-only. Cannot map from Xero to Dhivio."
     );
   }
 

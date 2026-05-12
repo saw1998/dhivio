@@ -12,8 +12,8 @@ export const Jira = defineIntegration({
   category: "Project Management",
   logo: Logo,
   description:
-    "Jira is a project management and issue tracking tool by Atlassian. With this integration, you can link quality issues from Carbon to Jira for tracking and collaboration.",
-  shortDescription: "Sync quality issues from Carbon to Jira.",
+    "Jira is a project management and issue tracking tool by Atlassian. With this integration, you can link quality issues from Dhivio to Jira for tracking and collaboration.",
+  shortDescription: "Sync quality issues from Dhivio to Jira.",
   setupInstructions: SetupInstructions,
   images: [],
   settings: [],
@@ -40,8 +40,8 @@ function SetupInstructions({ companyId }: { companyId: string }) {
   return (
     <>
       <p className="text-sm text-muted-foreground">
-        To integrate Jira with Carbon, click the "Connect" button above to
-        authorize Carbon with your Atlassian account.
+        To integrate Jira with Dhivio, click the "Connect" button above to
+        authorize Dhivio with your Atlassian account.
       </p>
       <p className="text-sm text-muted-foreground">
         After connecting, you can optionally set up a webhook in Jira to receive

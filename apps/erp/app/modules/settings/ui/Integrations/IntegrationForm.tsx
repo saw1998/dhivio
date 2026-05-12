@@ -614,7 +614,7 @@ export function IntegrationForm({
                     <Badge variant="secondary">{integration.category}</Badge>
                     <span aria-hidden>•</span>
                     <span>
-                      <Trans>Published by Carbon</Trans>
+                      <Trans>Published by Dhivio</Trans>
                     </span>
                   </div>
                 </div>
@@ -691,7 +691,7 @@ export function IntegrationForm({
             </ScrollArea>
             <div className="mt-2">
               <p className="text-[0.6875rem] leading-relaxed text-muted-foreground">
-                Carbon Manufacturing Systems does not endorse any third-party
+                Dhivio Manufacturing Systems does not endorse any third-party
                 software.{" "}
                 <a
                   href={`mailto:${SUPPORT_EMAIL}`}

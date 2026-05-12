@@ -9,7 +9,7 @@ export const Sage = defineIntegration({
   category: "Accounting",
   logo: Logo,
   description:
-    "Integrating Carbon with Sage Intacct enables you to post transactions into your existing accounting software, neatly organizing everything in your accounting software.",
+    "Integrating Dhivio with Sage Intacct enables you to post transactions into your existing accounting software, neatly organizing everything in your accounting software.",
   shortDescription:
     "Automatically post transactions from sales and purchase invoices.",
   images: [],

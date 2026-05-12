@@ -64,7 +64,7 @@ const CadModel = ({
 
     if (file) {
       if (!carbon) {
-        toast.error("Failed to initialize carbon client");
+        toast.error("Failed to initialize dhivio client");
         return;
       } else {
         toast.info(`Uploading ${file.name}`);

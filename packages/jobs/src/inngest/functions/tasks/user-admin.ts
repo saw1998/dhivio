@@ -93,7 +93,7 @@ export const userAdminFunction = inngest.createFunction(
           await sendEmail({
             from: `Carbon <no-reply@${RESEND_DOMAIN}>`,
             to: user.data.email,
-            subject: `You have been invited to join ${company.data?.name} on Carbon`,
+            subject: `You have been invited to join ${company.data?.name} on Dhivio`,
             headers: {
               "X-Entity-Ref-ID": nanoid()
             },

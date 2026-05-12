@@ -32,11 +32,11 @@ export const linearSyncFunction = inngest.createFunction(
     ]);
 
     if (company.error || !company.data) {
-      throw new Error("Failed to fetch company from Carbon");
+      throw new Error("Failed to fetch company from Dhivio");
     }
 
     if (integration.error || !integration.data) {
-      throw new Error("Failed to fetch integration from Carbon");
+      throw new Error("Failed to fetch integration from Dhivio");
     }
 
     // Look up the action task via the mapping table

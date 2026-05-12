@@ -472,7 +472,7 @@ export class PurchaseOrderSyncer extends BaseEntitySyncer<
     // For new POs from Xero, we need to create them
     // This requires more context (supplierInteractionId, createdBy, etc.)
     throw new Error(
-      `Cannot create new purchase order from Xero. PO with ID ${remoteId} must be created in Carbon first and then synced.`
+      `Cannot create new purchase order from Xero. PO with ID ${remoteId} must be created in Dhivio first and then synced.`
     );
   }
 
