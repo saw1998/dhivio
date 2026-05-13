@@ -1,8 +1,10 @@
 {
   "$schema": "https://turborepo.org/schema.json",
+  "globalEnv": ["NODE_OPTIONS"],
   "tasks": {
     "build": {
       "dependsOn": ["^build", "//#lingui:compile"],
+      "env": ["NODE_OPTIONS"],
       "outputs": [
         "dist/**",
         "build/**",
