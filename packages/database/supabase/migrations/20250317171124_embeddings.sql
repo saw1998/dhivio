@@ -1,5 +1,5 @@
  -- Example: enable the "vector" extension.
-CREATE EXTENSION vector
+CREATE EXTENSION IF NOT EXISTS vector
 WITH
   SCHEMA extensions;
 
@@ -19,15 +19,13 @@ CREATE EXTENSION IF NOT EXISTS hstore
 WITH
   SCHEMA extensions;
 
-COMMIT;
+ALTER TABLE "item" ADD COLUMN "embedding" extensions.vector(384);
+ALTER TABLE "supplier" ADD COLUMN "embedding" extensions.vector(384);
+ALTER TABLE "customer" ADD COLUMN "embedding" extensions.vector(384);
 
-ALTER TABLE "item" ADD COLUMN "embedding" halfvec(384);
-ALTER TABLE "supplier" ADD COLUMN "embedding" halfvec(384);
-ALTER TABLE "customer" ADD COLUMN "embedding" halfvec(384);
-
-CREATE INDEX ON "item" USING hnsw (embedding halfvec_cosine_ops);
-CREATE INDEX ON "supplier" USING hnsw (embedding halfvec_cosine_ops);
-CREATE INDEX ON "customer" USING hnsw (embedding halfvec_cosine_ops);
+CREATE INDEX ON "item" USING hnsw (embedding extensions.vector_cosine_ops);
+CREATE INDEX ON "supplier" USING hnsw (embedding extensions.vector_cosine_ops);
+CREATE INDEX ON "customer" USING hnsw (embedding extensions.vector_cosine_ops);
 
 
 -- Schema for utility functions
@@ -104,7 +102,7 @@ LANGUAGE plpgsql AS $$
 DECLARE
     clear_column text := TG_ARGV[0];
 BEGIN
-    NEW := NEW #= hstore(clear_column, NULL);
+    NEW := NEW #= extensions.hstore(clear_column, NULL);
     RETURN NEW;
 END;
 $$;
@@ -226,8 +224,8 @@ CREATE OR REPLACE FUNCTION public.update_item_search_result()
 RETURNS TRIGGER AS $$
 BEGIN
   IF (old.name <> new.name OR old.description <> new.description OR old."readableId" <> new."readableId" OR old.type <> new.type) THEN
-    UPDATE public.search 
-    SET name = new."readableId", 
+    UPDATE public.search
+    SET name = new."readableId",
         description = new.name || ' ' || COALESCE(new.description, ''),
         link = CASE new.type
           WHEN 'Part' THEN '/x/part/' || new.id
@@ -295,7 +293,7 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 
 
 CREATE OR REPLACE FUNCTION public.items_search(
-  query_embedding vector(384),
+  query_embedding extensions.vector(384),
   match_threshold float,
   match_count int,
   p_company_id text
@@ -309,22 +307,23 @@ RETURNS TABLE (
 )
 LANGUAGE sql STABLE
 SECURITY DEFINER
+SET search_path = public, extensions
 AS $$
   SELECT
     item.id,
     item."readableId",
     item.name,
     item.description,
-    1 - (item.embedding <=> query_embedding) AS similarity
+    1 - (item.embedding OPERATOR(extensions.<=>) query_embedding) AS similarity
   FROM item
-  WHERE 1 - (item.embedding <=> query_embedding) > match_threshold
+  WHERE 1 - (item.embedding OPERATOR(extensions.<=>) query_embedding) > match_threshold
   AND "companyId" = p_company_id
-  ORDER BY (item.embedding <=> query_embedding) ASC
+  ORDER BY (item.embedding OPERATOR(extensions.<=>) query_embedding) ASC
   LIMIT LEAST(match_count, 10);
 $$;
 
 CREATE OR REPLACE FUNCTION public.suppliers_search(
-  query_embedding vector(384),
+  query_embedding extensions.vector(384),
   match_threshold float,
   match_count int,
   p_company_id text
@@ -336,17 +335,15 @@ RETURNS TABLE (
 )
 LANGUAGE sql STABLE
 SECURITY DEFINER
+SET search_path = public, extensions
 AS $$
   SELECT
     supplier.id,
     supplier.name,
-    1 - (supplier.embedding <=> query_embedding) AS similarity
+    1 - (supplier.embedding OPERATOR(extensions.<=>) query_embedding) AS similarity
   FROM supplier
-  WHERE 1 - (supplier.embedding <=> query_embedding) > match_threshold
+  WHERE 1 - (supplier.embedding OPERATOR(extensions.<=>) query_embedding) > match_threshold
   AND "companyId" = p_company_id
-  ORDER BY (supplier.embedding <=> query_embedding) ASC
+  ORDER BY (supplier.embedding OPERATOR(extensions.<=>) query_embedding) ASC
   LIMIT LEAST(match_count, 10);
 $$;
-
-
-

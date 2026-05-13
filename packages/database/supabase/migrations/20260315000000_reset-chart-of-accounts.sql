@@ -144,14 +144,14 @@ ALTER TABLE "account" ADD COLUMN IF NOT EXISTS "isSystem" BOOLEAN NOT NULL DEFAU
 DO $$
 DECLARE
   cg_id TEXT;
-  key_to_id HSTORE;
+  key_to_id extensions.HSTORE;
   acc RECORD;
   new_id TEXT;
   parent_id TEXT;
 BEGIN
   FOR cg_id IN SELECT id FROM "companyGroup"
   LOOP
-    key_to_id := ''::hstore;
+    key_to_id := ''::extensions.hstore;
 
     FOR acc IN
       SELECT *
