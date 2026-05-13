@@ -2,6 +2,8 @@
 -- Rate limiting uses an unlogged table with a Postgres function (check_api_key_rate_limit).
 -- Scope enforcement is handled via RLS helper functions.
 
+CREATE EXTENSION IF NOT EXISTS pgcrypto WITH SCHEMA extensions;
+
 -- ============================================================================
 -- Step 1: Add new columns to apiKey table
 -- ============================================================================
@@ -17,7 +19,7 @@ ALTER TABLE "apiKey"
 
 -- Backfill keyHash from existing plaintext keys
 UPDATE "apiKey"
-SET "keyHash" = encode(digest("key"::bytea, 'sha256'::text), 'hex');
+SET "keyHash" = encode(extensions.digest("key"::bytea, 'sha256'::text), 'hex');
 
 -- Make keyHash NOT NULL and add unique index
 ALTER TABLE "apiKey" ALTER COLUMN "keyHash" SET NOT NULL;
@@ -45,7 +47,7 @@ CREATE OR REPLACE FUNCTION get_company_id_from_api_key() RETURNS TEXT
 
     SELECT "companyId" INTO company_id
     FROM "apiKey"
-    WHERE "keyHash" = encode(digest(raw_key::bytea, 'sha256'::text), 'hex')
+    WHERE "keyHash" = encode(extensions.digest(raw_key::bytea, 'sha256'::text), 'hex')
       AND ("expiresAt" IS NULL OR "expiresAt" > NOW());
 
     RETURN company_id;
@@ -68,7 +70,7 @@ CREATE OR REPLACE FUNCTION has_valid_api_key_for_company(company TEXT) RETURNS "
 
     SELECT EXISTS(
       SELECT 1 FROM "apiKey"
-      WHERE "keyHash" = encode(digest(raw_key::bytea, 'sha256'::text), 'hex')
+      WHERE "keyHash" = encode(extensions.digest(raw_key::bytea, 'sha256'::text), 'hex')
         AND "companyId" = company
         AND ("expiresAt" IS NULL OR "expiresAt" > NOW())
     ) INTO has_valid_key;
@@ -155,7 +157,7 @@ CREATE OR REPLACE FUNCTION get_api_key_scopes() RETURNS JSONB
 
     SELECT "apiKey"."scopes" INTO scopes
     FROM "apiKey"
-    WHERE "keyHash" = encode(digest(raw_key::bytea, 'sha256'::text), 'hex')
+    WHERE "keyHash" = encode(extensions.digest(raw_key::bytea, 'sha256'::text), 'hex')
       AND ("expiresAt" IS NULL OR "expiresAt" > NOW());
 
     RETURN scopes;

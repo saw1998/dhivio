@@ -1,9 +1,10 @@
 ALTER TABLE "gaugeCalibrationRecord" ADD COLUMN "measurementStandard" TEXT;
 ALTER TABLE "gaugeCalibrationRecord" ADD COLUMN "calibrationAttempts" JSONB;
 
+CREATE EXTENSION IF NOT EXISTS pg_jsonschema WITH SCHEMA extensions;
 
 ALTER TABLE "gaugeCalibrationRecord" ADD CONSTRAINT "checkCalibrationAttemptsSchema" CHECK (
-  jsonb_matches_schema(
+  extensions.jsonb_matches_schema(
     '{
       "type": "array",
       "items": {
