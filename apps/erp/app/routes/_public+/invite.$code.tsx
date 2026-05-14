@@ -181,11 +181,11 @@ export default function Invite() {
       <p className="text-xs text-muted-foreground  text-center">
         <Trans>
           By accepting the invite, you agree to the{" "}
-          <Link to="https://carbon.ms/terms" className="underline">
+          <Link to="https://dhivio.com/terms" className="underline">
             Terms of Service
           </Link>{" "}
           and{" "}
-          <Link to="https://carbon.ms/privacy" className="underline">
+          <Link to="https://dhivio.com/privacy" className="underline">
             Privacy Policy
           </Link>
           .

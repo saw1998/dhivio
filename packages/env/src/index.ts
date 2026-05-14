@@ -173,10 +173,10 @@ export const INNGEST_EVENT_KEY = getEnv("INNGEST_EVENT_KEY", {
 
 export const ERP_URL =
   getEnv("ERP_URL", { isRequired: false, isSecret: false }) ??
-  "https://app.carbon.ms";
+  "https://app.dhivio.com";
 export const MES_URL =
   getEnv("MES_URL", { isRequired: false, isSecret: false }) ??
-  "https://mes.carbon.ms";
+  "https://mes.dhivio.com";
 
 export const GOOGLE_PLACES_API_KEY = getEnv("GOOGLE_PLACES_API_KEY", {
   isRequired: false
@@ -232,7 +232,7 @@ export const QUICKBOOKS_WEBHOOK_SECRET = getEnv("QUICKBOOKS_WEBHOOK_SECRET", {
 export const RESEND_DOMAIN =
   getEnv("RESEND_DOMAIN", {
     isRequired: false
-  }) ?? "carbon.ms";
+  }) ?? "dhivio.com";
 
 export const SLACK_BOT_TOKEN = getEnv("SLACK_BOT_TOKEN", {
   isRequired: false
@@ -376,8 +376,8 @@ export function getAppUrl() {
     return ERP_URL
       ? ERP_URL
       : CONTROLLED_ENVIRONMENT
-        ? "https://itar.carbon.ms"
-        : "https://app.carbon.ms";
+        ? "https://itar.dhivio.com"
+        : "https://app.dhivio.com";
   }
 
   if (VERCEL_ENV === "preview") {
@@ -395,8 +395,8 @@ export function getMESUrl() {
     return MES_URL
       ? MES_URL
       : CONTROLLED_ENVIRONMENT
-        ? "https://mes.itar.carbon.ms"
-        : "https://mes.carbon.ms";
+        ? "https://mes.itar.dhivio.com"
+        : "https://mes.dhivio.com";
   }
 
   if (VERCEL_ENV === "preview") {

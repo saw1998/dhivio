@@ -670,7 +670,7 @@ export async function updateSubscriptionQuantityForCompany(companyId: string) {
 
     const activeUserCount =
       activeUsersResult.data?.filter(
-        (user) => !(user?.email).includes("@carbon.ms")
+        (user) => !(user?.email).includes("@dhivio.com")
       ).length || 1;
 
     // Get the subscription from Stripe to find the subscription item

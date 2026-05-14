@@ -4,10 +4,10 @@ export function Logo() {
   return (
     <Section className="mt-[32px]">
       <Img
-        src="https://app.carbon.ms/carbon-word-light.png"
+        src="https://app.dhivio.com/carbon-word-light.png"
         width="auto"
         height="45"
-        alt="Carbon"
+        alt="Dhivio"
         className="mb-4 mx-auto block"
       />
     </Section>

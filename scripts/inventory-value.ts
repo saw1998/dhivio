@@ -4,7 +4,7 @@ import { writeFileSync } from "fs";
 
 config();
 
-const apiUrl = "https://rest.carbon.ms";
+const apiUrl = "https://rest.dhivio.com";
 const apiKey = "crbn_*****************";
 
 

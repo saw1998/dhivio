@@ -6,7 +6,7 @@ import { useUser } from "./useUser";
 export function useFlags() {
   const user = useUser();
   const edition = useEdition();
-  const isInternal = ["@carbon.us.org", "@carbon.ms"].some((domain) =>
+  const isInternal = ["@carbon.us.org", "@dhivio.com"].some((domain) =>
     user.email.toLowerCase().trim().endsWith(domain)
   );
 

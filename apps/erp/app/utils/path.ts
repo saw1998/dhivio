@@ -371,8 +371,8 @@ export const path = {
       quote: (id: string) => generatePath(`${file}/quote/${id}.pdf`)
     },
     legal: {
-      termsAndConditions: "https://carbon.ms/terms",
-      privacyPolicy: "https://carbon.ms/privacy"
+      termsAndConditions: "https://dhivio.com/terms",
+      privacyPolicy: "https://dhivio.com/privacy"
     },
     onboarding: {
       company: `${onboarding}/company`,

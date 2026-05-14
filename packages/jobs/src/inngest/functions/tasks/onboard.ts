@@ -267,8 +267,8 @@ export const onboardFunction = inngest.createFunction(
 
         if (sendOnboardingEmail) {
           const from = `Chase from Dhivio <${
-            RESEND_DOMAIN === "carbon.ms"
-              ? "chase@carbon.ms"
+            RESEND_DOMAIN === "dhivio.com"
+              ? "chase@dhivio.com"
               : `no-reply@${RESEND_DOMAIN}`
           }>`;
           await step.run("send-welcome-email", async () => {
@@ -285,8 +285,8 @@ export const onboardFunction = inngest.createFunction(
 
         if (sendOnboardingEmail) {
           const from = `Info from Dhivio <${
-            RESEND_DOMAIN === "carbon.ms"
-              ? "info@carbon.ms"
+            RESEND_DOMAIN === "dhivio.com"
+              ? "info@dhivio.com"
               : `no-reply@${RESEND_DOMAIN}`
           }>`;
           await step.run("send-get-started-email", async () => {

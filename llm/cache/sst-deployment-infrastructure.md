@@ -25,14 +25,14 @@ The SST configuration deploys Carbon as containerized services on AWS using:
 #### Services
 1. **CarbonERPService**
    - **Image**: Pulls from ECR: `{AWS_ACCOUNT_ID}.dkr.ecr.us-gov-east-1.amazonaws.com/carbon/erp:latest`
-   - **Domain**: `itar.carbon.ms`
+   - **Domain**: `itar.dhivio.com`
    - **Port Mapping**: External port 443/HTTPS → Internal port 3000/HTTP (with 80→443 redirect)
    - **Certificate**: Configured via `process.env.CERT_ARN_ERP`
    - **Scaling**: Min 1, Max 10 tasks, 70% CPU / 80% memory utilization targets
 
 2. **CarbonMESService**
    - **Image**: Pulls from ECR: `{AWS_ACCOUNT_ID}.dkr.ecr.us-gov-east-1.amazonaws.com/carbon/mes:latest`
-   - **Domain**: `mes.itar.carbon.ms`
+   - **Domain**: `mes.itar.dhivio.com`
    - **Port Mapping**: External port 443/HTTPS → Internal port 3000/HTTP (with 80→443 redirect)
    - **Certificate**: Configured via `process.env.CERT_ARN_MES`
    - **Scaling**: Min 1, Max 10 tasks, 70% CPU / 80% memory utilization targets

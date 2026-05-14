@@ -288,7 +288,7 @@ async function deploy(): Promise<void> {
           QUICKBOOKS_WEBHOOK_SECRET: quickbooks_webhook_secret ?? undefined,
           REDIS_URL: redis_url ?? undefined,
           RESEND_API_KEY: resend_api_key,
-          RESEND_DOMAIN: resend_domain ?? "carbon.ms",
+          RESEND_DOMAIN: resend_domain ?? "dhivio.com",
           SESSION_SECRET: session_secret,
           SLACK_BOT_TOKEN: slack_bot_token ?? undefined,
           SLACK_CLIENT_ID: slack_client_id ?? undefined,

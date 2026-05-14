@@ -255,7 +255,7 @@ export default function LoginRoute() {
             <Trans>
               By signing in, you agree to the{" "}
               <a
-                href="https://carbon.ms/terms"
+                href="https://dhivio.com/terms"
                 target="_blank"
                 rel="noreferrer"
                 className="underline"
@@ -264,7 +264,7 @@ export default function LoginRoute() {
               </a>{" "}
               and{" "}
               <a
-                href="https://carbon.ms/privacy"
+                href="https://dhivio.com/privacy"
                 target="_blank"
                 rel="noreferrer"
                 className="underline"
