@@ -11,8 +11,8 @@ import {
 } from "../prompts.js";
 import { getWorktreeRoot, slugify } from "../worktree.js";
 
-export async function newWorktree(opts?: { branch?: string }) {
-  intro("Carbon · new worktree");
+export async function newWorktree() {
+  intro("Dhivio · new worktree");
 
   const here = await getWorktreeRoot();
   const parentDir = dirname(here);

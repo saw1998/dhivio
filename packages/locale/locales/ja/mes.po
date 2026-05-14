@@ -132,7 +132,7 @@ msgid "Cancel"
 msgstr "キャンセル"
 
 msgid "Carbon Logo"
-msgstr "Carbonロゴ"
+msgstr ""
 
 msgid "Cards"
 msgstr "カード"
@@ -346,7 +346,7 @@ msgid "Forgot to Clock Out?"
 msgstr "退勤打刻を忘れましたか？"
 
 msgid "Have a technical issue? Contact <0>Carbon Support.</0>"
-msgstr "技術的な問題がありますか？<0>Carbonサポート</0>にお問い合わせください。"
+msgstr ""
 
 msgid "I understand and want to complete without issuing"
 msgstr "理解した上で払出なしで完了します"

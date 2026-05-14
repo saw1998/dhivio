@@ -40,7 +40,7 @@ import type { Result } from "~/types";
 import { path } from "~/utils/path";
 
 export const meta: MetaFunction = () => {
-  return [{ title: "Carbon | Verify Email" }];
+  return [{ title: "Dhivio | Verify Email" }];
 };
 
 const verifyValidator = z.object({

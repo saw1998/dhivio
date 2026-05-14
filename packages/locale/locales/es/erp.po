@@ -482,8 +482,8 @@ msgstr "Clave API"
 msgid "API Keys"
 msgstr "Claves API"
 
-msgid "API keys for programmatic access to your Carbon data."
-msgstr "Claves API para acceso programático a tus datos de Carbon."
+msgid "API keys for programmatic access to your Dhivio data."
+msgstr "Claves API para acceso programático a tus datos de Dhivio."
 
 msgid "Applies to"
 msgstr "Se aplica a"
@@ -1157,23 +1157,23 @@ msgstr "No se puede enviar RFQ"
 msgid "Cannot upload to parts bucket without item ID"
 msgstr "No se puede cargar en el depÃƒÆ’Ã‚Â³sito de piezas sin ID de artÃƒÆ’Ã‚Â­culo"
 
-msgid "Carbon client is not available"
-msgstr "El cliente de Carbon no estÃƒÆ’Ã‚Â¡ disponible"
+msgid "Dhivio client is not available"
+msgstr "El cliente de Dhivio no estÃƒÆ’Ã‚Â¡ disponible"
 
-msgid "Carbon client not available"
-msgstr "Cliente de Carbon no disponible"
+msgid "Dhivio client not available"
+msgstr ""
 
-msgid "Carbon client not found"
-msgstr "Cliente de Carbon no encontrado"
+msgid "Dhivio client not found"
+msgstr ""
 
-msgid "Carbon column"
-msgstr "Columna de Carbon"
+msgid "Dhivio column"
+msgstr ""
 
-msgid "Carbon Logo"
-msgstr "Logo de Carbon"
+msgid "Dhivio Logo"
+msgstr ""
 
-msgid "Carbon Value"
-msgstr "Valor de Carbon"
+msgid "Dhivio Value"
+msgstr ""
 
 msgid "Carrier"
 msgstr "Transportista"
@@ -3259,8 +3259,8 @@ msgstr "Error al obtener riesgos"
 msgid "Failed to fetch suggestions"
 msgstr "Error al obtener sugerencias"
 
-msgid "Failed to initialize Carbon client"
-msgstr "Error al inicializar el cliente de Carbon"
+msgid "Failed to initialize Dhivio client"
+msgstr ""
 
 msgid "Failed to insert quote line"
 msgstr "Error al insertar lÃƒÆ’Ã‚Â­nea de cotizaciÃƒÆ’Ã‚Â³n"

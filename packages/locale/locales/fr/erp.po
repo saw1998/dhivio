@@ -1158,22 +1158,22 @@ msgid "Cannot upload to parts bucket without item ID"
 msgstr "Impossible de tÃƒÆ’Ã‚Â©lÃƒÆ’Ã‚Â©charger vers le compartiment des piÃƒÆ’Ã‚Â¨ces sans ID d'article"
 
 msgid "Carbon client is not available"
-msgstr "Le client Carbon n'est pas disponible"
+msgstr ""
 
 msgid "Carbon client not available"
-msgstr "Client Carbon non disponible"
+msgstr ""
 
 msgid "Carbon client not found"
-msgstr "Client Carbon introuvable"
+msgstr ""
 
 msgid "Carbon column"
-msgstr "Colonne Carbon"
+msgstr ""
 
 msgid "Carbon Logo"
-msgstr "Logo Carbon"
+msgstr ""
 
 msgid "Carbon Value"
-msgstr "Valeur Carbon"
+msgstr ""
 
 msgid "Carrier"
 msgstr "Transporteur"
@@ -3260,7 +3260,7 @@ msgid "Failed to fetch suggestions"
 msgstr "Impossible de rÃƒÆ’Ã‚Â©cupÃƒÆ’Ã‚Â©rer les suggestions"
 
 msgid "Failed to initialize Carbon client"
-msgstr "Impossible d'initialiser le client Carbon"
+msgstr ""
 
 msgid "Failed to insert quote line"
 msgstr "Impossible d'insÃƒÆ’Ã‚Â©rer la ligne de devis"

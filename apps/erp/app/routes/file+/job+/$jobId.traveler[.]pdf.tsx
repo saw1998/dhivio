@@ -185,7 +185,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
   const stream = await renderToStream(
     <Document
       title="Job Traveler"
-      author="Carbon"
+      author="Dhivio"
       subject="Job Traveler"
       keywords="job traveler, manufacturing"
     >

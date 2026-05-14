@@ -31,7 +31,7 @@ export async function syncStaleCopyFiles(cwd: string): Promise<string[]> {
 
 // `crbn env sync` — copy files listed in package.json#crbn.copy from main.
 export async function envSync() {
-  intro("Carbon · env sync");
+  intro("Dhivio · env sync");
 
   const cwd = process.cwd();
   const mainRoot = await mainCheckoutRoot();

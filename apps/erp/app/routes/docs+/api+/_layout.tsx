@@ -26,7 +26,7 @@ import type { Handle } from "~/utils/handle";
 import { path } from "~/utils/path";
 
 export const meta: MetaFunction = () => {
-  return [{ title: "Carbon | API Docs" }];
+  return [{ title: "Dhivio | API Docs" }];
 };
 
 export const handle: Handle = {
@@ -70,12 +70,12 @@ export default function ApiDocsRoute() {
             <Link to={path.to.authenticatedRoot}>
               <img
                 src="/carbon-word-light.svg"
-                alt="Carbon Logo"
+                alt="Dhivio Logo"
                 className="h-6 dark:hidden z-50"
               />
               <img
                 src="/carbon-word-dark.svg"
-                alt="Carbon Logo"
+                alt="Dhivio Logo"
                 className="h-6 dark:block hidden z-50"
               />
             </Link>

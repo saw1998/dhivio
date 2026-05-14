@@ -12,7 +12,7 @@ import { up } from "./commands/up.js";
 const main = defineCommand({
   meta: {
     name: "crbn",
-    description: "Carbon dev CLI (heavy commands; bash router handles checkout)"
+    description: "Dhivio dev CLI (heavy commands; bash router handles checkout)"
   },
   subCommands: {
     up: defineCommand({

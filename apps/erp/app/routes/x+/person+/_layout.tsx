@@ -4,7 +4,7 @@ import type { LoaderFunctionArgs, MetaFunction } from "react-router";
 import { Outlet } from "react-router";
 
 export const meta: MetaFunction = () => {
-  return [{ title: "Carbon | People" }];
+  return [{ title: "Dhivio | People" }];
 };
 
 export async function loader({ request }: LoaderFunctionArgs) {

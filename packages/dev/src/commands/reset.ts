@@ -10,7 +10,7 @@ import {
 import { up } from "./up.js";
 
 export async function reset() {
-  intro("Carbon · dev reset");
+  intro("Dhivio · dev reset");
   const root = await getWorktreeRoot();
   const slug = resolveSlug(root);
 

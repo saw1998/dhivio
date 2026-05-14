@@ -36,7 +36,7 @@ const Activity = ({
         <div className="flex-grow">
           <p>
             <span className="font-semibold mr-1">
-              {person?.name ?? "Carbon Admin"}
+              {person?.name ?? "Dhivio Admin"}
             </span>
             <span className="text-gray-400">{activityMessage}</span>
           </p>

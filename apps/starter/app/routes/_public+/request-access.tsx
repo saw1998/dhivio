@@ -6,7 +6,7 @@ import type { MetaFunction } from "react-router";
 export const meta: MetaFunction = () => {
   return [
     {
-      title: "Carbon Developers | Request Access"
+      title: "Dhivio Developers | Request Access"
     }
   ];
 };
@@ -17,7 +17,7 @@ export default function RequestAccessRoute() {
       <div className="flex flex-col items-center justify-center">
         <img
           src="/carbon-logo-mark.svg"
-          alt="Carbon Logo"
+          alt="Dhivio Logo"
           className="w-36 mb-3"
         />
 

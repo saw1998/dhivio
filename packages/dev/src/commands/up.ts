@@ -106,7 +106,7 @@ export async function up(opts: UpOpts = {}) {
       ? opts.portless
       : process.env.CARBON_PORTLESS !== "0";
 
-  intro("Carbon · dev up");
+  intro("Dhivio · dev up");
 
   if (portless) {
     await ensurePortlessInstalled();

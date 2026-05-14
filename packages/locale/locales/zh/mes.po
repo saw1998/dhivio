@@ -132,7 +132,7 @@ msgid "Cancel"
 msgstr "取消"
 
 msgid "Carbon Logo"
-msgstr "Carbon 标志"
+msgstr ""
 
 msgid "Cards"
 msgstr "卡片"
@@ -346,7 +346,7 @@ msgid "Forgot to Clock Out?"
 msgstr "忘记打卡下班了？"
 
 msgid "Have a technical issue? Contact <0>Carbon Support.</0>"
-msgstr "遇到技术问题？联系<0>Carbon 支持。</0>"
+msgstr ""
 
 msgid "I understand and want to complete without issuing"
 msgstr "我理解并希望在不发放物料的情况下完成"

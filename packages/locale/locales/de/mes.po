@@ -132,7 +132,7 @@ msgid "Cancel"
 msgstr "Abbrechen"
 
 msgid "Carbon Logo"
-msgstr "Carbon Logo"
+msgstr ""
 
 msgid "Cards"
 msgstr "Karten"
@@ -346,7 +346,7 @@ msgid "Forgot to Clock Out?"
 msgstr "Vergessen auszustempeln?"
 
 msgid "Have a technical issue? Contact <0>Carbon Support.</0>"
-msgstr "Haben Sie ein technisches Problem? Kontaktieren Sie den <0>Carbon Support.</0>"
+msgstr ""
 
 msgid "I understand and want to complete without issuing"
 msgstr "Ich verstehe und möchte ohne Ausgabe abschließen"

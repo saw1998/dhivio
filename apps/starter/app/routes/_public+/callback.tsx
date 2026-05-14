@@ -142,7 +142,7 @@ export default function AuthCallback() {
   return (
     <div className="flex flex-col items-center justify-center">
       <div className="flex justify-center mb-4">
-        <img src="/carbon-logo-mark.svg" alt="Carbon Logo" className="w-36" />
+        <img src="/carbon-logo-mark.svg" alt="Dhivio Logo" className="w-36" />
       </div>
       {error ? (
         <div className="rounded-lg md:bg-card md:border md:border-border md:shadow-lg p-8 mt-8 w-[380px]">

@@ -17,7 +17,7 @@ export async function down(opts: { silent?: boolean } = {}) {
     return runPlain(root, slug, project);
   }
 
-  intro("Carbon · dev down");
+  intro("Dhivio · dev down");
   await tasks([
     {
       title: `Stopping ${project} (volumes preserved)`,

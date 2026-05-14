@@ -41,7 +41,7 @@ const website = "https://dhivio.com";
       Authorization: `Bearer ${process.env.TWENTY_API_KEY}`,
     },
     body: JSON.stringify({
-      name: "Carbon",
+      name: "Dhivio",
       domainName: {
         primaryLinkLabel: removeProtocolFromWebsite(website),
         primaryLinkUrl: ensureProtocolFromWebsite(website),

@@ -10,7 +10,7 @@ import {
 } from "../worktree.js";
 
 export async function status() {
-  intro("Carbon · dev status");
+  intro("Dhivio · dev status");
   const root = await getWorktreeRoot();
   const slug = resolveSlug(root);
   const slot = getSlot(slug);

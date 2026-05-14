@@ -26,7 +26,7 @@ import { getSlot, listSlugs, projectName, removeSlot } from "../worktree.js";
 
 export async function removeWorktreeCmd(opts?: { prune?: boolean }) {
   const pruneBranches = opts?.prune === true;
-  intro("Carbon · remove worktree");
+  intro("Dhivio · remove worktree");
 
   const wtsAll = await gitListWorktrees();
   const mainRoot = await mainCheckoutRoot();

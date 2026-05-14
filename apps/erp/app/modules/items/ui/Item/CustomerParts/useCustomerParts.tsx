@@ -12,7 +12,7 @@ export default function useCustomerParts() {
 
   const onCellEdit = useCallback(
     async (id: string, value: unknown, row: CustomerPart) => {
-      if (!carbon) throw new Error("Carbon client not found");
+      if (!carbon) throw new Error("Dhivio client not found");
       return await carbon
         .from("customerPartToItem")
         .update({

@@ -123,7 +123,7 @@ export const action: ActionFunction = async ({ request }) => {
             );
             const carbonLink = remoteLinks.find(
               (link) =>
-                link.application?.name === "Carbon" ||
+                link.application?.name === "Dhivio" ||
                 link.globalId.startsWith("carbon-")
             );
             if (carbonLink) {

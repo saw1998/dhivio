@@ -6,7 +6,7 @@ import { worktreesTable } from "../ui.js";
 import { listSlugs, projectName } from "../worktree.js";
 
 export async function listWorktrees() {
-  intro("Carbon · worktrees");
+  intro("Dhivio · worktrees");
 
   const [wtsAll, registry, dockerStates] = await Promise.all([
     gitListWorktrees(),

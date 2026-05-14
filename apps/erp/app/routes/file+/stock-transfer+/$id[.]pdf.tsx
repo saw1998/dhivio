@@ -95,7 +95,7 @@ export async function loader({ request, params }: LoaderFunctionArgs) {
       location={location.data}
       locale={locale}
       meta={{
-        author: "Carbon",
+        author: "Dhivio",
         keywords: "stock transfer",
         subject: "Stock Transfer"
       }}
