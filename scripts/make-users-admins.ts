@@ -21,7 +21,7 @@ const supabaseAdmin = createClient(
   const { data: users } = await supabaseAdmin
     .from("user")
     .select("id, email")
-    .ilike("email", "%@carbon.ms");
+    .ilike("email", "%@dhivio.com");
 
   if (!users) throw new Error("No users found");
 

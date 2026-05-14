@@ -32,7 +32,7 @@ export const InviteEmail = ({
   email = "huck@sawyer.com",
   name,
   companyName = "Tombstone",
-  inviteLink = "https://carbon.ms/invite/1234567890",
+  inviteLink = "https://dhivio.com/invite/1234567890",
   ip = "38.38.38.38",
   location = "Tombstone, AZ"
 }: Props) => {

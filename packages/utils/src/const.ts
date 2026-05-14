@@ -1,4 +1,4 @@
-export const SUPPORT_EMAIL = "support@carbon.ms";
+export const SUPPORT_EMAIL = "support@dhivio.com";
 
 export const FILE_SIZE_LIMIT_MB = {
   CAD_MODEL_UPLOAD: 120,

@@ -43,7 +43,7 @@ const sessionStorage = createCookieSessionStorage({
     sameSite: isTestEdition ? "none" : "lax",
     secrets: [SESSION_SECRET!],
     secure: VERCEL_ENV === "production",
-    domain: VERCEL_ENV === "production" ? DOMAIN : undefined // eg. carbon.ms
+    domain: VERCEL_ENV === "production" ? DOMAIN : undefined // eg. dhivio.com
   }
 });
 

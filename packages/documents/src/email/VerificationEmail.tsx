@@ -98,7 +98,7 @@ export const VerificationEmail = ({
             }}
           >
             If you're having trouble, you can reply to this email or contact us
-            at support@carbon.ms
+            at support@dhivio.com
           </Text>
         </Container>
       </Body>

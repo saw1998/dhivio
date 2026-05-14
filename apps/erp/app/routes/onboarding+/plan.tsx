@@ -231,7 +231,7 @@ export default function OnboardingPlan() {
                             asChild
                           >
                             <a
-                              href="https://carbon.ms/sales"
+                              href="https://dhivio.com/sales"
                               target="_blank"
                               rel="noreferrer"
                             >
@@ -246,7 +246,7 @@ export default function OnboardingPlan() {
                             asChild
                           >
                             <a
-                              href="https://learn.carbon.ms"
+                              href="https://learn.dhivio.com"
                               target="_blank"
                               rel="noreferrer"
                             >

@@ -2,7 +2,7 @@ import { config } from "dotenv";
 
 config();
 
-const website = "https://carbon.ms";
+const website = "https://dhivio.com";
 
 (async () => {
   const twentyPerson = await fetch("https://api.twenty.com/rest/people", {
@@ -17,7 +17,7 @@ const website = "https://carbon.ms";
         lastName: "Barbin",
       },
       emails: {
-        primaryEmail: "brad@carbon.ms",
+        primaryEmail: "brad@dhivio.com",
       },
       customerStatus: ["PROSPECTIVE_CUSTOMER"],
       location: "Johnstown, PA",

@@ -28,7 +28,7 @@ export async function sendVerificationCode(email: string) {
     );
 
     const result = await sendEmail({
-      from: `Carbon <no-reply@${RESEND_DOMAIN}>`,
+      from: `Dhivio <no-reply@${RESEND_DOMAIN}>`,
       to: email,
       subject: "Verify your email address",
       html

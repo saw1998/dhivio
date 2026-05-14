@@ -5,7 +5,7 @@ const apiKey = "crbn_******************";
 const publicApiKey =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InNxb2ppamlpamtuaGJneW9nbWx1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjM2MDU0MzksImV4cCI6MjAzOTE4MTQzOX0.JMzLs9Y4Y4kQ-jhQHrSqgNyHSZgrkwzBd1PwPbVPtbQ";
 
-const carbon = createClient("https://api.carbon.ms", publicApiKey, {
+const carbon = createClient("https://api.dhivio.com", publicApiKey, {
   global: {
     headers: {
       "carbon-key": apiKey,
