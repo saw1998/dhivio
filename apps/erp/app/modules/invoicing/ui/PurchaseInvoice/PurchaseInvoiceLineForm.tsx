@@ -239,7 +239,7 @@ const PurchaseInvoiceLineForm = ({
   };
 
   const onItemChange = async (itemId: string) => {
-    if (!carbon) throw new Error("Carbon client not found");
+    if (!carbon) throw new Error("Dhivio client not found");
     switch (itemType) {
       // @ts-expect-error
       case "Item":

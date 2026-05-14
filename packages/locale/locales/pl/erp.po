@@ -1987,7 +1987,7 @@ msgstr "Nie można przesłać do zasobnika części bez identyfikatora elementu"
 #: apps/erp/app/modules/inventory/ui/Shipments/ShipmentPostModal.tsx:92
 #: apps/erp/app/modules/inventory/ui/StockTransfers/StockTransferCompleteModal.tsx:65
 msgid "Carbon client is not available"
-msgstr "Klient Carbon jest niedostępny"
+msgstr ""
 
 #: apps/erp/app/components/Documents.tsx:194
 #: apps/erp/app/components/ImportCSVModal/UploadCSV.tsx:81
@@ -2005,7 +2005,7 @@ msgstr "Klient Carbon jest niedostępny"
 #: apps/erp/app/modules/sales/ui/Opportunity/OpportunityLineDocuments.tsx:294
 #: apps/erp/app/modules/sales/ui/Quotes/QuoteToOrderDrawer.tsx:112
 msgid "Carbon client not available"
-msgstr "Klient Carbon niedostępny"
+msgstr ""
 
 #: apps/erp/app/components/ItemThumnailUpload.tsx:35
 #: apps/erp/app/components/ItemThumnailUpload.tsx:73
@@ -2017,11 +2017,11 @@ msgstr "Klient Carbon niedostępny"
 #: apps/erp/app/modules/sales/ui/SalesOrder/SalesOrderForm.tsx:81
 #: apps/erp/app/modules/sales/ui/SalesRFQ/SalesRFQForm.tsx:73
 msgid "Carbon client not found"
-msgstr "Klient Carbon nie znaleziony"
+msgstr ""
 
 #: apps/erp/app/components/ImportCSVModal/FieldMappings.tsx:211
 msgid "Carbon column"
-msgstr "Kolumna Carbon"
+msgstr ""
 
 #: apps/erp/app/routes/_public+/invite.$code.tsx:124
 #: apps/erp/app/routes/_public+/invite.$code.tsx:156
@@ -2029,11 +2029,11 @@ msgstr "Kolumna Carbon"
 #: apps/erp/app/routes/_public+/magic-link.tsx:26
 #: apps/erp/app/routes/_public+/verify.tsx:147
 msgid "Carbon Logo"
-msgstr "Logo Carbon"
+msgstr ""
 
 #: apps/erp/app/components/ImportCSVModal/FieldMappings.tsx:454
 msgid "Carbon Value"
-msgstr "Wartość Carbon"
+msgstr ""
 
 #: apps/erp/app/modules/inventory/ui/ShippingMethods/ShippingMethodForm.tsx:107
 #: apps/erp/app/modules/inventory/ui/ShippingMethods/ShippingMethodsTable.tsx:62
@@ -5617,7 +5617,7 @@ msgstr "Nie udało się pobrać sugestii"
 
 #: apps/erp/app/modules/sales/ui/Quotes/QuoteToOrderDrawer.tsx:158
 msgid "Failed to initialize Carbon client"
-msgstr "Nie udało się zainicjować klienta Carbon"
+msgstr ""
 
 #: apps/erp/app/modules/sales/ui/Quotes/QuoteLinePricing.tsx:525
 msgid "Failed to insert quote line"
@@ -6759,7 +6759,7 @@ msgstr "Problem nie znaleziony"
 
 #: apps/erp/app/modules/settings/ui/ApiKeys/ApiKeysUpgradeOverlay.tsx:104
 msgid "Issue scoped API keys for programmatic access to your Carbon data."
-msgstr "Wydawaj ograniczone klucze API do programowego dostępu do danych Carbon."
+msgstr ""
 
 #: apps/erp/app/modules/quality/ui/Actions/ActionsTable.tsx:166
 msgid "Issue Status"

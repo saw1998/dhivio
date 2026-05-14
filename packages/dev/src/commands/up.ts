@@ -50,7 +50,7 @@ export async function up(opts: { migrate?: boolean; regen?: boolean } = {}) {
   // Type/swagger regen depends on a freshly-migrated schema. If migrations
   // were skipped, schema is unchanged — skip regen too.
   const shouldRegen = shouldMigrate && (opts.regen ?? true);
-  intro("Carbon · dev up");
+  intro("Dhivio · dev up");
 
   await ensurePortlessInstalled();
   await ensureProxyPrivileges();

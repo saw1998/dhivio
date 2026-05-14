@@ -12,7 +12,7 @@ import {
 } from "../ui/prompts.js";
 
 export async function newWorktree() {
-  intro("Carbon · new worktree");
+  intro("Dhivio · new worktree");
 
   const here = await getWorktreeRoot();
   const parentDir = dirname(here);

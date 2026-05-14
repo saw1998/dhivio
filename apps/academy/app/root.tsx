@@ -70,7 +70,7 @@ export function links() {
 export const meta: MetaFunction = () => {
   return [
     {
-      title: "Carbon Academy"
+      title: "Dhivio Academy"
     }
   ];
 };
@@ -166,7 +166,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
 function Document({
   children,
-  title = "Carbon",
+  title = "Dhivio",
   mode = "light"
 }: {
   children: React.ReactNode;
@@ -251,12 +251,12 @@ export default function App() {
               >
                 <img
                   src="/carbon-word-light.svg"
-                  alt="Carbon"
+                  alt="Dhivio"
                   className="h-7 w-auto block dark:hidden"
                 />
                 <img
                   src="/carbon-word-dark.svg"
-                  alt="Carbon"
+                  alt="Dhivio"
                   className="h-7 w-auto hidden dark:block"
                 />
               </a>
@@ -437,7 +437,7 @@ export function ErrorBoundary({ error }: { error: unknown }) {
         <div className="flex flex-col w-full h-screen  items-center justify-center space-y-4 ">
           <img
             src="/carbon-logo-mark.svg"
-            alt="Carbon Logo"
+            alt="Dhivio Logo"
             className="block max-w-[60px]"
           />
           <Heading size="h1">Something went wrong</Heading>

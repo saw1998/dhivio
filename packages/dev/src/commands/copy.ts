@@ -8,7 +8,7 @@ const DEFAULT_INCLUDES = [".env"];
 
 // Copy files listed in package.json#crbn.copy from main checkout into cwd.
 export async function copy() {
-  intro("Carbon · copy");
+  intro("Dhivio · copy");
 
   const cwd = process.cwd();
   const mainRoot = await mainCheckoutRoot();

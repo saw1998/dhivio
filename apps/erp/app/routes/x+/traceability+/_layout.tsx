@@ -5,7 +5,7 @@ import type { Handle } from "~/utils/handle";
 import { path } from "~/utils/path";
 
 export const meta: MetaFunction = () => {
-  return [{ title: "Carbon | Traceability" }];
+  return [{ title: "Dhivio | Traceability" }];
 };
 
 export const handle: Handle = {

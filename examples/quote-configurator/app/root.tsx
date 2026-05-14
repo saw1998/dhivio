@@ -83,7 +83,7 @@ export function ErrorBoundary() {
         <div className="flex flex-col w-full h-screen  items-center justify-center space-y-4 ">
           <img
             src="/carbon-logo-mark.svg"
-            alt="Carbon Logo"
+            alt="Dhivio Logo"
             className="block max-w-[60px]"
           />
           <h1 className="text-2xl font-bold">Something went wrong</h1>

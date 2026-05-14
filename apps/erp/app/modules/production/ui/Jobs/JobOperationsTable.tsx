@@ -190,7 +190,7 @@ const JobOperationsTable = memo(({ data, count }: JobOperationsTableProps) => {
   const { id: userId } = useUser();
   const onCellEdit = useCallback(
     async (id: string, value: unknown, row: JobOperation) => {
-      if (!carbon) throw new Error("Carbon client not found");
+      if (!carbon) throw new Error("Dhivio client not found");
       return await carbon
         .from("jobOperation")
         .update({

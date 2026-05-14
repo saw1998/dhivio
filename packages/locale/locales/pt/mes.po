@@ -188,7 +188,7 @@ msgstr "Cancelar"
 
 #: apps/mes/app/routes/_public+/login.tsx:166
 msgid "Carbon Logo"
-msgstr "Logo Carbon"
+msgstr ""
 
 #: apps/mes/app/routes/x+/operations.tsx:470
 msgid "Cards"
@@ -496,7 +496,7 @@ msgstr "Esqueceu de Registrar Saída?"
 
 #: apps/mes/app/components/Feedback.tsx:165
 msgid "Have a technical issue? Contact <0>Carbon Support.</0>"
-msgstr "Tem um problema técnico? Entre em contato com o <0>Suporte Carbon.</0>"
+msgstr ""
 
 #: apps/mes/app/components/JobOperation/components/QuantityModal.tsx:197
 msgid "I understand and want to complete without issuing"

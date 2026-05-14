@@ -18,7 +18,7 @@ import { destroyProjectVolumes, flushDb } from "../services/compose.js";
 import { confirmRemove } from "../ui/prompts.js";
 
 export async function removeWorktreeCmd() {
-  intro("Carbon · remove worktree");
+  intro("Dhivio · remove worktree");
 
   const wtsAll = await gitListWorktrees();
   const wts = wtsAll.filter((w) => !w.bare && !w.current);

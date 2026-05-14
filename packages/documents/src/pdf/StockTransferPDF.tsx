@@ -73,7 +73,7 @@ const StockTransferPDF = ({
     <Template
       title={title}
       meta={{
-        author: "Carbon",
+        author: "Dhivio",
         keywords: "stock transfer",
         subject: "Stock Transfer"
       }}

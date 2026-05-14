@@ -46,7 +46,7 @@ export function links() {
 export const meta: MetaFunction = () => {
   return [
     {
-      title: "Carbon | Starter"
+      title: "Dhivio | Starter"
     }
   ];
 };
@@ -100,7 +100,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
 function Document({
   children,
-  title = "Carbon",
+  title = "Dhivio",
   mode = "light",
   theme = "zinc"
 }: {
@@ -194,7 +194,7 @@ export function ErrorBoundary({ error }: { error: unknown }) {
         <div className="flex flex-col w-full h-screen  items-center justify-center space-y-4 ">
           <img
             src="/carbon-logo-mark.svg"
-            alt="Carbon Logo"
+            alt="Dhivio Logo"
             className="block max-w-[60px]"
           />
           <Heading size="h1">Something went wrong</Heading>

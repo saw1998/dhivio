@@ -1987,7 +1987,7 @@ msgstr "आइटम आईडी के बिना पार्ट्स ब�
 #: apps/erp/app/modules/inventory/ui/Shipments/ShipmentPostModal.tsx:92
 #: apps/erp/app/modules/inventory/ui/StockTransfers/StockTransferCompleteModal.tsx:65
 msgid "Carbon client is not available"
-msgstr "Carbon क्लाइंट उपलब्ध नहीं है"
+msgstr ""
 
 #: apps/erp/app/components/Documents.tsx:194
 #: apps/erp/app/components/ImportCSVModal/UploadCSV.tsx:81
@@ -2005,7 +2005,7 @@ msgstr "Carbon क्लाइंट उपलब्ध नहीं है"
 #: apps/erp/app/modules/sales/ui/Opportunity/OpportunityLineDocuments.tsx:294
 #: apps/erp/app/modules/sales/ui/Quotes/QuoteToOrderDrawer.tsx:112
 msgid "Carbon client not available"
-msgstr "Carbon क्लाइंट उपलब्ध नहीं है"
+msgstr ""
 
 #: apps/erp/app/components/ItemThumnailUpload.tsx:35
 #: apps/erp/app/components/ItemThumnailUpload.tsx:73
@@ -2017,11 +2017,11 @@ msgstr "Carbon क्लाइंट उपलब्ध नहीं है"
 #: apps/erp/app/modules/sales/ui/SalesOrder/SalesOrderForm.tsx:81
 #: apps/erp/app/modules/sales/ui/SalesRFQ/SalesRFQForm.tsx:73
 msgid "Carbon client not found"
-msgstr "कार्बन क्लाइंट नहीं मिला"
+msgstr ""
 
 #: apps/erp/app/components/ImportCSVModal/FieldMappings.tsx:211
 msgid "Carbon column"
-msgstr "कार्बन कॉलम"
+msgstr ""
 
 #: apps/erp/app/routes/_public+/invite.$code.tsx:124
 #: apps/erp/app/routes/_public+/invite.$code.tsx:156
@@ -2029,11 +2029,11 @@ msgstr "कार्बन कॉलम"
 #: apps/erp/app/routes/_public+/magic-link.tsx:26
 #: apps/erp/app/routes/_public+/verify.tsx:147
 msgid "Carbon Logo"
-msgstr "कार्बन लोगो"
+msgstr ""
 
 #: apps/erp/app/components/ImportCSVModal/FieldMappings.tsx:454
 msgid "Carbon Value"
-msgstr "कार्बन मान"
+msgstr ""
 
 #: apps/erp/app/modules/inventory/ui/ShippingMethods/ShippingMethodForm.tsx:107
 #: apps/erp/app/modules/inventory/ui/ShippingMethods/ShippingMethodsTable.tsx:62
@@ -5617,7 +5617,7 @@ msgstr "सुझाव प्राप्त करने में विफ�
 
 #: apps/erp/app/modules/sales/ui/Quotes/QuoteToOrderDrawer.tsx:158
 msgid "Failed to initialize Carbon client"
-msgstr "Carbon क्लाइंट को इनिशियलाइज़ करने में विफल"
+msgstr ""
 
 #: apps/erp/app/modules/sales/ui/Quotes/QuoteLinePricing.tsx:525
 msgid "Failed to insert quote line"
@@ -6759,7 +6759,7 @@ msgstr "समस्या नहीं मिली"
 
 #: apps/erp/app/modules/settings/ui/ApiKeys/ApiKeysUpgradeOverlay.tsx:104
 msgid "Issue scoped API keys for programmatic access to your Carbon data."
-msgstr "अपने Carbon डेटा के लिए प्रोग्रामेटिक एक्सेस के लिए स्कोप्ड API कुंजियां जारी करें।"
+msgstr ""
 
 #: apps/erp/app/modules/quality/ui/Actions/ActionsTable.tsx:166
 msgid "Issue Status"

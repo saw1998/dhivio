@@ -58,7 +58,7 @@ type Lesson = {
 
 export const modules: Config = [
   {
-    name: "Carbon Overview",
+    name: "Dhivio Overview",
     background: "#6041d0",
     foreground: "#fff",
     id: "carbon-overview",
@@ -124,7 +124,7 @@ export const modules: Config = [
                 id: "carbon-modules",
                 loomUrl:
                   "https://www.loom.com/share/45200c015d664c219d8ebb8fd99c7594?sid=b7dfa915-19f7-4636-9fb2-ee8603aa42ee",
-                name: "Carbon's Modules",
+                name: "Dhivio's Modules",
                 description:
                   "Learn about Carbon's modular architecture and how different modules work together to provide comprehensive business management capabilities.",
                 duration: 371

@@ -10,7 +10,7 @@ export default function PublicRoute() {
         <div className="relative hidden h-full flex-col bg-muted p-10 lg:flex dark:border-r dark:bg-zinc-900 bg-zinc-100">
           <img
             src="/carbon-word-light.svg"
-            alt="Carbon Logo"
+            alt="Dhivio Logo"
             className={cn(
               "max-w-[240px] mb-3 dark:hidden z-50",
               CONTROLLED_ENVIRONMENT && "grayscale"
@@ -18,7 +18,7 @@ export default function PublicRoute() {
           />
           <img
             src="/carbon-word-dark.svg"
-            alt="Carbon Logo"
+            alt="Dhivio Logo"
             className={cn(
               "max-w-[240px] mb-3 dark:block hidden z-50",
               CONTROLLED_ENVIRONMENT && "grayscale"

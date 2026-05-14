@@ -188,7 +188,7 @@ msgstr "Abbrechen"
 
 #: apps/mes/app/routes/_public+/login.tsx:166
 msgid "Carbon Logo"
-msgstr "Carbon Logo"
+msgstr ""
 
 #: apps/mes/app/routes/x+/operations.tsx:470
 msgid "Cards"
@@ -496,7 +496,7 @@ msgstr "Vergessen auszustempeln?"
 
 #: apps/mes/app/components/Feedback.tsx:165
 msgid "Have a technical issue? Contact <0>Carbon Support.</0>"
-msgstr "Haben Sie ein technisches Problem? Kontaktieren Sie den <0>Carbon Support.</0>"
+msgstr ""
 
 #: apps/mes/app/components/JobOperation/components/QuantityModal.tsx:197
 msgid "I understand and want to complete without issuing"

@@ -778,7 +778,7 @@ export abstract class BaseEntitySyncer<
               action: "none",
               remoteId,
               localId: existingLocalId,
-              error: "Carbon is System of Record"
+              error: "Dhivio is System of Record"
             });
             continue;
           }

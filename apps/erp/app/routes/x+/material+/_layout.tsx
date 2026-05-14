@@ -12,7 +12,7 @@ import type { Handle } from "~/utils/handle";
 import { path } from "~/utils/path";
 
 export const meta: MetaFunction = () => {
-  return [{ title: "Carbon | Materials" }];
+  return [{ title: "Dhivio | Materials" }];
 };
 
 export const handle: Handle = {

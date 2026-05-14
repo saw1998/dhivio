@@ -6,7 +6,7 @@ import { dockerProjectStates } from "../services/compose.js";
 import { worktreesTable } from "../ui/tables.js";
 
 export async function listWorktrees() {
-  intro("Carbon · worktrees");
+  intro("Dhivio · worktrees");
 
   const [wtsAll, registry, dockerStates] = await Promise.all([
     gitListWorktrees(),
