@@ -137,8 +137,8 @@ const IntegrationsList = ({
               </UpgradeOverlayTitle>
               <UpgradeOverlayDescription>
                 <Trans>
-                  Connect Carbon to your accounting, project, and CAD tools and
-                  much more.
+                  Connect Carbon to your accounting, project management, and CAD
+                  tools and much more.
                 </Trans>
               </UpgradeOverlayDescription>
             </UpgradeOverlayContent>

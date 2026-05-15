@@ -482,6 +482,9 @@ msgstr "Klucz API"
 msgid "API Keys"
 msgstr "Klucze API"
 
+msgid "API keys for programmatic access to your Carbon data."
+msgstr ""
+
 msgid "Applies to"
 msgstr "Dotyczy"
 
@@ -1456,8 +1459,8 @@ msgstr "PotwierdÃƒâ€¦Ã‚Âº import"
 msgid "Confirm Password"
 msgstr "PotwierdÃƒâ€¦Ã‚Âº hasÃƒâ€¦Ã¢â‚¬Å¡o"
 
-msgid "Connect Carbon to your accounting, project, and CAD tools and much more."
-msgstr "PoÃƒâ€¦Ã¢â‚¬Å¡Ãƒâ€žÃ¢â‚¬Â¦cz Carbon ze swoimi narzÃƒâ€žÃ¢â€žÂ¢dziami ksiÃƒâ€žÃ¢â€žÂ¢gowoÃƒâ€¦Ã¢â‚¬Âºci, projektÃƒÆ’Ã‚Â³w i CAD oraz wieloma innymi."
+msgid "Connect Carbon to your accounting, project management, and CAD tools and much more."
+msgstr ""
 
 msgid "Connect Jira issue"
 msgstr "PoÃƒâ€¦Ã¢â‚¬Å¡Ãƒâ€žÃ¢â‚¬Â¦cz problem Jiry"
@@ -3895,9 +3898,6 @@ msgstr "Opis problemu"
 
 msgid "Issue not found"
 msgstr "Problem nie znaleziony"
-
-msgid "Issue scoped API keys for programmatic access to your Carbon data."
-msgstr "Wydawaj ograniczone klucze API do programowego dostÃƒâ€žÃ¢â€žÂ¢pu do danych Carbon."
 
 msgid "Issue Status"
 msgstr "Status problemu"
