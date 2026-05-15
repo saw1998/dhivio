@@ -10608,7 +10608,7 @@ msgstr "Gotowy do wyceny"
 msgid "Reason"
 msgstr "Powód"
 
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1037
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1041
 msgid "Reason for declining (Optional)"
 msgstr "Powód odrzucenia (Opcjonalnie)"
 
@@ -15100,8 +15100,8 @@ msgstr "Jesteś zalogowany od {hoursElapsed} godzin. Czy zapomniałeś się wylo
 msgid "Your Console PIN"
 msgstr "Twój PIN konsoli"
 
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:986
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1046
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:990
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1050
 msgid "Your Email"
 msgstr "Twój e-mail"
 
@@ -15109,8 +15109,8 @@ msgstr "Twój e-mail"
 msgid "Your invitation is invalid or has already been accepted. Please contact support if you believe this is an error."
 msgstr "Twoje zaproszenie jest nieprawidłowe lub zostało już zaakceptowane. Skontaktuj się z pomocą techniczną, jeśli uważasz, że to błąd."
 
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:981
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1041
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:985
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1045
 msgid "Your Name"
 msgstr "Twoje imię"
 

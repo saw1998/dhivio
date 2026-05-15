@@ -10608,7 +10608,7 @@ msgstr "Bereit für Angebot"
 msgid "Reason"
 msgstr "Grund"
 
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1037
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1041
 msgid "Reason for declining (Optional)"
 msgstr "Grund für Ablehnung (Optional)"
 
@@ -15100,8 +15100,8 @@ msgstr "Du bist seit {hoursElapsed} Stunden angemeldet. Hast du vergessen, dich 
 msgid "Your Console PIN"
 msgstr "Ihre Konsolen-PIN"
 
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:986
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1046
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:990
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1050
 msgid "Your Email"
 msgstr "Ihre E-Mail"
 
@@ -15109,8 +15109,8 @@ msgstr "Ihre E-Mail"
 msgid "Your invitation is invalid or has already been accepted. Please contact support if you believe this is an error."
 msgstr "Ihre Einladung ist ungültig oder wurde bereits akzeptiert. Bitte kontaktieren Sie den Support, wenn Sie glauben, dass dies ein Fehler ist."
 
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:981
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1041
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:985
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1045
 msgid "Your Name"
 msgstr "Ihr Name"
 

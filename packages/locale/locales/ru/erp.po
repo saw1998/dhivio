@@ -10608,7 +10608,7 @@ msgstr "Готово к предложению"
 msgid "Reason"
 msgstr "Причина"
 
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1037
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1041
 msgid "Reason for declining (Optional)"
 msgstr "Причина отказа (Необязательно)"
 
@@ -15100,8 +15100,8 @@ msgstr "Вы отметились на работу {hoursElapsed} часов н
 msgid "Your Console PIN"
 msgstr "Ваш PIN консоли"
 
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:986
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1046
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:990
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1050
 msgid "Your Email"
 msgstr "Ваша электронная почта"
 
@@ -15109,8 +15109,8 @@ msgstr "Ваша электронная почта"
 msgid "Your invitation is invalid or has already been accepted. Please contact support if you believe this is an error."
 msgstr "Ваше приглашение недействительно или уже было принято. Пожалуйста, свяжитесь со службой поддержки, если вы считаете, что это ошибка."
 
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:981
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1041
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:985
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1045
 msgid "Your Name"
 msgstr "Ваше имя"
 

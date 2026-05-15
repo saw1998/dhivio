@@ -884,6 +884,8 @@ const Quote = ({
       );
     }) && Object.values(selectedLines).length > 0;
 
+  console.log("company : ", { company });
+  console.log("quote : ", { quote });
   return (
     <VStack spacing={8} className="w-full items-center p-2 md:p-8">
       {logo && (
@@ -910,7 +912,9 @@ const Quote = ({
         </CardHeader>
         <CardContent>
           <LineItems
-            currencyCode={quote.currencyCode ?? "USD"}
+            currencyCode={
+              quote.currencyCode ?? company.baseCurrencyCode ?? "USD"
+            }
             locale={locale}
             selectedLines={selectedLines}
             setSelectedLines={setSelectedLines}

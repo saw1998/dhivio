@@ -10608,7 +10608,7 @@ msgstr "准备报价"
 msgid "Reason"
 msgstr "原因"
 
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1037
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1041
 msgid "Reason for declining (Optional)"
 msgstr "拒绝原因（可选）"
 
@@ -15100,8 +15100,8 @@ msgstr "您已打卡 {hoursElapsed} 小时。您忘记打卡下班了吗？"
 msgid "Your Console PIN"
 msgstr "您的控制台PIN"
 
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:986
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1046
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:990
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1050
 msgid "Your Email"
 msgstr "你的电子邮件"
 
@@ -15109,8 +15109,8 @@ msgstr "你的电子邮件"
 msgid "Your invitation is invalid or has already been accepted. Please contact support if you believe this is an error."
 msgstr "您的邀请无效或已被接受。如果您认为这是一个错误，请联系支持。"
 
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:981
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1041
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:985
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1045
 msgid "Your Name"
 msgstr "你的名字"
 

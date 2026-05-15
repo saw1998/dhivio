@@ -10608,7 +10608,7 @@ msgstr "Pronto per Preventivo"
 msgid "Reason"
 msgstr "Motivo"
 
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1037
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1041
 msgid "Reason for declining (Optional)"
 msgstr "Motivo del rifiuto (Facoltativo)"
 
@@ -15100,8 +15100,8 @@ msgstr "Sei stato registrato per {hoursElapsed} ore. Hai dimenticato di registra
 msgid "Your Console PIN"
 msgstr "Il tuo PIN Console"
 
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:986
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1046
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:990
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1050
 msgid "Your Email"
 msgstr "La tua email"
 
@@ -15109,8 +15109,8 @@ msgstr "La tua email"
 msgid "Your invitation is invalid or has already been accepted. Please contact support if you believe this is an error."
 msgstr "Il tuo invito non è valido o è già stato accettato. Contatta il supporto se ritieni che si tratti di un errore."
 
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:981
-#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1041
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:985
+#: apps/erp/app/routes/share+/supplier-quote.$id.tsx:1045
 msgid "Your Name"
 msgstr "Il tuo nome"
 
