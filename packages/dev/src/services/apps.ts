@@ -1,4 +1,5 @@
 import { existsSync, readFileSync } from "node:fs";
+import { homedir } from "node:os";
 import { parse } from "dotenv";
 import { type ExecaChildProcess, execa } from "execa";
 import { join } from "pathe";
@@ -50,7 +51,13 @@ export function spawnApps(opts: {
   ports: PortMap;
   portless: boolean;
 }): Promise<void> {
-  const { root, apps, ports } = opts;
+  const { root, apps, ports, portless } = opts;
+
+  // When portless is active, apps talk to Supabase over HTTPS using
+  // portless's self-signed CA. Tell Node to trust it.
+  const caPath = join(homedir(), ".portless", "ca.pem");
+  const extraCaEnv =
+    portless && existsSync(caPath) ? { NODE_EXTRA_CA_CERTS: caPath } : {};
 
   let shuttingDown = false;
 
@@ -75,6 +82,7 @@ export function spawnApps(opts: {
         cwd: join(root, "apps", id),
         env: {
           ...spawnAppEnv(root, id),
+          ...extraCaEnv,
           HOST: "127.0.0.1",
           ...(port !== undefined ? { PORT: String(port) } : {})
         },
