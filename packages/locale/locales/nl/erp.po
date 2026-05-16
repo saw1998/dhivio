@@ -1157,22 +1157,22 @@ msgstr ""
 msgid "Cannot upload to parts bucket without item ID"
 msgstr ""
 
-msgid "Carbon client is not available"
+msgid "Dhivio client is not available"
 msgstr ""
 
-msgid "Carbon client not available"
+msgid "Dhivio client not available"
 msgstr ""
 
-msgid "Carbon client not found"
+msgid "Dhivio client not found"
 msgstr ""
 
-msgid "Carbon column"
+msgid "Dhivio column"
 msgstr ""
 
-msgid "Carbon Logo"
+msgid "Dhivio Logo"
 msgstr ""
 
-msgid "Carbon Value"
+msgid "Dhivio Value"
 msgstr ""
 
 msgid "Carrier"
@@ -1456,7 +1456,7 @@ msgstr ""
 msgid "Confirm Password"
 msgstr ""
 
-msgid "Connect Carbon to your accounting, project, and CAD tools and much more."
+msgid "Connect Dhivio to your accounting, project, and CAD tools and much more."
 msgstr ""
 
 msgid "Connect Jira issue"
@@ -3256,7 +3256,7 @@ msgstr ""
 msgid "Failed to fetch suggestions"
 msgstr ""
 
-msgid "Failed to initialize Carbon client"
+msgid "Failed to initialize Dhivio client"
 msgstr ""
 
 msgid "Failed to insert quote line"
@@ -3890,7 +3890,7 @@ msgstr ""
 msgid "Issue not found"
 msgstr ""
 
-msgid "Issue scoped API keys for programmatic access to your Carbon data."
+msgid "Issue scoped API keys for programmatic access to your Dhivio data."
 msgstr ""
 
 msgid "Issue Status"
@@ -5714,7 +5714,7 @@ msgstr ""
 msgid "Publish"
 msgstr ""
 
-msgid "Published by Carbon"
+msgid "Published by Dhivio"
 msgstr ""
 
 msgid "Pull From"
@@ -6656,7 +6656,7 @@ msgstr ""
 msgid "Self Managed"
 msgstr ""
 
-msgid "Self-Onboarding with Carbon Academy"
+msgid "Self-Onboarding with Dhivio Academy"
 msgstr ""
 
 msgid "Send"
@@ -8203,7 +8203,7 @@ msgstr ""
 msgid "Weighted average cost over last year calculated when the invoice is posted"
 msgstr ""
 
-msgid "Welcome to Carbon"
+msgid "Welcome to Dhivio"
 msgstr ""
 
 msgid "When"

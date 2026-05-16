@@ -6,3 +6,4 @@ llm
 .claude
 .cursor
 examples
+.env

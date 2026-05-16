@@ -131,7 +131,7 @@ msgstr "Mit der Anmeldung stimmen Sie den <0>Nutzungsbedingungen</0> und der <1>
 msgid "Cancel"
 msgstr "Abbrechen"
 
-msgid "Carbon Logo"
+msgid "Dhivio Logo"
 msgstr ""
 
 msgid "Cards"
@@ -345,7 +345,7 @@ msgstr "Filter"
 msgid "Forgot to Clock Out?"
 msgstr "Vergessen auszustempeln?"
 
-msgid "Have a technical issue? Contact <0>Carbon Support.</0>"
+msgid "Have a technical issue? Contact <0>Dhivio Support.</0>"
 msgstr ""
 
 msgid "I understand and want to complete without issuing"

@@ -131,7 +131,7 @@ msgstr "Effettuando l'accesso, accetti i <0>Termini di Servizio</0> e l'<1>Infor
 msgid "Cancel"
 msgstr "Annulla"
 
-msgid "Carbon Logo"
+msgid "Dhivio Logo"
 msgstr ""
 
 msgid "Cards"
@@ -345,7 +345,7 @@ msgstr "Filtro"
 msgid "Forgot to Clock Out?"
 msgstr "Hai dimenticato di timbrare l'uscita?"
 
-msgid "Have a technical issue? Contact <0>Carbon Support.</0>"
+msgid "Have a technical issue? Contact <0>Dhivio Support.</0>"
 msgstr ""
 
 msgid "I understand and want to complete without issuing"

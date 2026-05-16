@@ -1,11 +1,11 @@
 version: '3.8'
 
-name: carbon-shared
+name: dhivio-shared
 
 services:
   redis:
     image: redis:7-alpine
-    container_name: carbon-redis
+    container_name: dhivio-redis
     ports:
       - "6379:6379"
     volumes:

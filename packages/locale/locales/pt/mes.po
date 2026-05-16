@@ -131,7 +131,7 @@ msgstr "Ao entrar, você concorda com os <0>Termos de Serviço</0> e a <1>Polít
 msgid "Cancel"
 msgstr "Cancelar"
 
-msgid "Carbon Logo"
+msgid "Dhivio Logo"
 msgstr ""
 
 msgid "Cards"
@@ -345,7 +345,7 @@ msgstr "Filtro"
 msgid "Forgot to Clock Out?"
 msgstr "Esqueceu de Registrar Saída?"
 
-msgid "Have a technical issue? Contact <0>Carbon Support.</0>"
+msgid "Have a technical issue? Contact <0>Dhivio Support.</0>"
 msgstr ""
 
 msgid "I understand and want to complete without issuing"
