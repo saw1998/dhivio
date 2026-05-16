@@ -80,6 +80,7 @@
   },
   "devDependencies": {
     "@carbon/config": "workspace:*",
+    "@carbon/dev": "workspace:*",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
     "autoprefixer": "catalog:",

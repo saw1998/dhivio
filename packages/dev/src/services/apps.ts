@@ -45,6 +45,11 @@ const APP_PORT_KEYS: Partial<Record<string, keyof PortMap>> = {
   mes: "PORT_MES"
 };
 
+const APP_URL_ENV_KEYS: Partial<Record<string, string>> = {
+  erp: "ERP_URL",
+  mes: "MES_URL"
+};
+
 export function spawnApps(opts: {
   root: string;
   apps: string[];
@@ -68,6 +73,11 @@ export function spawnApps(opts: {
     // (`<app>.<prefix>.dev`) without portless auto-prefix mangling.
     const portKey = APP_PORT_KEYS[id];
     const port = portKey ? ports[portKey] : undefined;
+    const appEnv = spawnAppEnv(root, id);
+    // Each app needs its own VERCEL_URL so auth redirects (magic link,
+    // OAuth callback) return to the correct app, not always ERP.
+    const urlKey = APP_URL_ENV_KEYS[id];
+    const vercelUrl = urlKey ? appEnv[urlKey] : undefined;
     const child = execa(
       "pnpm",
       [
@@ -81,10 +91,11 @@ export function spawnApps(opts: {
       {
         cwd: join(root, "apps", id),
         env: {
-          ...spawnAppEnv(root, id),
+          ...appEnv,
           ...extraCaEnv,
           HOST: "127.0.0.1",
-          ...(port !== undefined ? { PORT: String(port) } : {})
+          ...(port !== undefined ? { PORT: String(port) } : {}),
+          ...(vercelUrl ? { VERCEL_URL: vercelUrl } : {})
         },
         reject: false,
         stdin: "ignore",
