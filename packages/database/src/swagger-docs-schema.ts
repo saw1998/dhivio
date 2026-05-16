@@ -2847,6 +2847,195 @@ export default {
         tags: ["groups"]
       }
     },
+    "/searchIndex_EBw9p66227RpQ21V62J9gM": {
+      get: {
+        parameters: [
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.id"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.entityType"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.entityId"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.title"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.description"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.link"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.tags"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.metadata"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.searchVector"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.createdAt"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.updatedAt"
+          },
+          {
+            $ref: "#/parameters/select"
+          },
+          {
+            $ref: "#/parameters/order"
+          },
+          {
+            $ref: "#/parameters/range"
+          },
+          {
+            $ref: "#/parameters/rangeUnit"
+          },
+          {
+            $ref: "#/parameters/offset"
+          },
+          {
+            $ref: "#/parameters/limit"
+          },
+          {
+            $ref: "#/parameters/preferCount"
+          }
+        ],
+        responses: {
+          "200": {
+            description: "OK",
+            schema: {
+              items: {
+                $ref: "#/definitions/searchIndex_EBw9p66227RpQ21V62J9gM"
+              },
+              type: "array"
+            }
+          },
+          "206": {
+            description: "Partial Content"
+          }
+        },
+        tags: ["searchIndex_EBw9p66227RpQ21V62J9gM"]
+      },
+      post: {
+        parameters: [
+          {
+            $ref: "#/parameters/body.searchIndex_EBw9p66227RpQ21V62J9gM"
+          },
+          {
+            $ref: "#/parameters/select"
+          },
+          {
+            $ref: "#/parameters/preferPost"
+          }
+        ],
+        responses: {
+          "201": {
+            description: "Created"
+          }
+        },
+        tags: ["searchIndex_EBw9p66227RpQ21V62J9gM"]
+      },
+      delete: {
+        parameters: [
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.id"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.entityType"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.entityId"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.title"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.description"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.link"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.tags"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.metadata"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.searchVector"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.createdAt"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.updatedAt"
+          },
+          {
+            $ref: "#/parameters/preferReturn"
+          }
+        ],
+        responses: {
+          "204": {
+            description: "No Content"
+          }
+        },
+        tags: ["searchIndex_EBw9p66227RpQ21V62J9gM"]
+      },
+      patch: {
+        parameters: [
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.id"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.entityType"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.entityId"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.title"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.description"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.link"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.tags"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.metadata"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.searchVector"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.createdAt"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.updatedAt"
+          },
+          {
+            $ref: "#/parameters/body.searchIndex_EBw9p66227RpQ21V62J9gM"
+          },
+          {
+            $ref: "#/parameters/preferReturn"
+          }
+        ],
+        responses: {
+          "204": {
+            description: "No Content"
+          }
+        },
+        tags: ["searchIndex_EBw9p66227RpQ21V62J9gM"]
+      }
+    },
     "/qualityActions": {
       get: {
         parameters: [
@@ -25780,6 +25969,195 @@ export default {
           }
         },
         tags: ["jobOperationDependency"]
+      }
+    },
+    "/searchIndex_935JjX2AaCxN8gdC8E4YMe": {
+      get: {
+        parameters: [
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.id"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.entityType"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.entityId"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.title"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.description"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.link"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.tags"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.metadata"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.searchVector"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.createdAt"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.updatedAt"
+          },
+          {
+            $ref: "#/parameters/select"
+          },
+          {
+            $ref: "#/parameters/order"
+          },
+          {
+            $ref: "#/parameters/range"
+          },
+          {
+            $ref: "#/parameters/rangeUnit"
+          },
+          {
+            $ref: "#/parameters/offset"
+          },
+          {
+            $ref: "#/parameters/limit"
+          },
+          {
+            $ref: "#/parameters/preferCount"
+          }
+        ],
+        responses: {
+          "200": {
+            description: "OK",
+            schema: {
+              items: {
+                $ref: "#/definitions/searchIndex_935JjX2AaCxN8gdC8E4YMe"
+              },
+              type: "array"
+            }
+          },
+          "206": {
+            description: "Partial Content"
+          }
+        },
+        tags: ["searchIndex_935JjX2AaCxN8gdC8E4YMe"]
+      },
+      post: {
+        parameters: [
+          {
+            $ref: "#/parameters/body.searchIndex_935JjX2AaCxN8gdC8E4YMe"
+          },
+          {
+            $ref: "#/parameters/select"
+          },
+          {
+            $ref: "#/parameters/preferPost"
+          }
+        ],
+        responses: {
+          "201": {
+            description: "Created"
+          }
+        },
+        tags: ["searchIndex_935JjX2AaCxN8gdC8E4YMe"]
+      },
+      delete: {
+        parameters: [
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.id"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.entityType"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.entityId"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.title"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.description"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.link"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.tags"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.metadata"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.searchVector"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.createdAt"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.updatedAt"
+          },
+          {
+            $ref: "#/parameters/preferReturn"
+          }
+        ],
+        responses: {
+          "204": {
+            description: "No Content"
+          }
+        },
+        tags: ["searchIndex_935JjX2AaCxN8gdC8E4YMe"]
+      },
+      patch: {
+        parameters: [
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.id"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.entityType"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.entityId"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.title"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.description"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.link"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.tags"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.metadata"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.searchVector"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.createdAt"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.updatedAt"
+          },
+          {
+            $ref: "#/parameters/body.searchIndex_935JjX2AaCxN8gdC8E4YMe"
+          },
+          {
+            $ref: "#/parameters/preferReturn"
+          }
+        ],
+        responses: {
+          "204": {
+            description: "No Content"
+          }
+        },
+        tags: ["searchIndex_935JjX2AaCxN8gdC8E4YMe"]
       }
     },
     "/purchaseOrderStatusHistory": {
@@ -78915,6 +79293,61 @@ export default {
       },
       type: "object"
     },
+    searchIndex_EBw9p66227RpQ21V62J9gM: {
+      required: ["id", "entityType", "entityId", "title", "link", "createdAt"],
+      properties: {
+        id: {
+          description: "Note:\nThis is a Primary Key.<pk/>",
+          format: "bigint",
+          type: "integer"
+        },
+        entityType: {
+          format: "text",
+          type: "string"
+        },
+        entityId: {
+          format: "text",
+          type: "string"
+        },
+        title: {
+          format: "text",
+          type: "string"
+        },
+        description: {
+          default: "",
+          format: "text",
+          type: "string"
+        },
+        link: {
+          format: "text",
+          type: "string"
+        },
+        tags: {
+          format: "text[]",
+          items: {
+            type: "string"
+          },
+          type: "array"
+        },
+        metadata: {
+          format: "jsonb"
+        },
+        searchVector: {
+          format: "tsvector",
+          type: "string"
+        },
+        createdAt: {
+          default: "now()",
+          format: "timestamp with time zone",
+          type: "string"
+        },
+        updatedAt: {
+          format: "timestamp with time zone",
+          type: "string"
+        }
+      },
+      type: "object"
+    },
     qualityActions: {
       properties: {
         id: {
@@ -89957,6 +90390,61 @@ export default {
         },
         createdAt: {
           default: "now()",
+          format: "timestamp with time zone",
+          type: "string"
+        }
+      },
+      type: "object"
+    },
+    searchIndex_935JjX2AaCxN8gdC8E4YMe: {
+      required: ["id", "entityType", "entityId", "title", "link", "createdAt"],
+      properties: {
+        id: {
+          description: "Note:\nThis is a Primary Key.<pk/>",
+          format: "bigint",
+          type: "integer"
+        },
+        entityType: {
+          format: "text",
+          type: "string"
+        },
+        entityId: {
+          format: "text",
+          type: "string"
+        },
+        title: {
+          format: "text",
+          type: "string"
+        },
+        description: {
+          default: "",
+          format: "text",
+          type: "string"
+        },
+        link: {
+          format: "text",
+          type: "string"
+        },
+        tags: {
+          format: "text[]",
+          items: {
+            type: "string"
+          },
+          type: "array"
+        },
+        metadata: {
+          format: "jsonb"
+        },
+        searchVector: {
+          format: "tsvector",
+          type: "string"
+        },
+        createdAt: {
+          default: "now()",
+          format: "timestamp with time zone",
+          type: "string"
+        },
+        updatedAt: {
           format: "timestamp with time zone",
           type: "string"
         }
@@ -112180,6 +112668,81 @@ export default {
       in: "query",
       type: "string"
     },
+    "body.searchIndex_EBw9p66227RpQ21V62J9gM": {
+      name: "searchIndex_EBw9p66227RpQ21V62J9gM",
+      description: "searchIndex_EBw9p66227RpQ21V62J9gM",
+      required: false,
+      in: "body",
+      schema: {
+        $ref: "#/definitions/searchIndex_EBw9p66227RpQ21V62J9gM"
+      }
+    },
+    "rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.id": {
+      name: "id",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.entityType": {
+      name: "entityType",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.entityId": {
+      name: "entityId",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.title": {
+      name: "title",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.description": {
+      name: "description",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.link": {
+      name: "link",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.tags": {
+      name: "tags",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.metadata": {
+      name: "metadata",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.searchVector": {
+      name: "searchVector",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.createdAt": {
+      name: "createdAt",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_EBw9p66227RpQ21V62J9gM.updatedAt": {
+      name: "updatedAt",
+      required: false,
+      in: "query",
+      type: "string"
+    },
     "body.qualityActions": {
       name: "qualityActions",
       description: "qualityActions",
@@ -124587,6 +125150,81 @@ export default {
     },
     "rowFilter.jobOperationDependency.createdAt": {
       name: "createdAt",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "body.searchIndex_935JjX2AaCxN8gdC8E4YMe": {
+      name: "searchIndex_935JjX2AaCxN8gdC8E4YMe",
+      description: "searchIndex_935JjX2AaCxN8gdC8E4YMe",
+      required: false,
+      in: "body",
+      schema: {
+        $ref: "#/definitions/searchIndex_935JjX2AaCxN8gdC8E4YMe"
+      }
+    },
+    "rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.id": {
+      name: "id",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.entityType": {
+      name: "entityType",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.entityId": {
+      name: "entityId",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.title": {
+      name: "title",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.description": {
+      name: "description",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.link": {
+      name: "link",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.tags": {
+      name: "tags",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.metadata": {
+      name: "metadata",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.searchVector": {
+      name: "searchVector",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.createdAt": {
+      name: "createdAt",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_935JjX2AaCxN8gdC8E4YMe.updatedAt": {
+      name: "updatedAt",
       required: false,
       in: "query",
       type: "string"

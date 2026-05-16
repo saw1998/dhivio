@@ -290,6 +290,13 @@ export const STRIPE_BYPASS_COMPANY_IDS = getEnv("STRIPE_BYPASS_COMPANY_IDS", {
 export const STRIPE_BYPASS_USER_IDS = getEnv("STRIPE_BYPASS_USER_IDS", {
   isRequired: false
 });
+export const RAZORPAY_KEY_ID = getEnv("RAZORPAY_KEY_ID", {
+  isRequired: false
+});
+export const RAZORPAY_KEY_SECRET = getEnv("RAZORPAY_KEY_SECRET", {
+  isRequired: false,
+  isSecret: true
+});
 export const GTM_URL = getEnv("GTM_URL", {
   isRequired: false,
   isSecret: false

@@ -1,0 +1,34 @@
+{
+  "name": "@carbon/razorpay",
+  "dependencies": {
+    "@carbon/env": "workspace:*",
+    "@carbon/utils": "workspace:*",
+    "razorpay": "2.9.5",
+    "zod": "catalog:"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@carbon/config": "workspace:*",
+    "@types/node": "20.19.39",
+    "dotenv": "16.3.1",
+    "rimraf": "catalog:",
+    "sst": "catalog:",
+    "tsup": "catalog:",
+    "tsx": "catalog:",
+    "typescript": "catalog:"
+  },
+  "exports": {
+    "./razorpay.server": "./src/razorpay.server.ts",
+    "./razorpay.client": "./src/razorpay.client.ts"
+  },
+  "private": true,
+  "scripts": {
+    "clean": "rimraf .turbo node_modules dist",
+    "dev": "tsup --watch",
+    "lint": "biome lint --write ",
+    "smoke": "tsx ./razorpay.smoke.ts",
+    "typecheck": "tsgo --noEmit"
+  },
+  "sideEffects": false,
+  "version": "0.0.0"
+}

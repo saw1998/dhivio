@@ -2027,7 +2027,7 @@ msgstr ""
 #: apps/erp/app/routes/_public+/invite.$code.tsx:156
 #: apps/erp/app/routes/_public+/login.tsx:235
 #: apps/erp/app/routes/_public+/magic-link.tsx:26
-#: apps/erp/app/routes/_public+/verify.tsx:147
+#: apps/erp/app/routes/_public+/verify.tsx:146
 msgid "Carbon Logo"
 msgstr ""
 
@@ -14424,7 +14424,7 @@ msgid "Use ... to get the next tool ID"
 msgstr "Utilisez ... pour obtenir l'ID d'outil suivant"
 
 #: apps/erp/app/routes/_public+/login.tsx:275
-#: apps/erp/app/routes/_public+/verify.tsx:182
+#: apps/erp/app/routes/_public+/verify.tsx:181
 msgid "Use a different email"
 msgstr "Utiliser une adresse e-mail différente"
 
@@ -14513,12 +14513,12 @@ msgstr "Valeur"
 msgid "VAT Number"
 msgstr "Numéro de TVA"
 
-#: apps/erp/app/routes/_public+/verify.tsx:172
+#: apps/erp/app/routes/_public+/verify.tsx:171
 msgid "Verification Error"
 msgstr "Erreur de vérification"
 
 #: apps/erp/app/routes/_public+/login.tsx:256
-#: apps/erp/app/routes/_public+/verify.tsx:162
+#: apps/erp/app/routes/_public+/verify.tsx:161
 msgid "Verify your email"
 msgstr "Vérifiez votre email"
 
@@ -14815,7 +14815,7 @@ msgstr "Regarder la vidéo complète"
 msgid "We've mapped each column to what we believe is correct, but please review the data below to confirm it's accurate."
 msgstr "Nous avons mappé chaque colonne à ce que nous croyons être correct, mais veuillez vérifier les données ci-dessous pour confirmer que c'est exact."
 
-#: apps/erp/app/routes/_public+/verify.tsx:165
+#: apps/erp/app/routes/_public+/verify.tsx:164
 msgid "We've sent a verification code to {email}"
 msgstr "Nous avons envoyé un code de vérification à {email}"
 

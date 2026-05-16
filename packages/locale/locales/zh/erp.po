@@ -2027,7 +2027,7 @@ msgstr ""
 #: apps/erp/app/routes/_public+/invite.$code.tsx:156
 #: apps/erp/app/routes/_public+/login.tsx:235
 #: apps/erp/app/routes/_public+/magic-link.tsx:26
-#: apps/erp/app/routes/_public+/verify.tsx:147
+#: apps/erp/app/routes/_public+/verify.tsx:146
 msgid "Carbon Logo"
 msgstr ""
 
@@ -14424,7 +14424,7 @@ msgid "Use ... to get the next tool ID"
 msgstr "使用 ... 获取下一个工具 ID"
 
 #: apps/erp/app/routes/_public+/login.tsx:275
-#: apps/erp/app/routes/_public+/verify.tsx:182
+#: apps/erp/app/routes/_public+/verify.tsx:181
 msgid "Use a different email"
 msgstr "使用不同的电子邮件"
 
@@ -14513,12 +14513,12 @@ msgstr "值"
 msgid "VAT Number"
 msgstr "增值税号"
 
-#: apps/erp/app/routes/_public+/verify.tsx:172
+#: apps/erp/app/routes/_public+/verify.tsx:171
 msgid "Verification Error"
 msgstr "验证错误"
 
 #: apps/erp/app/routes/_public+/login.tsx:256
-#: apps/erp/app/routes/_public+/verify.tsx:162
+#: apps/erp/app/routes/_public+/verify.tsx:161
 msgid "Verify your email"
 msgstr "验证您的电子邮件"
 
@@ -14815,7 +14815,7 @@ msgstr "观看完整视频"
 msgid "We've mapped each column to what we believe is correct, but please review the data below to confirm it's accurate."
 msgstr "我们已将每一列映射到我们认为正确的内容，但请查看下面的数据以确认其准确性。"
 
-#: apps/erp/app/routes/_public+/verify.tsx:165
+#: apps/erp/app/routes/_public+/verify.tsx:164
 msgid "We've sent a verification code to {email}"
 msgstr "我们已向 {email} 发送了验证码"
 

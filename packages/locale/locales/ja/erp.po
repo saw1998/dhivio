@@ -2027,7 +2027,7 @@ msgstr ""
 #: apps/erp/app/routes/_public+/invite.$code.tsx:156
 #: apps/erp/app/routes/_public+/login.tsx:235
 #: apps/erp/app/routes/_public+/magic-link.tsx:26
-#: apps/erp/app/routes/_public+/verify.tsx:147
+#: apps/erp/app/routes/_public+/verify.tsx:146
 msgid "Carbon Logo"
 msgstr ""
 
@@ -14424,7 +14424,7 @@ msgid "Use ... to get the next tool ID"
 msgstr "「...」を使用して次のツールIDを取得します"
 
 #: apps/erp/app/routes/_public+/login.tsx:275
-#: apps/erp/app/routes/_public+/verify.tsx:182
+#: apps/erp/app/routes/_public+/verify.tsx:181
 msgid "Use a different email"
 msgstr "別のメールアドレスを使用"
 
@@ -14513,12 +14513,12 @@ msgstr "値"
 msgid "VAT Number"
 msgstr "VAT番号"
 
-#: apps/erp/app/routes/_public+/verify.tsx:172
+#: apps/erp/app/routes/_public+/verify.tsx:171
 msgid "Verification Error"
 msgstr "認証エラー"
 
 #: apps/erp/app/routes/_public+/login.tsx:256
-#: apps/erp/app/routes/_public+/verify.tsx:162
+#: apps/erp/app/routes/_public+/verify.tsx:161
 msgid "Verify your email"
 msgstr "メールアドレスを確認"
 
@@ -14815,7 +14815,7 @@ msgstr "フル動画を視聴"
 msgid "We've mapped each column to what we believe is correct, but please review the data below to confirm it's accurate."
 msgstr "各列を正しいと思われるものにマッピングしましたが、以下のデータを確認して、正確であることを確認してください。"
 
-#: apps/erp/app/routes/_public+/verify.tsx:165
+#: apps/erp/app/routes/_public+/verify.tsx:164
 msgid "We've sent a verification code to {email}"
 msgstr "検証コードを {email} に送信しました"
 
