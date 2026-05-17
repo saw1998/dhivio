@@ -82,14 +82,29 @@ command -v docker  >/dev/null || { fail "docker not found";  exit 1; }
 
 # ── 1. Layout ──────────────────────────────────────────────────────────────
 info "creating $ROOT layout"
-mkdir -p "$ROOT"/{state,backups,migrations-staging,functions,logs}
+mkdir -p "$ROOT"/{state,backups,migrations-staging,migrations-current,functions,logs}
 chmod 750 "$ROOT" "$ROOT/state" "$ROOT/backups"
 
 # Sync deploy/ into $ROOT so all paths in compose files resolve consistently.
+# IMPORTANT: --delete must not touch runtime state directories that don't
+# exist in the source tree (state/, backups/, migrations-*/, functions/,
+# logs/). Without these excludes, --delete wipes the dirs we just created.
 info "syncing deploy/ into $ROOT"
 rsync -a --delete \
-  --exclude '.env' --exclude 'scripts/.local' \
+  --exclude '.env' \
+  --exclude 'scripts/.local' \
+  --exclude 'state/' \
+  --exclude 'backups/' \
+  --exclude 'migrations-staging/' \
+  --exclude 'migrations-current/' \
+  --exclude 'functions/' \
+  --exclude 'logs/' \
   "$DEPLOY_DIR/" "$ROOT/"
+
+# Belt-and-braces: re-create runtime dirs in case rsync (or a future flag
+# change) wipes them. Cheap, idempotent.
+mkdir -p "$ROOT"/{state,backups,migrations-staging,migrations-current,functions,logs}
+chmod 750 "$ROOT/state" "$ROOT/backups"
 
 # ── 2. Generate or load auto secrets ───────────────────────────────────────
 if [[ -f "$ENV_FILE" && $ROTATE_JWT -eq 0 ]]; then
