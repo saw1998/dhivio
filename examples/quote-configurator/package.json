@@ -30,8 +30,7 @@
     "postcss": "catalog:",
     "tailwindcss": "catalog:",
     "typescript": "catalog:",
-    "vite": "catalog:",
-    "vite-tsconfig-paths": "catalog:"
+    "vite": "catalog:"
   },
   "private": true,
   "scripts": {

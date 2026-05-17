@@ -4,7 +4,6 @@ import { reactRouter } from "@react-router/dev/vite";
 import path from "node:path";
 import { defineConfig, PluginOption } from "vite";
 import babelMacros from "vite-plugin-babel-macros";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig(({ isSsrBuild, mode }) => {
   applyDotenvToProcessEnv(mode, __dirname);
@@ -12,7 +11,7 @@ export default defineConfig(({ isSsrBuild, mode }) => {
   return {
     build: {
       minify: true,
-      rollupOptions: {
+      rolldownOptions: {
         onwarn(warning, defaultHandler) {
           if (warning.code === "SOURCEMAP_ERROR") {
             return;
@@ -46,9 +45,9 @@ export default defineConfig(({ isSsrBuild, mode }) => {
       babelMacros(),
       lingui(),
       reactRouter(),
-      tsconfigPaths(),
     ] as PluginOption[],
     resolve: {
+      tsconfigPaths: true,
       alias: {
         "@carbon/utils": path.resolve(
           __dirname,

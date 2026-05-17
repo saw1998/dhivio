@@ -159,7 +159,6 @@
     "typescript": "catalog:",
     "vite": "catalog:",
     "vite-plugin-babel-macros": "catalog:",
-    "vite-tsconfig-paths": "catalog:",
     "vitest": "catalog:"
   },
   "private": true,

@@ -1,12 +1,11 @@
 import { reactRouter } from "@react-router/dev/vite";
 import type { PluginOption } from "vite";
 import { defineConfig } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
   build: {
     sourcemap: false,
-    rollupOptions: {
+    rolldownOptions: {
       onwarn(warning, defaultHandler) {
         if (warning.code === "SOURCEMAP_ERROR") {
           return;
@@ -28,5 +27,8 @@ export default defineConfig({
   server: {
     port: 5001
   },
-  plugins: [reactRouter(), tsconfigPaths()] as PluginOption[]
+  resolve: {
+    tsconfigPaths: true
+  },
+  plugins: [reactRouter()] as PluginOption[]
 });

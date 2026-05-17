@@ -7,6 +7,8 @@ packages:
 minimumReleaseAge: 4320
 minimumReleaseAgeExclude:
   - '@carbon/*'
+  - '@react-router/*'
+  - 'react-router'
 
 catalog:
   '@ai-sdk/openai': 2.0.102
@@ -25,9 +27,9 @@ catalog:
   '@react-aria/i18n': 3.12.16
   '@react-email/components': 0.3.3
   '@react-pdf/renderer': 3.4.5
-  '@react-router/dev': 7.12.0
-  '@react-router/remix-routes-option-adapter': 7.12.0
-  '@react-router/serve': 7.12.0
+  '@react-router/dev': 7.15.1
+  '@react-router/remix-routes-option-adapter': 7.15.1
+  '@react-router/serve': 7.15.1
   '@shikijs/langs': 4.0.2
   '@shikijs/themes': 4.0.2
   '@shikijs/types': 4.0.2
@@ -81,7 +83,7 @@ catalog:
   react-icons: 5.6.0
   react-pdf: 10.4.1
   react-resizable-panels: 2.1.9
-  react-router: 7.12.0
+  react-router: 7.15.1
   remix-flat-routes: 0.8.5
   rimraf: 5.0.10
   sst: 4.6.9
@@ -94,10 +96,9 @@ catalog:
   tsup: 8.5.1
   tsx: 4.21.0
   typescript: 5.8.3
-  vite: 7.3.2
+  vite: 8.0.10
   vite-plugin-babel-macros: 1.0.6
-  vite-tsconfig-paths: 5.1.4
-  vitest: 4.1.4
+  vitest: 4.1.6
   wait-on: 7.2.0
   zod: 3.25.76
   zod-form-data: 2.0.8
