@@ -1,9 +1,44 @@
+# Keep the Docker build context as small as possible.
+# turbo prune still needs the full source, so we cannot exclude apps/ or
+# packages/, but we strip every artefact that gets regenerated.
 
-# sst
-.sst
+# Node / build artefacts
+**/node_modules
+**/.turbo
+**/.cache
+**/.next
+**/dist
+**/build
+**/.vercel
+**/.sst
+**/coverage
+**/.nyc_output
+
+# Editor / OS noise
+**/.DS_Store
+**/.idea
+**/.vscode
+**/.cursor
+**/.claude
+
+# Repo housekeeping
+.git
+.github
+.husky
 llm
-.vscode
-.claude
-.cursor
+docs
 examples
+patches/*.md
+*.log
+
+# Secrets — never bake into images
 .env
+.env.*
+!.env.example
+
+# Local-dev only
+docker-compose.yml
+docker-compose.dev.yml
+deploy/
+setup.sh
+skills-lock.json

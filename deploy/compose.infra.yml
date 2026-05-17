@@ -1,0 +1,307 @@
+###
+# Long-lived infrastructure for Dhivio prod: Supabase (self-hosted), Redis,
+# Inngest. Boots once via `docker compose -f compose.infra.yml up -d`.
+#
+# Reads /srv/dhivio/.env (single source of truth) — see deploy/.env.example.
+# Joins the external `dhivio_net` so the app and proxy stacks can resolve
+# `postgres`, `kong`, `redis`, etc. by name.
+###
+
+name: dhivio-infra
+
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+x-restart: &default-restart unless-stopped
+
+networks:
+  default:
+    name: dhivio_net
+    external: true
+
+volumes:
+  pgdata:
+  storage:
+  inngest:
+  redis-data:
+
+services:
+  postgres:
+    image: supabase/postgres:15.14.1.112
+    container_name: dhivio-postgres
+    restart: *default-restart
+    logging: *default-logging
+    environment:
+      POSTGRES_HOST: /var/run/postgresql
+      POSTGRES_PORT: 5432
+      PGPORT: 5432
+      POSTGRES_DB: postgres
+      PGDATABASE: postgres
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      JWT_SECRET: ${SUPABASE_JWT_SECRET}
+      JWT_EXP: 3600
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./postgres/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      - ./postgres/init.sql:/docker-entrypoint-initdb.d/zz-dhivio-roles.sql:ro
+    command:
+      - postgres
+      - -c
+      - config_file=/etc/postgresql/postgresql.conf
+    mem_limit: 1024m
+    cpus: 1.0
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+
+  gotrue:
+    image: supabase/gotrue:v2.189.0
+    container_name: dhivio-gotrue
+    restart: *default-restart
+    logging: *default-logging
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      GOTRUE_API_HOST: 0.0.0.0
+      GOTRUE_API_PORT: 9999
+      API_EXTERNAL_URL: ${SUPABASE_URL}
+      GOTRUE_DB_DRIVER: postgres
+      GOTRUE_DB_DATABASE_URL: postgres://supabase_auth_admin:${POSTGRES_PASSWORD}@postgres:5432/postgres
+      GOTRUE_SITE_URL: ${ERP_URL}
+      GOTRUE_URI_ALLOW_LIST: ${ERP_URL},${MES_URL},${SUPABASE_URL}
+      GOTRUE_DISABLE_SIGNUP: "false"
+      GOTRUE_JWT_SECRET: ${SUPABASE_JWT_SECRET}
+      GOTRUE_JWT_EXP: 3600
+      GOTRUE_JWT_DEFAULT_GROUP_NAME: authenticated
+      GOTRUE_JWT_ADMIN_ROLES: service_role
+      GOTRUE_JWT_AUD: authenticated
+      GOTRUE_EXTERNAL_EMAIL_ENABLED: "true"
+      GOTRUE_MAILER_AUTOCONFIRM: "false"
+      # SMTP via Resend (or any SMTP provider)
+      GOTRUE_SMTP_HOST: ${SMTP_HOST:-smtp.resend.com}
+      GOTRUE_SMTP_PORT: ${SMTP_PORT:-465}
+      GOTRUE_SMTP_USER: ${SMTP_USER:-resend}
+      GOTRUE_SMTP_PASS: ${RESEND_API_KEY}
+      GOTRUE_SMTP_ADMIN_EMAIL: ${SMTP_ADMIN_EMAIL:-admin@dhivio.com}
+      GOTRUE_SMTP_SENDER_NAME: ${SMTP_SENDER_NAME:-Dhivio}
+      # Google OAuth — values from /srv/dhivio/.env (user-supplied)
+      GOTRUE_EXTERNAL_GOOGLE_ENABLED: "true"
+      GOTRUE_EXTERNAL_GOOGLE_CLIENT_ID: ${SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID:-}
+      GOTRUE_EXTERNAL_GOOGLE_SECRET: ${SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_SECRET:-}
+      GOTRUE_EXTERNAL_GOOGLE_REDIRECT_URI: ${SUPABASE_AUTH_EXTERNAL_GOOGLE_REDIRECT_URI}
+      GOTRUE_EXTERNAL_AZURE_ENABLED: "true"
+      GOTRUE_EXTERNAL_AZURE_CLIENT_ID: ${SUPABASE_AUTH_EXTERNAL_AZURE_CLIENT_ID:-}
+      GOTRUE_EXTERNAL_AZURE_SECRET: ${SUPABASE_AUTH_EXTERNAL_AZURE_CLIENT_SECRET:-}
+      GOTRUE_EXTERNAL_AZURE_REDIRECT_URI: ${SUPABASE_AUTH_EXTERNAL_AZURE_REDIRECT_URI}
+    mem_limit: 128m
+
+  postgrest:
+    image: postgrest/postgrest:v13.0.8
+    container_name: dhivio-postgrest
+    restart: *default-restart
+    logging: *default-logging
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PGRST_DB_URI: postgres://authenticator:${POSTGRES_PASSWORD}@postgres:5432/postgres
+      PGRST_DB_SCHEMAS: public,storage,graphql_public
+      PGRST_DB_ANON_ROLE: anon
+      PGRST_JWT_SECRET: ${SUPABASE_JWT_SECRET}
+      PGRST_DB_USE_LEGACY_GUCS: "false"
+      PGRST_APP_SETTINGS_JWT_SECRET: ${SUPABASE_JWT_SECRET}
+      PGRST_APP_SETTINGS_JWT_EXP: 3600
+    mem_limit: 192m
+
+  realtime:
+    image: supabase/realtime:v2.89.0
+    container_name: dhivio-realtime
+    restart: *default-restart
+    logging: *default-logging
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PORT: 4000
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: supabase_admin
+      DB_PASSWORD: ${POSTGRES_PASSWORD}
+      DB_NAME: postgres
+      DB_AFTER_CONNECT_QUERY: 'SET search_path TO _realtime'
+      DB_ENC_KEY: ${REALTIME_DB_ENC_KEY}
+      API_JWT_SECRET: ${SUPABASE_JWT_SECRET}
+      METRICS_JWT_SECRET: ${SUPABASE_JWT_SECRET}
+      SECRET_KEY_BASE: ${REALTIME_SECRET_KEY_BASE}
+      APP_NAME: realtime
+      ERL_AFLAGS: -proto_dist inet_tcp
+      DNS_NODES: "''"
+      RLIMIT_NOFILE: "10000"
+      SEED_SELF_HOST: "true"
+      RUN_JANITOR: "true"
+      DISABLE_HEALTHCHECK_LOGGING: "true"
+    mem_limit: 256m
+
+  storage:
+    image: supabase/storage-api:v1.58.4
+    container_name: dhivio-storage
+    restart: *default-restart
+    logging: *default-logging
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ANON_KEY: ${SUPABASE_ANON_KEY}
+      SERVICE_KEY: ${SUPABASE_SERVICE_ROLE_KEY}
+      POSTGREST_URL: http://postgrest:3000
+      PGRST_JWT_SECRET: ${SUPABASE_JWT_SECRET}
+      DATABASE_URL: postgres://supabase_storage_admin:${POSTGRES_PASSWORD}@postgres:5432/postgres
+      FILE_SIZE_LIMIT: 52428800
+      STORAGE_BACKEND: file
+      FILE_STORAGE_BACKEND_PATH: /var/lib/storage
+      TENANT_ID: dhivio
+      REGION: prod
+      GLOBAL_S3_BUCKET: dhivio
+      ENABLE_IMAGE_TRANSFORMATION: "false"
+    volumes:
+      - storage:/var/lib/storage
+    mem_limit: 192m
+
+  meta:
+    image: supabase/postgres-meta:v0.96.5
+    container_name: dhivio-meta
+    restart: *default-restart
+    logging: *default-logging
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PG_META_PORT: 8080
+      PG_META_DB_HOST: postgres
+      PG_META_DB_PORT: 5432
+      PG_META_DB_NAME: postgres
+      PG_META_DB_USER: supabase_admin
+      PG_META_DB_PASSWORD: ${POSTGRES_PASSWORD}
+    mem_limit: 128m
+
+  # Studio is admin-only; off by default to save RAM. Enable when needed:
+  #   docker compose -f compose.infra.yml --profile admin up -d studio
+  studio:
+    image: supabase/studio:2026.04.28-sha-89d08a2
+    container_name: dhivio-studio
+    restart: *default-restart
+    logging: *default-logging
+    profiles: ["admin"]
+    depends_on:
+      meta:
+        condition: service_started
+    ports:
+      - "127.0.0.1:54323:3000"   # local only — tunnel via SSH
+    environment:
+      STUDIO_PG_META_URL: http://meta:8080
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      DEFAULT_ORGANIZATION_NAME: Dhivio
+      DEFAULT_PROJECT_NAME: dhivio-prod
+      SUPABASE_URL: http://kong:8000
+      SUPABASE_PUBLIC_URL: ${SUPABASE_URL}
+      SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}
+      SUPABASE_SERVICE_KEY: ${SUPABASE_SERVICE_ROLE_KEY}
+    mem_limit: 256m
+
+  edge-runtime:
+    image: supabase/edge-runtime:v1.74.0
+    container_name: dhivio-edge-runtime
+    restart: *default-restart
+    logging: *default-logging
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      JWT_SECRET: ${SUPABASE_JWT_SECRET}
+      SUPABASE_URL: http://kong:8000
+      SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}
+      SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY}
+      SUPABASE_DB_URL: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
+      VERIFY_JWT: "true"
+    volumes:
+      # Functions are synced from the repo by .github/workflows/supabase.yml
+      - ./functions:/home/deno/functions:ro
+    command:
+      - start
+      - --main-service
+      - /home/deno/functions/main
+    mem_limit: 256m
+
+  kong:
+    image: kong:2.8.1
+    container_name: dhivio-kong
+    restart: *default-restart
+    logging: *default-logging
+    depends_on:
+      - gotrue
+      - postgrest
+      - realtime
+      - storage
+      - meta
+      - edge-runtime
+    # No published ports — nginx proxies api.dhivio.com → kong:8000 internally
+    environment:
+      KONG_DATABASE: "off"
+      KONG_DECLARATIVE_CONFIG: /home/kong/kong.yml
+      KONG_DNS_ORDER: LAST,A,CNAME
+      KONG_PLUGINS: request-transformer,cors,key-auth,acl,basic-auth
+      KONG_PROXY_LISTEN: "0.0.0.0:8000"
+    volumes:
+      - ./kong/kong.yml:/home/kong/kong.yml:ro
+    mem_limit: 192m
+
+  redis:
+    image: redis:7-alpine
+    container_name: dhivio-redis
+    restart: *default-restart
+    logging: *default-logging
+    command:
+      - redis-server
+      - --appendonly
+      - "yes"
+      - --maxmemory
+      - "96mb"
+      - --maxmemory-policy
+      - allkeys-lru
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+    mem_limit: 128m
+
+  inngest:
+    image: inngest/inngest:v1.18.0
+    container_name: dhivio-inngest
+    restart: *default-restart
+    logging: *default-logging
+    environment:
+      INNGEST_REDIS_URI: redis://redis:6379/1
+      INNGEST_POSTGRES_URI: postgres://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
+      INNGEST_EVENT_KEY: ${INNGEST_EVENT_KEY}
+      INNGEST_SIGNING_KEY: ${INNGEST_SIGNING_KEY}
+    command:
+      - inngest
+      - start
+      - --sdk-url
+      - http://erp-active:3000/api/inngest
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    mem_limit: 256m

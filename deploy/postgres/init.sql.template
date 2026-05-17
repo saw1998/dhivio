@@ -1,0 +1,15 @@
+-- Templated by deploy/scripts/bootstrap.sh — $POSTGRES_PASSWORD is replaced
+-- with the value generated in /srv/dhivio/.env before the file is written to
+-- deploy/postgres/init.sql. The runtime postgres container then mounts the
+-- rendered file at /docker-entrypoint-initdb.d/zz-dhivio-roles.sql so it
+-- runs once during the first DB init.
+
+ALTER USER supabase_admin            WITH PASSWORD '${POSTGRES_PASSWORD}';
+ALTER USER supabase_auth_admin       WITH PASSWORD '${POSTGRES_PASSWORD}';
+ALTER USER supabase_storage_admin    WITH PASSWORD '${POSTGRES_PASSWORD}';
+ALTER USER authenticator             WITH PASSWORD '${POSTGRES_PASSWORD}';
+ALTER USER postgres                  WITH PASSWORD '${POSTGRES_PASSWORD}';
+
+GRANT anon, authenticated, service_role TO authenticator;
+
+CREATE SCHEMA IF NOT EXISTS _realtime AUTHORIZATION supabase_admin;
