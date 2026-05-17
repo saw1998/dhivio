@@ -1,5 +1,6 @@
 import { reactRouter } from "@react-router/dev/vite";
 import { lingui } from "@lingui/vite-plugin";
+import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
 import { defineConfig, PluginOption } from "vite";
 import babelMacros from "vite-plugin-babel-macros";
@@ -34,8 +35,10 @@ export default defineConfig(({ isSsrBuild }) => ({
   },
   server: {
     port: 4111,
+    strictPort: true,
   },
   plugins: [
+    tailwindcss(),
     babelMacros(),
     lingui(),
     reactRouter(),

@@ -1,9 +1,7 @@
-@import url("non.geist");
-@import url("non.geist/mono");
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "non.geist";
+@import "non.geist/mono";
+@import "../../../../packages/config/tailwind/theme.css";
 
 @layer base {
   *::-webkit-scrollbar {
@@ -169,7 +167,6 @@ p.is-editor-empty:first-child:before {
   width: 18px;
   height: 10px;
   background-color: #5fe4d3;
-  position: relative;
   animation: hexloader 1.4s infinite ease-in-out;
 }
 

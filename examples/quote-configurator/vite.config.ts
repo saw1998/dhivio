@@ -1,4 +1,5 @@
 import { reactRouter } from "@react-router/dev/vite";
+import tailwindcss from "@tailwindcss/vite";
 import type { PluginOption } from "vite";
 import { defineConfig } from "vite";
 
@@ -25,10 +26,11 @@ export default defineConfig({
     noExternal: ["react-dropzone", "react-icons", "tailwind-merge"]
   },
   server: {
-    port: 5001
+    port: 5001,
+    strictPort: true,
   },
   resolve: {
     tsconfigPaths: true
   },
-  plugins: [reactRouter()] as PluginOption[]
+  plugins: [tailwindcss(), reactRouter()] as PluginOption[]
 });

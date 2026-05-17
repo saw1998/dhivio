@@ -193,8 +193,8 @@ function ChoiceSelectMulti<V extends string>({
           disabled={disabled}
           className={cn(
             "flex h-10 w-full items-center justify-between gap-2 rounded-md border border-input bg-transparent px-3 text-sm",
-            "ring-offset-background hover:bg-accent/40",
-            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+            "hover:bg-accent/40",
+            "outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50",
             "disabled:cursor-not-allowed disabled:opacity-50",
             selected.length === 0 && "text-muted-foreground",
             className

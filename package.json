@@ -12,7 +12,6 @@
     "husky": "8.0.3",
     "lint-staged": "16.4.0",
     "npm-run-all": "catalog:",
-    "postcss-nesting": "12.1.5",
     "rimraf": "catalog:",
     "supabase": "catalog:",
     "ts-morph": "22.0.0",

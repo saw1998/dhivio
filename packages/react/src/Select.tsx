@@ -21,7 +21,7 @@ const SelectGroup = SelectPrimitive.Group;
 const SelectValue = SelectPrimitive.Value;
 
 const selectTriggerVariants = cva(
-  "bg-transparent text-foreground flex w-full items-center justify-between whitespace-nowrap rounded-md border border-input ring-offset-background data-[placeholder]:text-muted-foreground ring-offset-background focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+  "bg-transparent text-foreground flex w-full items-center justify-between whitespace-nowrap rounded-md border border-input shadow-xs transition-[color,box-shadow] data-[placeholder]:text-muted-foreground outline-none focus:border-ring focus:ring-[3px] focus:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:bg-input/30 dark:hover:bg-input/50 dark:aria-invalid:ring-destructive/40 [&>span]:line-clamp-1",
   {
     variants: {
       size: {

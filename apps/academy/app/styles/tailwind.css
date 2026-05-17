@@ -1,12 +1,8 @@
-@import url("non.geist");
-@import url("non.geist/mono");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
-
-
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "non.geist";
+@import "non.geist/mono";
+@import "../../../../packages/config/tailwind/theme.css";
 
 @layer base {
   :root {
@@ -159,7 +155,6 @@ a.active {
   width: 18px;
   height: 10px;
   background-color: #5fe4d3;
-  position: relative;
   animation: hexloader 1.4s infinite ease-in-out;
 }
 

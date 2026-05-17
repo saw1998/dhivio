@@ -1,6 +1,7 @@
 import { applyDotenvToProcessEnv } from "@carbon/dev/vite";
 import { lingui } from "@lingui/vite-plugin";
 import { reactRouter } from "@react-router/dev/vite";
+import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
 import { defineConfig, PluginOption } from "vite";
 import babelMacros from "vite-plugin-babel-macros";
@@ -36,12 +37,14 @@ export default defineConfig(({ isSsrBuild, mode }) => {
     },
     server: {
       port: 3000,
+      strictPort: true,
       allowedHosts: [".ngrok-free.app", ".ngrok-free.dev", ".dev", ".localhost"],
       watch: {
         awaitWriteFinish: { stabilityThreshold: 250 },
       },
     },
     plugins: [
+      tailwindcss(),
       babelMacros(),
       lingui(),
       reactRouter(),

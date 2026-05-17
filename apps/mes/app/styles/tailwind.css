@@ -1,9 +1,7 @@
-@import url("non.geist");
-@import url("non.geist/mono");
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "non.geist";
+@import "non.geist/mono";
+@import "../../../../packages/config/tailwind/theme.css";
 
 @layer base {
   *::-webkit-scrollbar {
@@ -25,7 +23,10 @@
   }
 
   :root {
-    --header-height: 52px;
+    --header-height: 50px;
+    --filters-height: 38px;
+    --controls-width: 240px;
+    --sidebar-width: 240px;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -35,12 +36,6 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-
-    --header-height: 50px;
-    --filters-height: 38px;
-    --controls-width: 240px;
-    --sidebar-width: 240px;
-    --base-shadow-color: rgb(0 0 0 / 0.16);
 
     --base-shadow-color: rgb(0 0 0 / 0.05);
 
@@ -163,7 +158,6 @@ p.is-editor-empty:first-child:before {
   width: 18px;
   height: 10px;
   background-color: #5fe4d3;
-  position: relative;
   animation: hexloader 1.4s infinite ease-in-out;
 }
 
