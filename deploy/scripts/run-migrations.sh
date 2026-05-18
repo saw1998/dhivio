@@ -1,18 +1,26 @@
 #!/usr/bin/env bash
-###
+###############################################################################
 # run-migrations.sh <staged-folder>
 #
-# Applies Supabase migrations against the self-hosted postgres on the VPS.
+# Applies Supabase-style migrations against the self-hosted postgres on the VPS.
 # Called by .github/workflows/supabase.yml after rsync'ing the migrations to
-# /srv/dhivio/migrations-staging/<run-id>/.
+#   /srv/dhivio/migrations-staging/<run-id>/
 #
-# Strategy:
-#   1. Take a pre-migration pg_dump (backup-db.sh).
-#   2. Spin up a throwaway `supabase/cli` container joined to dhivio_net.
-#   3. Run `supabase db push --include-all` against postgres://postgres@postgres:5432.
-#   4. Deploy edge functions into the live edge-runtime volume.
-#   5. Promote the staged folder to /srv/dhivio/migrations-current/<sha>.
-###
+# Strategy (no `supabase` CLI required — that image doesn't exist on Docker Hub):
+#   1. pg_dump backup via backup-db.sh.
+#   2. Create supabase_migrations.schema_migrations bookkeeping table if absent.
+#   3. Diff staged *.sql filenames against rows in schema_migrations.
+#   4. Apply each missing migration chronologically, in its own transaction,
+#      via `psql` inside the dhivio-postgres container.
+#   5. Record each applied filename in schema_migrations.
+#   6. rsync edge-functions, restart dhivio-edge-runtime.
+#   7. Promote staged folder to migrations-current/<run-id> + latest symlink.
+#
+# Idempotency: re-running is safe — already-applied migrations are skipped.
+# Atomicity:   each migration is wrapped in BEGIN/COMMIT. A failure halts the
+#              run (set -e) and leaves the partial work rolled back; the bookkeeping
+#              row is only written after COMMIT succeeds.
+###############################################################################
 set -euo pipefail
 
 STAGED="${1:?staged migrations folder required}"
@@ -21,37 +29,111 @@ STAGED="${1:?staged migrations folder required}"
 
 ROOT="${DHIVIO_ROOT:-/srv/dhivio}"
 ENV_FILE="$ROOT/.env"
+[[ -f "$ENV_FILE" ]] || { echo "✗ $ENV_FILE not found" >&2; exit 1; }
 set -a; source "$ENV_FILE"; set +a
 
 RUN_ID="$(basename "$STAGED")"
-DUMP_LABEL="pre-migration-${RUN_ID}"
+MIG_DIR="$STAGED/supabase/migrations"
+FUNCS_DIR="$STAGED/supabase/functions"
+PG_CONTAINER="dhivio-postgres"
 
-# ── 1. Backup ──────────────────────────────────────────────────────────────
-"$ROOT/scripts/backup-db.sh" "$DUMP_LABEL"
+# Connect as `supabase_admin` (superuser, owner of storage/auth/realtime
+# schemas) rather than `postgres`. Many Supabase migrations carry policies
+# and grants on storage.objects / auth.users etc. that only the schema owner
+# may modify — using `postgres` produces `must be owner of table objects`.
+# `supabase_admin` shares the same password (POSTGRES_PASSWORD) by image
+# convention.
+PG_USER="supabase_admin"
 
-# ── 2. Push migrations from a Supabase CLI sidecar ─────────────────────────
-echo "▶ applying migrations from $STAGED"
-docker run --rm \
-  --network dhivio_net \
-  -v "$STAGED/supabase:/workspace/supabase:ro" \
-  -w /workspace \
-  -e SUPABASE_DB_URL="postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres" \
-  -e PGSSLMODE=disable \
-  supabase/cli:latest \
-  db push \
-    --db-url "postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres" \
-    --include-all
+# ── 1. Backup ─────────────────────────────────────────────────────────────
+"$ROOT/scripts/backup-db.sh" "pre-migration-${RUN_ID}"
 
-# ── 3. Deploy edge functions (copy into the volume, restart edge-runtime) ──
-if [[ -d "$STAGED/supabase/functions" ]]; then
-  echo "▶ syncing edge functions"
-  rsync -a --delete \
-    "$STAGED/supabase/functions/" \
-    "$ROOT/functions/"
+# ── psql helper: runs a single statement against postgres ─────────────────
+psql_run() {
+  docker exec -i \
+    -e PGPASSWORD="$POSTGRES_PASSWORD" \
+    "$PG_CONTAINER" \
+    psql -v ON_ERROR_STOP=1 -U "$PG_USER" -d postgres "$@"
+}
+
+# ── 2. Bookkeeping table ──────────────────────────────────────────────────
+echo "▶ ensuring supabase_migrations.schema_migrations exists"
+psql_run <<'SQL'
+CREATE SCHEMA IF NOT EXISTS supabase_migrations;
+CREATE TABLE IF NOT EXISTS supabase_migrations.schema_migrations (
+  version    text PRIMARY KEY,
+  statements text[],
+  name       text,
+  applied_at timestamptz NOT NULL DEFAULT now()
+);
+SQL
+
+# ── 3. Compute diff ───────────────────────────────────────────────────────
+mapfile -t ALL_MIGS < <(ls -1 "$MIG_DIR"/*.sql | sort)
+mapfile -t APPLIED  < <(psql_run -tAc "SELECT version FROM supabase_migrations.schema_migrations ORDER BY version;" || true)
+
+declare -A APPLIED_SET
+for v in "${APPLIED[@]}"; do APPLIED_SET["$v"]=1; done
+
+PENDING=()
+for path in "${ALL_MIGS[@]}"; do
+  fname="$(basename "$path")"
+  # version = numeric prefix (e.g. 20230123003711)
+  version="${fname%%_*}"
+  if [[ -z "${APPLIED_SET[$version]:-}" ]]; then
+    PENDING+=("$path")
+  fi
+done
+
+echo "▶ migrations: ${#ALL_MIGS[@]} total, ${#APPLIED[@]} applied, ${#PENDING[@]} pending"
+
+# ── 4. Apply pending migrations ───────────────────────────────────────────
+if [[ ${#PENDING[@]} -eq 0 ]]; then
+  echo "✓ schema already up-to-date"
+else
+  i=0
+  total=${#PENDING[@]}
+  for path in "${PENDING[@]}"; do
+    i=$((i+1))
+    fname="$(basename "$path")"
+    version="${fname%%_*}"
+    name="${fname#*_}"; name="${name%.sql}"
+
+    printf "  [%3d/%3d] %s ... " "$i" "$total" "$fname"
+
+    # Stream the SQL through stdin to psql so we don't have to copy files
+    # into the container. Each migration runs inside a single transaction;
+    # ON_ERROR_STOP=1 + set -e propagates any failure.
+    if docker exec -i \
+        -e PGPASSWORD="$POSTGRES_PASSWORD" \
+        "$PG_CONTAINER" \
+        psql -v ON_ERROR_STOP=1 -U "$PG_USER" -d postgres \
+        -1 \
+        -f - < "$path" > /tmp/_mig.log 2>&1; then
+      # Record success (separate connection so it commits independently)
+      psql_run -q -c "INSERT INTO supabase_migrations.schema_migrations (version, name) VALUES ('${version}', '${name//\'/\'\'}') ON CONFLICT (version) DO NOTHING;"
+      echo "ok"
+    else
+      echo "FAILED"
+      echo "──── error ────"
+      tail -40 /tmp/_mig.log >&2
+      echo "──── end ────"
+      exit 1
+    fi
+  done
+  echo "✓ ${#PENDING[@]} migrations applied"
+fi
+
+# ── 5. Edge functions ─────────────────────────────────────────────────────
+if [[ -d "$FUNCS_DIR" ]]; then
+  echo "▶ syncing edge functions → $ROOT/functions/"
+  mkdir -p "$ROOT/functions"
+  rsync -a --delete "$FUNCS_DIR/" "$ROOT/functions/"
+  echo "▶ restarting dhivio-edge-runtime"
   docker restart dhivio-edge-runtime >/dev/null
 fi
 
-# ── 4. Promote ─────────────────────────────────────────────────────────────
+# ── 6. Promote staged folder ──────────────────────────────────────────────
 mkdir -p "$ROOT/migrations-current"
 rsync -a --delete "$STAGED/" "$ROOT/migrations-current/${RUN_ID}/"
 ln -sfn "$ROOT/migrations-current/${RUN_ID}" "$ROOT/migrations-current/latest"

@@ -2,18 +2,32 @@ name: Migrate Supabase (VPS)
 
 ###
 # Copies the migrations + edge functions to the VPS and runs them against
-# the self-hosted Supabase. Saturday 22:00 IST + manual dispatch only.
-# Triggered automatically right after Build & Push completes successfully.
+# the self-hosted Supabase. Uses a small `psql`-based applier (not the
+# `supabase` CLI, because supabase/cli isn't published on Docker Hub).
+#
+# Triggers
+# --------
+# * Manual via workflow_dispatch (the only trigger during initial bring-up).
+# * Cron + workflow_run chaining commented out — re-enable once the first
+#   Sat-22:00-IST production rollout has succeeded end-to-end.
+#
+# Required GitHub repo secrets
+# ----------------------------
+# VPS_HOST           e.g. 160.250.205.220
+# VPS_USER           usually root (or a dedicated deploy user)
+# VPS_SSH_PORT       usually 22
+# VPS_SSH_KEY        private SSH key (matching pubkey is in /root/.ssh/authorized_keys on VPS)
 ###
 
 on:
-  schedule:
-    - cron: "30 16 * * 6"
+  # Re-enable once production rollout cadence is proven:
+  # schedule:
+  #   - cron: "30 16 * * 6"
+  # workflow_run:
+  #   workflows: ["Build & Push (Docker Hub)"]
+  #   types: [completed]
+  #   branches: [main]
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Build & Push (Docker Hub)"]
-    types: [completed]
-    branches: [main]
 
 concurrency:
   group: supabase-${{ github.ref }}
@@ -23,11 +37,6 @@ jobs:
   migrate:
     name: Apply migrations
     runs-on: ubuntu-latest
-    # Only proceed when triggered manually/cron OR when the parent build
-    # workflow actually succeeded.
-    if: >-
-      github.event_name != 'workflow_run' ||
-      github.event.workflow_run.conclusion == 'success'
 
     steps:
       - uses: actions/checkout@v4
