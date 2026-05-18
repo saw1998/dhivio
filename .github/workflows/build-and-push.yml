@@ -1,0 +1,126 @@
+name: Build & Push (Docker Hub)
+
+###
+# Builds linux/amd64 images for ERP + MES and pushes to Docker Hub.
+#
+# Triggers
+# --------
+# * Weekly cron — Saturday 22:00 IST (= 16:30 UTC). Disabled until you
+#   uncomment the schedule below; commented out for now so the workflow only
+#   runs on manual dispatch during initial bring-up.
+# * Manual via `workflow_dispatch` from GitHub Actions UI.
+#
+# Required GitHub repo secrets
+# ----------------------------
+# DOCKERHUB_USERNAME      — Docker Hub login (e.g. `sachin4668`)
+# DOCKERHUB_TOKEN         — Docker Hub PAT with `Read, Write, Delete` scope
+#
+# Optional secrets (passed as build args; unset = empty string in bundle).
+# These are CLIENT-side keys baked into the JS bundle, so they're safe to
+# expose, but if absent the related widgets/SDKs (Turnstile, Razorpay,
+# PostHog) won't initialise correctly at runtime.
+# BUILD_VITE_CLOUDFLARE_TURNSTILE_SITE_KEY
+# BUILD_VITE_RAZORPAY_KEY_ID
+# BUILD_VITE_POSTHOG_KEY
+# BUILD_VITE_POSTHOG_HOST
+# BUILD_SUPABASE_URL
+# BUILD_SUPABASE_ANON_KEY
+###
+
+on:
+  # Re-enable the weekly cron once initial bring-up is finished:
+  # schedule:
+  #   - cron: "30 16 * * 6"        # 22:00 IST every Saturday
+  workflow_dispatch:
+    inputs:
+      apps:
+        description: "Which apps to build"
+        type: choice
+        options: [both, erp, mes]
+        default: both
+      tag:
+        description: "Extra tag to publish (in addition to sha + latest)"
+        type: string
+        default: ""
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  matrix:
+    name: Resolve build matrix
+    runs-on: ubuntu-latest
+    outputs:
+      apps: ${{ steps.set.outputs.apps }}
+    steps:
+      - id: set
+        run: |
+          case "${{ github.event.inputs.apps || 'both' }}" in
+            erp)  echo 'apps=["erp"]'        >> "$GITHUB_OUTPUT" ;;
+            mes)  echo 'apps=["mes"]'        >> "$GITHUB_OUTPUT" ;;
+            *)    echo 'apps=["erp","mes"]'  >> "$GITHUB_OUTPUT" ;;
+          esac
+
+  build:
+    name: Build ${{ matrix.app }}
+    needs: matrix
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        app: ${{ fromJson(needs.matrix.outputs.apps) }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # No QEMU — we only build linux/amd64 and the GH runner is amd64.
+      - uses: docker/setup-buildx-action@v3
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Compute tags
+        id: tags
+        run: |
+          # Docker Hub does NOT support nested namespaces (`a/b/c` is invalid).
+          # Single-level repo under the configured DOCKERHUB_USERNAME:
+          #   sachin4668/dhivio-erp:<tag>
+          # Repo created on first push for paid accounts; for free accounts the
+          # repo must be pre-created at https://hub.docker.com/repository/create
+          base="docker.io/${{ secrets.DOCKERHUB_USERNAME }}/dhivio-${{ matrix.app }}"
+          tags="$base:${{ github.sha }},$base:latest"
+          if [[ -n "${{ github.event.inputs.tag }}" ]]; then
+            tags="$tags,$base:${{ github.event.inputs.tag }}"
+          fi
+          # Saturday rollout tag (ISO week)
+          tags="$tags,$base:saturday-$(date -u +%G-W%V)"
+          echo "tags=$tags"          >> "$GITHUB_OUTPUT"
+          echo "cache=$base:buildcache" >> "$GITHUB_OUTPUT"
+
+      - name: Build & push
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./apps/${{ matrix.app }}/Dockerfile
+          platforms: linux/amd64
+          push: true
+          provenance: false
+          tags: ${{ steps.tags.outputs.tags }}
+          cache-from: type=registry,ref=${{ steps.tags.outputs.cache }}
+          cache-to:   type=registry,ref=${{ steps.tags.outputs.cache }},mode=max
+          build-args: |
+            VITE_CLOUDFLARE_TURNSTILE_SITE_KEY=${{ secrets.BUILD_VITE_CLOUDFLARE_TURNSTILE_SITE_KEY }}
+            VITE_RAZORPAY_KEY_ID=${{ secrets.BUILD_VITE_RAZORPAY_KEY_ID }}
+            VITE_POSTHOG_KEY=${{ secrets.BUILD_VITE_POSTHOG_KEY }}
+            VITE_POSTHOG_HOST=${{ secrets.BUILD_VITE_POSTHOG_HOST }}
+            SUPABASE_URL=${{ secrets.BUILD_SUPABASE_URL }}
+            SUPABASE_ANON_KEY=${{ secrets.BUILD_SUPABASE_ANON_KEY }}
+            CARBON_EDITION=community
+
+      - name: Image digest
+        run: |
+          echo "Pushed ${{ steps.tags.outputs.tags }}"

@@ -1,90 +1,112 @@
-name: Deploy Apps
+name: Deploy (Rolling Blue/Green)
+
+###
+# Rolling blue/green deploy on the VPS. Runs:
+#   * Automatically after Migrate Supabase succeeds (which itself runs after
+#     Build & Push). So a Saturday-22:00-IST sequence is:
+#         16:30 UTC → build-and-push.yml
+#         on success → supabase.yml
+#         on success → deploy.yml
+#   * Manually via workflow_dispatch (with optional tag override).
+#
+# The actual rollout logic (pull → boot idle → wait healthy → flip nginx →
+# stop old) lives in /srv/dhivio/scripts/deploy-app.sh on the VPS so we keep
+# CI thin and auditable.
+###
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - "apps/erp/**"
-      - "apps/mes/**"
-      - "packages/**"
   workflow_dispatch:
+    inputs:
+      apps:
+        description: "Which apps to deploy"
+        type: choice
+        options: [both, erp, mes]
+        default: both
+      tag:
+        description: "Image tag to deploy (default: github.sha of latest run)"
+        type: string
+        default: ""
+  workflow_run:
+    workflows: ["Migrate Supabase (VPS)"]
+    types: [completed]
+    branches: [main]
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
-  build:
-    name: Build
+  matrix:
+    name: Resolve matrix
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        app: [erp, mes]
-
+    if: >-
+      github.event_name != 'workflow_run' ||
+      github.event.workflow_run.conclusion == 'success'
+    outputs:
+      apps: ${{ steps.set.outputs.apps }}
+      tag:  ${{ steps.set.outputs.tag }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        env:
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-        with:
-          build-args: NODE_OPTIONS=--max-old-space-size=4096
-          context: .
-          file: ./apps/${{ matrix.app }}/Dockerfile
-          push: true
-          tags: |
-            ${{ steps.login-ecr.outputs.registry }}/carbon/${{ matrix.app }}:latest
-            ${{ steps.login-ecr.outputs.registry }}/carbon/${{ matrix.app }}:${{ github.sha }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          platforms: linux/amd64
+      - id: set
+        run: |
+          case "${{ github.event.inputs.apps || 'both' }}" in
+            erp)  echo 'apps=["erp"]'        >> "$GITHUB_OUTPUT" ;;
+            mes)  echo 'apps=["mes"]'        >> "$GITHUB_OUTPUT" ;;
+            *)    echo 'apps=["erp","mes"]'  >> "$GITHUB_OUTPUT" ;;
+          esac
+          if [[ -n "${{ github.event.inputs.tag }}" ]]; then
+            echo "tag=${{ github.event.inputs.tag }}" >> "$GITHUB_OUTPUT"
+          else
+            # workflow_run carries the parent's head_sha; manual dispatch uses
+            # the current ref's sha as a sensible default.
+            echo "tag=${{ github.event.workflow_run.head_sha || github.sha }}" >> "$GITHUB_OUTPUT"
+          fi
 
   deploy:
-    name: Deploy
+    name: Deploy ${{ matrix.app }}
+    needs: matrix
     runs-on: ubuntu-latest
-    needs: build
-
-    env:
-      IMAGE_TAG: ${{ github.sha }}
-      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
-      SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
-      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+    strategy:
+      fail-fast: false   # don't abort MES if ERP rollback succeeds, etc.
+      matrix:
+        app: ${{ fromJson(needs.matrix.outputs.apps) }}
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
+      - name: Roll out
+        id: rollout
+        uses: appleboy/ssh-action@v1.2.0
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+          host:     ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          port:     ${{ secrets.VPS_SSH_PORT }}
+          key:      ${{ secrets.VPS_SSH_KEY }}
+          command_timeout: 15m
+          script: |
+            set -euo pipefail
+            /srv/dhivio/scripts/deploy-app.sh ${{ matrix.app }} ${{ needs.matrix.outputs.tag }}
 
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: pnpm
-
-      - name: Install compatible Pulumi version
+      - name: Smoke test
         run: |
-          curl -fsSL https://get.pulumi.com | sh -s -- --version 3.212.0
-          echo "$HOME/.pulumi/bin" >> $GITHUB_PATH
+          # Probes the in-app /health route (defined in
+          # apps/<app>/app/routes/_public+/health.tsx). Must match the path
+          # in deploy/compose.apps.yml healthchecks.
+          host="${{ matrix.app }}.dhivio.com"
+          for i in 1 2 3 4 5; do
+            if curl -fsS --max-time 10 "https://$host/health" >/dev/null; then
+              echo "✓ $host healthy"
+              exit 0
+            fi
+            sleep 5
+          done
+          echo "✗ smoke test failed for $host" >&2
+          exit 1
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
-      - name: Run deployment
-        run: pnpm --filter ci ci:deploy
+      - name: Rollback on failure
+        if: failure() && steps.rollout.outcome == 'success'
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host:     ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          port:     ${{ secrets.VPS_SSH_PORT }}
+          key:      ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            /srv/dhivio/scripts/deploy-app.sh ${{ matrix.app }} rollback

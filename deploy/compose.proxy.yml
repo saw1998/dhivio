@@ -1,0 +1,70 @@
+###
+# Public edge: nginx (only container publishing :80/:443) + certbot.
+# nginx upstreams point at app containers by Docker DNS name. The active color
+# is selected by deploy/nginx/conf.d/upstreams.conf which is rewritten by
+# deploy/scripts/switch-traffic.sh and reloaded with `nginx -s reload`.
+###
+
+name: dhivio-proxy
+
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+networks:
+  default:
+    name: dhivio_net
+    external: true
+
+volumes:
+  certbot-etc:
+  certbot-www:
+
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: dhivio-nginx
+    restart: unless-stopped
+    logging: *default-logging
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/snippets:/etc/nginx/snippets:ro
+      - certbot-etc:/etc/letsencrypt:ro
+      - certbot-www:/var/www/certbot
+    mem_limit: 64m
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1/_nginx_health"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+
+  certbot:
+    image: certbot/certbot:latest
+    container_name: dhivio-certbot
+    restart: unless-stopped
+    logging: *default-logging
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-www:/var/www/certbot
+    # Renew every 12 h; certbot skips renewals outside the 30-day window.
+    # nginx auto-picks up renewed certs on its own next reload — a daily host
+    # cron (deploy/scripts/reload-nginx.sh) runs `docker exec dhivio-nginx
+    # nginx -s reload` to pick them up. We deliberately don't mount the
+    # docker socket here to keep the proxy stack unprivileged.
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        trap exit TERM
+        while :; do
+          certbot renew --webroot -w /var/www/certbot --quiet || true
+          sleep 12h &
+          wait $!
+        done
+    mem_limit: 64m
