@@ -89,15 +89,40 @@ jobs:
           # Probes the in-app /health route (defined in
           # apps/<app>/app/routes/_public+/health.tsx). Must match the path
           # in deploy/compose.apps.yml healthchecks.
+          #
+          # During bring-up (before Feature 5 sets up real DNS + LE prod
+          # certs), the public hostname may resolve to a different server OR
+          # serve a staging cert that curl rejects with "unable to get local
+          # issuer". So we probe in this order:
+          #   1. VPS-direct HTTP/:80 (always works, no cert involved)
+          #   2. VPS-direct HTTPS/:443 with -k (accepts staging cert)
+          #   3. Public HTTPS (only succeeds once Feature 5 is done)
+          # ANY of these passing means the deployment is healthy.
+          set +e   # don't let `set -e` kill us between retries
           host="${{ matrix.app }}.dhivio.com"
+          vps_ip="${{ secrets.VPS_HOST }}"
+
+          probe() {
+            curl -fsS --max-time 10 "$@" -o /dev/null
+          }
+
           for i in 1 2 3 4 5; do
-            if curl -fsS --max-time 10 "https://$host/health" >/dev/null; then
-              echo "✓ $host healthy"
+            if probe --resolve "$host:80:$vps_ip" "http://$host/health"; then
+              echo "✓ $host healthy via VPS-direct HTTP (attempt $i)"
               exit 0
             fi
+            if probe -k --resolve "$host:443:$vps_ip" "https://$host/health"; then
+              echo "✓ $host healthy via VPS-direct HTTPS (attempt $i)"
+              exit 0
+            fi
+            if probe "https://$host/health"; then
+              echo "✓ $host healthy via public HTTPS (attempt $i)"
+              exit 0
+            fi
+            echo "  attempt $i failed, retrying in 5s..."
             sleep 5
           done
-          echo "✗ smoke test failed for $host" >&2
+          echo "✗ smoke test failed for $host after 5 attempts" >&2
           exit 1
 
       - name: Rollback on failure
