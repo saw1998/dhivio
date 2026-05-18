@@ -4465,6 +4465,9 @@ msgstr "PadrÃƒÆ’Ã‚Â£o de MediÃƒÆ’Ã‚Â§ÃƒÆ’Ã‚Â£o"
 msgid "Members"
 msgstr "Membros"
 
+msgid "MES"
+msgstr ""
+
 msgid "Message"
 msgstr "Mensagem"
 
@@ -5188,6 +5191,9 @@ msgstr "Data de Abertura"
 
 msgid "Open Dispatches"
 msgstr "Despachos Abertos"
+
+msgid "Open in MES"
+msgstr ""
 
 msgid "Open Issues"
 msgstr "Problemas Abertos"

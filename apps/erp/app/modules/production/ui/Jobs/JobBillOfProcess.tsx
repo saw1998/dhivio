@@ -77,6 +77,7 @@ import {
   LuMaximize2,
   LuMinimize2,
   LuPaperclip,
+  LuPlay,
   LuRefreshCcw,
   LuSend,
   LuSettings2,
@@ -276,6 +277,26 @@ function makeItem(
             dueDate={operation.dueDate ?? null}
           />
           <JobOperationTags operation={operation} availableTags={tags} />
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <a
+                href={path.to.external.mesJobOperation(operation.id!)}
+                title={t`Open in MES`}
+              >
+                <IconButton
+                  icon={<LuPlay />}
+                  variant="secondary"
+                  aria-label={t`Open in MES`}
+                  size="sm"
+                />
+              </a>
+            </TooltipTrigger>
+            <TooltipContent>
+              <span>
+                <Trans>Open in MES</Trans>
+              </span>
+            </TooltipContent>
+          </Tooltip>
           <Tooltip>
             <TooltipTrigger asChild>
               <Link

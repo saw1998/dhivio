@@ -54,6 +54,7 @@ import {
   LuPackage,
   LuPanelLeft,
   LuPanelRight,
+  LuPlay,
   LuQrCode,
   LuSettings,
   LuShoppingCart,
@@ -253,6 +254,17 @@ const JobHeader = () => {
               >
                 Sales Order
               </Link>
+            </Button>
+          )}
+          {routeData?.job?.jobId && (
+            <Button leftIcon={<LuPlay />} variant="secondary" asChild>
+              <a
+                href={path.to.external.mesJobOperationsForJob(
+                  routeData.job.jobId
+                )}
+              >
+                <Trans>Open in MES</Trans>
+              </a>
             </Button>
           )}
           <DropdownMenu>

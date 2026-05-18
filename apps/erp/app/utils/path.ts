@@ -206,6 +206,8 @@ export const path = {
     },
     external: {
       mes: MES_URL,
+      mesJobOperationsForJob: (jobId: string) =>
+        `${MES_URL}/x/operations?search=${encodeURIComponent(jobId)}`,
       mesJobOperation: (id: string) => `${MES_URL}/x/operation/${id}`,
       mesJobOperationStart: (id: string, type: "Setup" | "Labor" | "Machine") =>
         `${MES_URL}/x/start/${id}?type=${type}`,
