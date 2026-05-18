@@ -1,0 +1,164 @@
+###
+# ERP + MES app containers — one "blue" and one "green" slot per app.
+# deploy-app.sh boots the IDLE color with the new image, waits for healthy,
+# flips nginx upstream, then stops the previous color. Only one color is
+# running at a time except during the cutover window.
+#
+# Image tag is passed in via $IMAGE_TAG (defaults to "latest").
+# The two network aliases `erp-active` / `mes-active` are unused here — the
+# scripts assign them when a color goes live so internal services
+# (e.g. inngest) can always reach the currently-active app.
+###
+
+name: dhivio-apps
+
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+x-app-env: &app-env
+  NODE_ENV: production
+  PORT: 3000
+  HOST: 0.0.0.0
+  SESSION_SECRET: ${SESSION_SECRET}
+  RATE_LIMIT: ${RATE_LIMIT:-5}
+  CARBON_EDITION: ${CARBON_EDITION:-community}
+  AUTH_PROVIDERS: ${AUTH_PROVIDERS:-email,google}
+
+  # Supabase (server uses service_role; client got anon at build time)
+  SUPABASE_URL: ${SUPABASE_URL}
+  SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}
+  SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY}
+  SUPABASE_JWT_SECRET: ${SUPABASE_JWT_SECRET}
+
+  # URLs
+  DOMAIN: ${DOMAIN}
+  ERP_URL: ${ERP_URL}
+  MES_URL: ${MES_URL}
+  VERCEL_URL: ${ERP_URL}
+
+  # Redis / Inngest
+  REDIS_URL: ${REDIS_URL}
+  INNGEST_BASE_URL: ${INNGEST_BASE_URL}
+  INNGEST_EVENT_KEY: ${INNGEST_EVENT_KEY}
+  INNGEST_SIGNING_KEY: ${INNGEST_SIGNING_KEY}
+
+  # OAuth (server-side reads)
+  SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID: ${SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID}
+  SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_SECRET: ${SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_SECRET}
+  SUPABASE_AUTH_EXTERNAL_GOOGLE_REDIRECT_URI: ${SUPABASE_AUTH_EXTERNAL_GOOGLE_REDIRECT_URI}
+  SUPABASE_AUTH_EXTERNAL_AZURE_CLIENT_ID: ${SUPABASE_AUTH_EXTERNAL_AZURE_CLIENT_ID}
+  SUPABASE_AUTH_EXTERNAL_AZURE_CLIENT_SECRET: ${SUPABASE_AUTH_EXTERNAL_AZURE_CLIENT_SECRET}
+  SUPABASE_AUTH_EXTERNAL_AZURE_REDIRECT_URI: ${SUPABASE_AUTH_EXTERNAL_AZURE_REDIRECT_URI}
+
+  # Server-only secrets
+  STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY}
+  STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET}
+  RAZORPAY_KEY_ID: ${RAZORPAY_KEY_ID}
+  RAZORPAY_KEY_SECRET: ${RAZORPAY_KEY_SECRET}
+  RESEND_API_KEY: ${RESEND_API_KEY}
+  RESEND_DOMAIN: ${RESEND_DOMAIN}
+  NOVU_APPLICATION_ID: ${NOVU_APPLICATION_ID}
+  NOVU_SECRET_KEY: ${NOVU_SECRET_KEY}
+  CLOUDFLARE_TURNSTILE_SECRET_KEY: ${CLOUDFLARE_TURNSTILE_SECRET_KEY}
+  SLACK_BOT_TOKEN: ${SLACK_BOT_TOKEN}
+  ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
+  OPENAI_API_KEY: ${OPENAI_API_KEY}
+  GOOGLE_PLACES_API_KEY: ${GOOGLE_PLACES_API_KEY}
+  POSTHOG_API_HOST: ${POSTHOG_API_HOST}
+  POSTHOG_PROJECT_PUBLIC_KEY: ${POSTHOG_PROJECT_PUBLIC_KEY}
+  GTM_EVENTS_API_SECRET_KEY: ${GTM_EVENTS_API_SECRET_KEY}
+
+networks:
+  default:
+    name: dhivio_net
+    external: true
+
+services:
+  # ───────────────────────────────────────────────────────────────────────────
+  # IMAGE PATHS: `${DOCKERHUB_USERNAME}/dhivio-<app>` — single-namespace path
+  # (Docker Hub rejects nested namespaces like `dhivio/sachin/erp`). The .env
+  # on the VPS must define DOCKERHUB_USERNAME=sachin4668 (or whatever you push
+  # under in the build workflow).
+  #
+  # HEALTHCHECK: probes /health (the React Router route defined in
+  # apps/<app>/app/routes/_public+/health.tsx). Must stay consistent with
+  # deploy/scripts/wait-healthy.sh and the smoke test in deploy.yml.
+  # ───────────────────────────────────────────────────────────────────────────
+  erp-blue:
+    image: ${DOCKERHUB_USERNAME:-sachin4668}/dhivio-erp:${IMAGE_TAG:-latest}
+    container_name: dhivio-erp-blue
+    pull_policy: always
+    profiles: ["blue"]
+    restart: unless-stopped
+    logging: *default-logging
+    environment:
+      <<: *app-env
+      NODE_OPTIONS: --max-old-space-size=384
+    mem_limit: 512m
+    cpus: 1.0
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:3000/health"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 30s
+
+  erp-green:
+    image: ${DOCKERHUB_USERNAME:-sachin4668}/dhivio-erp:${IMAGE_TAG:-latest}
+    container_name: dhivio-erp-green
+    pull_policy: always
+    profiles: ["green"]
+    restart: unless-stopped
+    logging: *default-logging
+    environment:
+      <<: *app-env
+      NODE_OPTIONS: --max-old-space-size=384
+    mem_limit: 512m
+    cpus: 1.0
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:3000/health"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 30s
+
+  mes-blue:
+    image: ${DOCKERHUB_USERNAME:-sachin4668}/dhivio-mes:${IMAGE_TAG:-latest}
+    container_name: dhivio-mes-blue
+    pull_policy: always
+    profiles: ["blue"]
+    restart: unless-stopped
+    logging: *default-logging
+    environment:
+      <<: *app-env
+      NODE_OPTIONS: --max-old-space-size=256
+    mem_limit: 384m
+    cpus: 0.5
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:3000/health"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 30s
+
+  mes-green:
+    image: ${DOCKERHUB_USERNAME:-sachin4668}/dhivio-mes:${IMAGE_TAG:-latest}
+    container_name: dhivio-mes-green
+    pull_policy: always
+    profiles: ["green"]
+    restart: unless-stopped
+    logging: *default-logging
+    environment:
+      <<: *app-env
+      NODE_OPTIONS: --max-old-space-size=256
+    mem_limit: 384m
+    cpus: 0.5
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1:3000/health"]
+      interval: 15s
+      timeout: 3s
+      retries: 3
+      start_period: 30s

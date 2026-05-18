@@ -1,0 +1,25 @@
+-- Templated by deploy/scripts/bootstrap.sh — $POSTGRES_PASSWORD is replaced
+-- with the value generated in /srv/dhivio/.env before the file is written to
+-- deploy/postgres/init.sql. The runtime postgres container then mounts the
+-- rendered file at /docker-entrypoint-initdb.d/zz-dhivio-roles.sql so it
+-- runs once during the first DB init.
+--
+-- NOTE: do NOT include `ALTER USER supabase_admin/postgres` here. In the
+-- supabase/postgres distro neither `postgres` nor `supabase_admin` are owned
+-- by the bootstrap user — those ALTERs raise "must be superuser to alter
+-- superuser roles" and abort the script before the rest runs. The Supabase
+-- image already provisions both with a known password; we only rotate the
+-- service-account roles that gotrue/postgrest/storage authenticate as.
+--
+-- The CREATE SCHEMA _realtime line also runs as `postgres`, which is NOT
+-- a member of `supabase_admin`. We therefore run that step out-of-band
+-- in 02-realtime-schema.sql (also mounted into /docker-entrypoint-initdb.d
+-- by compose.infra.yml) which is executed under the postgres superuser at
+-- DB init time. Splitting them keeps the role-password reset cleanly
+-- idempotent — re-runnable via `psql -f init.sql` on an existing cluster.
+
+ALTER USER supabase_auth_admin       WITH PASSWORD '${POSTGRES_PASSWORD}';
+ALTER USER supabase_storage_admin    WITH PASSWORD '${POSTGRES_PASSWORD}';
+ALTER USER authenticator             WITH PASSWORD '${POSTGRES_PASSWORD}';
+
+GRANT anon, authenticated, service_role TO authenticator;

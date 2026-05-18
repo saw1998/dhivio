@@ -1,35 +1,91 @@
-FROM node:22 AS deps
+# syntax=docker/dockerfile:1.7
+#
+# Multi-stage build for MES. Mirrors apps/erp/Dockerfile — see that file for
+# the rationale on each stage. The two intentionally diverge only on memory
+# limits and which app turbo prunes for.
+
+ARG NODE_VERSION=22-alpine
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 1. Prune the monorepo down to just what `mes` needs
+# ──────────────────────────────────────────────────────────────────────────────
+FROM node:${NODE_VERSION} AS pruner
 WORKDIR /repo
-RUN corepack enable
-# Copy root manifests for workspaces
-COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc turbo.json lingui.config.js ./
-# Copy only what we need to install and build
-COPY apps ./apps
-COPY packages ./packages
+RUN apk add --no-cache libc6-compat
+RUN corepack enable && corepack prepare pnpm@10.33.4 --activate
+COPY . .
+RUN pnpm dlx turbo@2.9.6 prune --scope=mes --docker
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 2. Install dependencies against the pruned manifest
+# ──────────────────────────────────────────────────────────────────────────────
+FROM node:${NODE_VERSION} AS deps
+WORKDIR /repo
+RUN apk add --no-cache libc6-compat python3 make g++
+RUN corepack enable && corepack prepare pnpm@10.33.4 --activate
+
+COPY --from=pruner /repo/out/json/ ./
+COPY --from=pruner /repo/out/pnpm-lock.yaml ./pnpm-lock.yaml
+COPY .npmrc ./
 COPY patches ./patches
-# Install all workspaces (dev deps are needed to build)
-RUN pnpm install --frozen-lockfile
 
+RUN --mount=type=cache,id=pnpm,target=/root/.local/share/pnpm/store \
+    pnpm install --frozen-lockfile
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 3. Build
+# ──────────────────────────────────────────────────────────────────────────────
 FROM deps AS build
-ARG NODE_OPTIONS
-ENV NODE_OPTIONS="--max-old-space-size=4096"
-# Build only MES and its deps
-RUN pnpm run build:mes
-
-FROM node:22-slim
 WORKDIR /repo
-ENV COREPACK_ENABLE_DOWNLOAD_PROMPT=0
-RUN corepack enable
-ENV NODE_ENV=production
-ENV PORT=3000
-# Install curl for health checks
-RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
-# Copy workspace root files so pnpm/corepack resolve correctly
-COPY --from=deps /repo/package.json /repo/pnpm-lock.yaml /repo/pnpm-workspace.yaml /repo/.npmrc ./
-# Production needs built app, node_modules, and packages (for workspace deps)
-COPY --from=deps /repo/node_modules ./node_modules
-COPY --from=deps /repo/packages ./packages
-COPY --from=build /repo/apps/mes ./apps/mes
-EXPOSE 3001
-WORKDIR /repo/apps/mes
-CMD ["pnpm","run","start"]
+COPY --from=pruner /repo/out/full/ ./
+COPY lingui.config.js turbo.json ./
+
+ARG VITE_CLOUDFLARE_TURNSTILE_SITE_KEY
+ARG VITE_RAZORPAY_KEY_ID
+ARG VITE_POSTHOG_KEY
+ARG VITE_POSTHOG_HOST
+ARG SUPABASE_URL
+ARG SUPABASE_ANON_KEY
+ARG CARBON_EDITION=community
+ARG SESSION_SECRET=build-time-placeholder-not-used-at-runtime
+
+ENV VITE_CLOUDFLARE_TURNSTILE_SITE_KEY=$VITE_CLOUDFLARE_TURNSTILE_SITE_KEY \
+    VITE_RAZORPAY_KEY_ID=$VITE_RAZORPAY_KEY_ID \
+    VITE_POSTHOG_KEY=$VITE_POSTHOG_KEY \
+    VITE_POSTHOG_HOST=$VITE_POSTHOG_HOST \
+    SUPABASE_URL=$SUPABASE_URL \
+    SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY \
+    CARBON_EDITION=$CARBON_EDITION \
+    SESSION_SECRET=$SESSION_SECRET \
+    NODE_OPTIONS=--max-old-space-size=4096
+
+RUN pnpm turbo run build --filter=mes
+
+RUN pnpm --filter=mes deploy --prod --legacy /prod
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 4. Runtime
+# ──────────────────────────────────────────────────────────────────────────────
+FROM node:${NODE_VERSION} AS runner
+WORKDIR /app
+
+RUN apk add --no-cache dumb-init curl tini
+
+ENV NODE_ENV=production \
+    PORT=3000 \
+    HOST=0.0.0.0 \
+    NODE_OPTIONS=--max-old-space-size=256
+
+COPY --from=build /prod/node_modules ./node_modules
+COPY --from=build /repo/apps/mes/build ./build
+COPY --from=build /repo/apps/mes/public ./public
+COPY --from=build /repo/apps/mes/package.json ./package.json
+
+USER node
+EXPOSE 3000
+
+HEALTHCHECK --interval=15s --timeout=3s --start-period=30s --retries=3 \
+  CMD curl -fsS http://127.0.0.1:3000/health || exit 1
+
+ENTRYPOINT ["dumb-init", "--"]
+CMD ["node", "./node_modules/@react-router/serve/dist/cli.js", "./build/server/index.js"]
