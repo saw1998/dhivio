@@ -4417,7 +4417,7 @@ export type Database = {
           customerTypeId: string | null
           customFields: Json | null
           defaultCc: string[] | null
-          embedding: unknown
+          embedding: string | null
           fax: string | null
           id: string
           intercompanyCompanyId: string | null
@@ -4442,7 +4442,7 @@ export type Database = {
           customerTypeId?: string | null
           customFields?: Json | null
           defaultCc?: string[] | null
-          embedding?: unknown
+          embedding?: string | null
           fax?: string | null
           id?: string
           intercompanyCompanyId?: string | null
@@ -4467,7 +4467,7 @@ export type Database = {
           customerTypeId?: string | null
           customFields?: Json | null
           defaultCc?: string[] | null
-          embedding?: unknown
+          embedding?: string | null
           fax?: string | null
           id?: string
           intercompanyCompanyId?: string | null
@@ -10901,7 +10901,7 @@ export type Database = {
           createdBy: string
           defaultMethodType: Database["public"]["Enums"]["methodType"] | null
           description: string | null
-          embedding: unknown
+          embedding: string | null
           id: string
           itemTrackingType: Database["public"]["Enums"]["itemTrackingType"]
           modelUploadId: string | null
@@ -10927,7 +10927,7 @@ export type Database = {
           createdBy: string
           defaultMethodType?: Database["public"]["Enums"]["methodType"] | null
           description?: string | null
-          embedding?: unknown
+          embedding?: string | null
           id?: string
           itemTrackingType: Database["public"]["Enums"]["itemTrackingType"]
           modelUploadId?: string | null
@@ -10953,7 +10953,7 @@ export type Database = {
           createdBy?: string
           defaultMethodType?: Database["public"]["Enums"]["methodType"] | null
           description?: string | null
-          embedding?: unknown
+          embedding?: string | null
           id?: string
           itemTrackingType?: Database["public"]["Enums"]["itemTrackingType"]
           modelUploadId?: string | null
@@ -36086,174 +36086,6 @@ export type Database = {
           },
         ]
       }
-      searchIndex_935JjX2AaCxN8gdC8E4YMe: {
-        Row: {
-          createdAt: string
-          description: string | null
-          entityId: string
-          entityType: string
-          id: number
-          link: string
-          metadata: Json | null
-          searchVector: unknown
-          tags: string[] | null
-          title: string
-          updatedAt: string | null
-        }
-        Insert: {
-          createdAt?: string
-          description?: string | null
-          entityId: string
-          entityType: string
-          id?: number
-          link: string
-          metadata?: Json | null
-          searchVector?: unknown
-          tags?: string[] | null
-          title: string
-          updatedAt?: string | null
-        }
-        Update: {
-          createdAt?: string
-          description?: string | null
-          entityId?: string
-          entityType?: string
-          id?: number
-          link?: string
-          metadata?: Json | null
-          searchVector?: unknown
-          tags?: string[] | null
-          title?: string
-          updatedAt?: string | null
-        }
-        Relationships: []
-      }
-      searchIndex_EBw9p66227RpQ21V62J9gM: {
-        Row: {
-          createdAt: string
-          description: string | null
-          entityId: string
-          entityType: string
-          id: number
-          link: string
-          metadata: Json | null
-          searchVector: unknown
-          tags: string[] | null
-          title: string
-          updatedAt: string | null
-        }
-        Insert: {
-          createdAt?: string
-          description?: string | null
-          entityId: string
-          entityType: string
-          id?: number
-          link: string
-          metadata?: Json | null
-          searchVector?: unknown
-          tags?: string[] | null
-          title: string
-          updatedAt?: string | null
-        }
-        Update: {
-          createdAt?: string
-          description?: string | null
-          entityId?: string
-          entityType?: string
-          id?: number
-          link?: string
-          metadata?: Json | null
-          searchVector?: unknown
-          tags?: string[] | null
-          title?: string
-          updatedAt?: string | null
-        }
-        Relationships: []
-      }
-      searchIndex_fG8S95BZLugmPn3ae8gnR: {
-        Row: {
-          createdAt: string
-          description: string | null
-          entityId: string
-          entityType: string
-          id: number
-          link: string
-          metadata: Json | null
-          searchVector: unknown
-          tags: string[] | null
-          title: string
-          updatedAt: string | null
-        }
-        Insert: {
-          createdAt?: string
-          description?: string | null
-          entityId: string
-          entityType: string
-          id?: number
-          link: string
-          metadata?: Json | null
-          searchVector?: unknown
-          tags?: string[] | null
-          title: string
-          updatedAt?: string | null
-        }
-        Update: {
-          createdAt?: string
-          description?: string | null
-          entityId?: string
-          entityType?: string
-          id?: number
-          link?: string
-          metadata?: Json | null
-          searchVector?: unknown
-          tags?: string[] | null
-          title?: string
-          updatedAt?: string | null
-        }
-        Relationships: []
-      }
-      searchIndex_RKJXgdzgSJckckfFRqX5La: {
-        Row: {
-          createdAt: string
-          description: string | null
-          entityId: string
-          entityType: string
-          id: number
-          link: string
-          metadata: Json | null
-          searchVector: unknown
-          tags: string[] | null
-          title: string
-          updatedAt: string | null
-        }
-        Insert: {
-          createdAt?: string
-          description?: string | null
-          entityId: string
-          entityType: string
-          id?: number
-          link: string
-          metadata?: Json | null
-          searchVector?: unknown
-          tags?: string[] | null
-          title: string
-          updatedAt?: string | null
-        }
-        Update: {
-          createdAt?: string
-          description?: string | null
-          entityId?: string
-          entityType?: string
-          id?: number
-          link?: string
-          metadata?: Json | null
-          searchVector?: unknown
-          tags?: string[] | null
-          title?: string
-          updatedAt?: string | null
-        }
-        Relationships: []
-      }
       searchIndexRegistry: {
         Row: {
           companyId: string
@@ -38678,7 +38510,7 @@ export type Database = {
           currencyCode: string | null
           customFields: Json | null
           defaultCc: string[] | null
-          embedding: unknown
+          embedding: string | null
           fax: string | null
           id: string
           intercompanyCompanyId: string | null
@@ -38705,7 +38537,7 @@ export type Database = {
           currencyCode?: string | null
           customFields?: Json | null
           defaultCc?: string[] | null
-          embedding?: unknown
+          embedding?: string | null
           fax?: string | null
           id?: string
           intercompanyCompanyId?: string | null
@@ -38732,7 +38564,7 @@ export type Database = {
           currencyCode?: string | null
           customFields?: Json | null
           defaultCc?: string[] | null
-          embedding?: unknown
+          embedding?: string | null
           fax?: string | null
           id?: string
           intercompanyCompanyId?: string | null
@@ -56183,14 +56015,14 @@ export type Database = {
           },
           {
             foreignKeyName: "address_countryCode_fkey"
-            columns: ["customerCountryCode"]
+            columns: ["invoiceCountryCode"]
             isOneToOne: false
             referencedRelation: "country"
             referencedColumns: ["alpha2"]
           },
           {
             foreignKeyName: "address_countryCode_fkey"
-            columns: ["invoiceCountryCode"]
+            columns: ["customerCountryCode"]
             isOneToOne: false
             referencedRelation: "country"
             referencedColumns: ["alpha2"]
@@ -56747,14 +56579,14 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "address_countryCode_fkey"
-            columns: ["paymentCountryCode"]
+            columns: ["customerCountryCode"]
             isOneToOne: false
             referencedRelation: "country"
             referencedColumns: ["alpha2"]
           },
           {
             foreignKeyName: "address_countryCode_fkey"
-            columns: ["customerCountryCode"]
+            columns: ["paymentCountryCode"]
             isOneToOne: false
             referencedRelation: "country"
             referencedColumns: ["alpha2"]
@@ -58992,7 +58824,7 @@ export type Database = {
           currencyCode: string | null
           customFields: Json | null
           defaultCc: string[] | null
-          embedding: unknown
+          embedding: string | null
           eori: string | null
           externalId: Json | null
           fax: string | null
