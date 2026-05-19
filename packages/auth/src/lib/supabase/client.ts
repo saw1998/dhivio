@@ -1,3 +1,5 @@
+
+
 import type { Database } from "@carbon/database";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { createClient } from "@supabase/supabase-js";
@@ -12,6 +14,39 @@ const RETRYABLE_STATUS = new Set([500, 502, 503, 504, 512, 408, 524]);
 
 const sleep = (ms: number) =>
   new Promise<void>((resolve) => setTimeout(resolve, ms));
+
+const debugFetch =
+  (innerFetch: typeof fetch): typeof fetch =>
+  async (url, options: RequestInit = {}) => {
+    const start = performance.now();
+    const method = options.method || "GET";
+
+    let requestBody;
+    try {
+      requestBody = options.body ? JSON.parse(options.body as string) : null;
+    } catch {
+      requestBody = options.body;
+    }
+
+    const res = await innerFetch(url, options);
+
+    const duration = (performance.now() - start).toFixed(1);
+
+    let responseBody;
+    try {
+      const clone = res.clone();
+      responseBody = await clone.json();
+    } catch {
+      responseBody = null;
+    }
+
+    console.info(`[Supabase] ${method} ${url} (${duration}ms)`);
+    console.debug("Request:", requestBody);
+    console.debug("Response:", responseBody);
+    console.debug("Status:", res.status);
+
+    return res;
+  };
 
 const fetchWithRetry: typeof fetch = async (input, init) => {
   let lastError: unknown;
@@ -38,6 +73,14 @@ const fetchWithRetry: typeof fetch = async (input, init) => {
   throw lastError;
 };
 
+
+const composedFetch = debugFetch(fetchWithRetry);
+
+// const composedFetch =
+//   process.env.NODE_ENV === "development"
+//     ? debugFetch(fetchWithRetry)
+//     : fetchWithRetry;
+
 export const getCarbonClient = (
   supabaseKey: string,
   accessToken?: string
@@ -52,7 +95,7 @@ export const getCarbonClient = (
       persistSession: false
     },
     global: {
-      fetch: fetchWithRetry,
+      fetch: composedFetch,
       ...(headers ? { headers } : {})
     }
   });
