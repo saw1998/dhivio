@@ -32,6 +32,11 @@ x-app-env: &app-env
   SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}
   SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY}
   SUPABASE_JWT_SECRET: ${SUPABASE_JWT_SECRET}
+  # Direct DB URL — packages/database/src/migrate.ts + lib/postgres use this for
+  # SQL access bypassing PostgREST. `postgres` is the in-network DNS name of
+  # dhivio-postgres (compose.infra.yml). Required (`isRequired: true` in
+  # packages/env/src/index.ts) — without it the app boot fails immediately.
+  SUPABASE_DB_URL: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
 
   # URLs
   DOMAIN: ${DOMAIN}
@@ -87,6 +92,16 @@ services:
   # apps/<app>/app/routes/_public+/health.tsx). Must stay consistent with
   # deploy/scripts/wait-healthy.sh and the smoke test in deploy.yml.
   # ───────────────────────────────────────────────────────────────────────────
+  # ── NETWORK ALIASES ──────────────────────────────────────────────────────
+  # Both blue and green containers register the same `erp-active` alias on
+  # dhivio_net. Docker's embedded DNS round-robins / picks whichever has an
+  # IP, so internal clients (inngest's --sdk-url, future internal services)
+  # always reach the currently-running container without any cutover step.
+  # During a deploy both colors are briefly attached → Docker DNS returns
+  # whichever is up; after the old color stops its DNS record drops out of
+  # the alias automatically. This avoids the live `network disconnect`
+  # dance that invalidates nginx's resolver cache.
+  # ─────────────────────────────────────────────────────────────────────────
   erp-blue:
     image: ${DOCKERHUB_USERNAME:-sachin4668}/dhivio-erp:${IMAGE_TAG:-latest}
     container_name: dhivio-erp-blue
@@ -99,6 +114,9 @@ services:
       NODE_OPTIONS: --max-old-space-size=384
     mem_limit: 512m
     cpus: 1.0
+    networks:
+      default:
+        aliases: [erp-active]
     healthcheck:
       test: ["CMD", "curl", "-fsS", "http://127.0.0.1:3000/health"]
       interval: 15s
@@ -118,6 +136,9 @@ services:
       NODE_OPTIONS: --max-old-space-size=384
     mem_limit: 512m
     cpus: 1.0
+    networks:
+      default:
+        aliases: [erp-active]
     healthcheck:
       test: ["CMD", "curl", "-fsS", "http://127.0.0.1:3000/health"]
       interval: 15s
@@ -137,6 +158,9 @@ services:
       NODE_OPTIONS: --max-old-space-size=256
     mem_limit: 384m
     cpus: 0.5
+    networks:
+      default:
+        aliases: [mes-active]
     healthcheck:
       test: ["CMD", "curl", "-fsS", "http://127.0.0.1:3000/health"]
       interval: 15s
@@ -156,6 +180,9 @@ services:
       NODE_OPTIONS: --max-old-space-size=256
     mem_limit: 384m
     cpus: 0.5
+    networks:
+      default:
+        aliases: [mes-active]
     healthcheck:
       test: ["CMD", "curl", "-fsS", "http://127.0.0.1:3000/health"]
       interval: 15s

@@ -82,3 +82,35 @@ sudo bash deploy/scripts/bootstrap.sh --rotate-jwt
 docker compose --env-file /srv/dhivio/.env -f /srv/dhivio/compose.infra.yml up -d
 # Rebuild & redeploy ERP/MES (anon key changed → bundled into client)
 ```
+
+## Known issues / app-side fixes still needed
+
+### MES container crashes with `Cannot find package 'tailwindcss'`
+
+The MES app's SSR build (`build/server/index.js`) imports `tailwindcss` at
+runtime. Because `tailwindcss` is in `apps/mes/package.json#dependencies`
+this should work — but the import path resolves through a transitive package
+that's flagged as a devDependency and gets pruned by `pnpm deploy --prod`.
+
+**Root cause**: somewhere in `apps/mes/app/**`, server-side code accidentally
+imports a tailwind plugin/config module (e.g. a postcss/tailwind transform).
+That should be moved to a build-only path so it isn't bundled into the
+server output.
+
+**Workaround until fixed**: deploy ERP only via
+`workflow_dispatch → apps: erp`. MES container will crash-loop until the
+import is fixed in app code. ERP works fine end-to-end.
+
+### Kong `/functions/v1/main` returns HTTP 000
+
+Edge-runtime serves correctly on its native port (verified
+`http://edge-runtime:9000/main → 200`) but Kong's `/functions/v1/` route
+returns HTTP 000 (connection refused). Likely a `kong.yml` upstream config
+mismatch. Investigate during Feature 5 (TLS + DNS wrap-up).
+
+### Apps stack ↔ Proxy stack ordering
+
+`compose.apps.yml` doesn't `depends_on` the nginx in `compose.proxy.yml`
+(they are separate compose projects). `deploy-app.sh` assumes nginx is
+already up; on a fresh bootstrap you must
+`docker compose -f compose.proxy.yml up -d` first.
