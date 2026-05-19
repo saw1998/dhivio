@@ -48,6 +48,10 @@ jobs:
           mkdir -p .stage/supabase
           cp -r packages/database/supabase/migrations .stage/supabase/
           cp -r packages/database/supabase/functions  .stage/supabase/ 2>/dev/null || true
+          # Database package source — mounted at /home/src in edge-runtime so
+          # Deno functions can import shared types/clients (mirrors dev's
+          # ./packages/database/src:/home/src:ro mount).
+          cp -r packages/database/src                 .stage/supabase/ 2>/dev/null || true
           cp packages/database/supabase/config.toml   .stage/supabase/ 2>/dev/null || true
           echo "run_id=$RUN_ID"        >> "$GITHUB_OUTPUT"
           echo "remote=/srv/dhivio/migrations-staging/$RUN_ID" >> "$GITHUB_OUTPUT"

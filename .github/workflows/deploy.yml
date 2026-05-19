@@ -60,7 +60,6 @@ jobs:
             # the current ref's sha as a sensible default.
             echo "tag=${{ github.event.workflow_run.head_sha || github.sha }}" >> "$GITHUB_OUTPUT"
           fi
-
   deploy:
     name: Deploy ${{ matrix.app }}
     needs: matrix
@@ -83,14 +82,7 @@ jobs:
           script: |
             set -euo pipefail
             /srv/dhivio/scripts/deploy-app.sh ${{ matrix.app }} ${{ needs.matrix.outputs.tag }}
-
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          cache: pnpm
-
-      - name: Install compatible Pulumi version
+      - name: Smoke test
         run: |
           # Probes the in-app /health route (defined in
           # apps/<app>/app/routes/_public+/health.tsx). Must match the path
@@ -107,11 +99,9 @@ jobs:
           set +e   # don't let `set -e` kill us between retries
           host="${{ matrix.app }}.dhivio.com"
           vps_ip="${{ secrets.VPS_HOST }}"
-
           probe() {
             curl -fsS --max-time 10 "$@" -o /dev/null
           }
-
           for i in 1 2 3 4 5; do
             if probe --resolve "$host:80:$vps_ip" "http://$host/health"; then
               echo "✓ $host healthy via VPS-direct HTTP (attempt $i)"
@@ -130,7 +120,6 @@ jobs:
           done
           echo "✗ smoke test failed for $host after 5 attempts" >&2
           exit 1
-
       - name: Rollback on failure
         if: failure() && steps.rollout.outcome == 'success'
         uses: appleboy/ssh-action@v1.2.0

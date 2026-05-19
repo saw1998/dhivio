@@ -35,6 +35,7 @@ set -a; source "$ENV_FILE"; set +a
 RUN_ID="$(basename "$STAGED")"
 MIG_DIR="$STAGED/supabase/migrations"
 FUNCS_DIR="$STAGED/supabase/functions"
+SRC_DIR="$STAGED/supabase/src"
 PG_CONTAINER="dhivio-postgres"
 
 # Connect as `supabase_admin` (superuser, owner of storage/auth/realtime
@@ -149,6 +150,16 @@ Deno.serve(() => new Response(
 ));
 STUB
     echo "▶ re-seeded main/ stub"
+  fi
+
+  # Sync database package source → /srv/dhivio/src/, mounted at /home/src in
+  # edge-runtime so Deno functions can import shared types/clients. Mirrors
+  # dev's ./packages/database/src:/home/src:ro mount. Staged by
+  # .github/workflows/supabase.yml's `cp -r packages/database/src` step.
+  if [[ -d "$SRC_DIR" ]]; then
+    echo "▶ syncing database/src → $ROOT/src/"
+    mkdir -p "$ROOT/src"
+    rsync -a --delete "$SRC_DIR/" "$ROOT/src/"
   fi
 
   echo "▶ restarting dhivio-edge-runtime"

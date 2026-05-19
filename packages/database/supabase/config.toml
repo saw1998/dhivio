@@ -96,11 +96,11 @@ double_confirm_changes = true
 enable_confirmations = false
 
 [auth.email.template.invite]
-subject = "You have been invited to Carbon"
+subject = "You have been invited to Dhivio"
 content_path = "./supabase/templates/invite.html"
 
 [auth.email.template.magic_link]
-subject = "Your Carbon Magic Link"
+subject = "Your Dhivio Magic Link"
 content_path = "./supabase/templates/magic-link.html"
 
 

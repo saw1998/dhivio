@@ -50,12 +50,15 @@ services:
       # Two init scripts, executed in lexical order on first cluster init.
       # Prefixed `zz-` so they run after Supabase's own seed files.
       - ./postgres/init.sql:/docker-entrypoint-initdb.d/zz-dhivio-01-roles.sql:ro
-      - ./postgres/02-realtime-schema.sql:/docker-entrypoint-initdb.d/zz-dhivio-02-realtime.sql:ro
+      # - ./postgres/02-realtime-schema.sql:/docker-entrypoint-initdb.d/zz-dhivio-02-realtime.sql:ro
     command:
       - postgres
       - -c
       - config_file=/etc/postgresql/postgresql.conf
-    mem_limit: 1024m
+    # 8 GB VPS budget: postgres is the biggest workhorse (auth, realtime,
+    # storage, public, inngest queues). 3 GB gives shared_buffers + OS
+    # page cache real room while leaving ~5 GB for everything else.
+    mem_limit: 3072m
     cpus: 1.0
     healthcheck:
       test: ["CMD", "pg_isready", "-U", "postgres", "-h", "localhost"]
@@ -102,7 +105,7 @@ services:
       GOTRUE_JWT_ADMIN_ROLES: service_role
       GOTRUE_JWT_AUD: authenticated
       GOTRUE_EXTERNAL_EMAIL_ENABLED: "true"
-      GOTRUE_MAILER_AUTOCONFIRM: "false"
+      GOTRUE_MAILER_AUTOCONFIRM: "true"
       # SMTP via Resend (or any SMTP provider)
       GOTRUE_SMTP_HOST: ${SMTP_HOST:-smtp.resend.com}
       GOTRUE_SMTP_PORT: ${SMTP_PORT:-465}
@@ -115,11 +118,16 @@ services:
       GOTRUE_EXTERNAL_GOOGLE_CLIENT_ID: ${SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID:-}
       GOTRUE_EXTERNAL_GOOGLE_SECRET: ${SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_SECRET:-}
       GOTRUE_EXTERNAL_GOOGLE_REDIRECT_URI: ${SUPABASE_AUTH_EXTERNAL_GOOGLE_REDIRECT_URI}
-      GOTRUE_EXTERNAL_AZURE_ENABLED: "true"
+      GOTRUE_EXTERNAL_AZURE_ENABLED: "false"
       GOTRUE_EXTERNAL_AZURE_CLIENT_ID: ${SUPABASE_AUTH_EXTERNAL_AZURE_CLIENT_ID:-}
       GOTRUE_EXTERNAL_AZURE_SECRET: ${SUPABASE_AUTH_EXTERNAL_AZURE_CLIENT_SECRET:-}
       GOTRUE_EXTERNAL_AZURE_REDIRECT_URI: ${SUPABASE_AUTH_EXTERNAL_AZURE_REDIRECT_URI}
-    mem_limit: 128m
+      GOTRUE_MAILER_TEMPLATES_MAGIC_LINK: ${ERP_URL}/templates/magic-link.html
+      GOTRUE_MAILER_TEMPLATES_INVITE: ${ERP_URL}/templates/invite.html
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+      - "${DOMAIN}:host-gateway"
+    mem_limit: 160m
 
   postgrest:
     image: postgrest/postgrest:v13.0.8
@@ -137,7 +145,7 @@ services:
       PGRST_DB_USE_LEGACY_GUCS: "false"
       PGRST_APP_SETTINGS_JWT_SECRET: ${SUPABASE_JWT_SECRET}
       PGRST_APP_SETTINGS_JWT_EXP: 3600
-    mem_limit: 192m
+    mem_limit: 384m
 
   realtime:
     image: supabase/realtime:v2.89.0
@@ -147,6 +155,10 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+    networks:
+      default:
+        aliases:
+          - realtime-dev
     environment:
       PORT: 4000
       DB_HOST: postgres
@@ -166,7 +178,10 @@ services:
       SEED_SELF_HOST: "true"
       RUN_JANITOR: "true"
       DISABLE_HEALTHCHECK_LOGGING: "true"
-    mem_limit: 256m
+    # Elixir/BEAM VM keeps per-connection scheduler heaps; janitor +
+    # multi-tenant traffic pushes RSS past 256 MB.
+    mem_limit: 512m
+
 
   storage:
     image: supabase/storage-api:v1.58.4
@@ -187,11 +202,11 @@ services:
       FILE_STORAGE_BACKEND_PATH: /var/lib/storage
       TENANT_ID: dhivio
       REGION: prod
-      GLOBAL_S3_BUCKET: dhivio
+      GLOBAL_S3_BUCKET: dhivio_stub
       ENABLE_IMAGE_TRANSFORMATION: "false"
     volumes:
       - storage:/var/lib/storage
-    mem_limit: 192m
+    mem_limit: 256m
 
   meta:
     image: supabase/postgres-meta:v0.96.5
@@ -265,15 +280,21 @@ services:
       SUPABASE_ANON_KEY: ${SUPABASE_ANON_KEY}
       SUPABASE_SERVICE_ROLE_KEY: ${SUPABASE_SERVICE_ROLE_KEY}
       SUPABASE_DB_URL: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/postgres
-      VERIFY_JWT: "true"
+      VERIFY_JWT: "false"
     volumes:
-      # Functions are synced from the repo by .github/workflows/supabase.yml
+      # Functions and database/src are synced from the repo by
+      # .github/workflows/supabase.yml → deploy/scripts/run-migrations.sh.
+      # /home/src mirrors dev's ./packages/database/src mount so Deno
+      # functions can import shared types/clients.
       - ./functions:/home/deno/functions:ro
+      - ./src:/home/src:ro
     command:
       - start
       - --main-service
       - /home/deno/functions/main
-    mem_limit: 256m
+    # Deno host + per-function worker pool (dispatcher caps each worker at
+    # 512 MB); give the container slack above any single worker.
+    mem_limit: 384m
 
   kong:
     image: kong:2.8.1
@@ -296,7 +317,7 @@ services:
       KONG_PROXY_LISTEN: "0.0.0.0:8000"
     volumes:
       - ./kong/kong.yml:/home/kong/kong.yml:ro
-    mem_limit: 192m
+    mem_limit: 256m
 
   redis:
     image: redis:7-alpine
@@ -318,7 +339,9 @@ services:
       interval: 10s
       timeout: 3s
       retries: 5
-    mem_limit: 128m
+    # Container limit (96 MB data cap stays via --maxmemory above);
+    # extra headroom for connections + AOF rewrite buffer.
+    mem_limit: 192m
 
   inngest:
     image: inngest/inngest:v1.18.0
@@ -340,4 +363,5 @@ services:
         condition: service_healthy
       postgres:
         condition: service_healthy
-    mem_limit: 256m
+    # Run-history queries + websocket fan-out to ERP can spike past 256 MB.
+    mem_limit: 384m
