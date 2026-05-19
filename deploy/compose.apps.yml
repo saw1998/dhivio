@@ -67,6 +67,12 @@ x-app-env: &app-env
   RESEND_DOMAIN: ${RESEND_DOMAIN}
   NOVU_APPLICATION_ID: ${NOVU_APPLICATION_ID}
   NOVU_SECRET_KEY: ${NOVU_SECRET_KEY}
+  # Turnstile: SITE_KEY is public (rendered into HTML via root.tsx getEnv()
+  # so the client SDK can call Cloudflare). SECRET_KEY is server-only,
+  # used by the form action to verify the token. Both must be set;
+  # missing SITE_KEY makes the widget render-suppressed (login.tsx
+  # only renders <Turnstile /> when CLOUDFLARE_TURNSTILE_SITE_KEY is truthy).
+  CLOUDFLARE_TURNSTILE_SITE_KEY: ${CLOUDFLARE_TURNSTILE_SITE_KEY}
   CLOUDFLARE_TURNSTILE_SECRET_KEY: ${CLOUDFLARE_TURNSTILE_SECRET_KEY}
   SLACK_BOT_TOKEN: ${SLACK_BOT_TOKEN}
   ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY}
