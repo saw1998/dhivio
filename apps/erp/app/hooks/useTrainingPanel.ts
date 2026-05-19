@@ -24,6 +24,14 @@ function safeLocalSet(key: string, value: string) {
 }
 
 export function useTrainingPanel() {
+  // Early returning for now, since trainging video is not recorded
+  return {
+    isOpen: false,
+    training: null,
+    hasTraining: false,
+    dismiss: true
+  };
+  /*
   const { pathname, key: locationKey } = useLocation();
   const { flags } = useUser();
   const fetcher = useFetcher({ key: "training-dismiss" });
@@ -84,4 +92,5 @@ export function useTrainingPanel() {
     hasTraining: training !== null,
     dismiss
   };
+  */
 }

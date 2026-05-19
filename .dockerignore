@@ -1,9 +1,89 @@
-
-# sst
-.sst
-llm
+# --- VCS / IDE / OS ---
+.git
+.gitignore
+.github
 .vscode
+.idea
+.DS_Store
+*.swp
+
+# --- Agent / docs / planning ---
 .claude
 .cursor
-examples
+.agents
+llm
+docs
+README.md
+LICENSE
+CLAUDE.md
+
+# --- SST / infra (not needed for self-contained image) ---
+.sst
+sst-env.d.ts
+sst.config.ts
+
+# --- Local env / secrets ---
 .env
+.env.*
+!.env.example
+
+# --- All build artefacts (we rebuild inside the image) ---
+**/node_modules
+**/.turbo
+**/.react-router
+**/.cache
+**/dist
+**/dist-ssr
+**/build
+**/.next
+**/.vercel
+**/.trigger
+**/.sst
+**/.mcp.json
+**/opencode.json
+**/.eslintcache
+**/coverage
+
+# --- Logs ---
+**/*.log
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+
+# --- Worktree / dev tooling ---
+.carbon-worktree
+.superpowers
+.husky
+setup.sh
+biome.jsonc
+**/biome.jsonc
+
+# --- Stuff we don't ship in production images ---
+# (NOTE: keep `patches/` — pnpm needs it for patchedDependencies during install)
+examples
+ci
+supabase
+packages/dev
+packages/database/supabase/seed.sql
+
+# --- App-specific build dirs (also covered by **/build above) ---
+apps/*/.react-router
+apps/*/build
+apps/*/.cache
+apps/*/server/dist
+apps/*/public/dist
+
+# --- Rust / C++ artefacts (cad-engine etc.) ---
+**/target
+**/*.rs.bk
+**/pkg
+
+# --- Docker / CI files (don't copy themselves into image) ---
+**/Dockerfile
+**/.dockerignore
+docker-compose*.yml
+
+# --- Test artefacts ---
+**/test-results
+**/playwright-report
+**/.nyc_output

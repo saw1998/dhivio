@@ -53439,6 +53439,195 @@ export default {
         tags: ["user"]
       }
     },
+    "/searchIndex_C45Pup2UdtoupfRcdJzwEe": {
+      get: {
+        parameters: [
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.id"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.entityType"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.entityId"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.title"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.description"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.link"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.tags"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.metadata"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.searchVector"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.createdAt"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.updatedAt"
+          },
+          {
+            $ref: "#/parameters/select"
+          },
+          {
+            $ref: "#/parameters/order"
+          },
+          {
+            $ref: "#/parameters/range"
+          },
+          {
+            $ref: "#/parameters/rangeUnit"
+          },
+          {
+            $ref: "#/parameters/offset"
+          },
+          {
+            $ref: "#/parameters/limit"
+          },
+          {
+            $ref: "#/parameters/preferCount"
+          }
+        ],
+        responses: {
+          "200": {
+            description: "OK",
+            schema: {
+              items: {
+                $ref: "#/definitions/searchIndex_C45Pup2UdtoupfRcdJzwEe"
+              },
+              type: "array"
+            }
+          },
+          "206": {
+            description: "Partial Content"
+          }
+        },
+        tags: ["searchIndex_C45Pup2UdtoupfRcdJzwEe"]
+      },
+      post: {
+        parameters: [
+          {
+            $ref: "#/parameters/body.searchIndex_C45Pup2UdtoupfRcdJzwEe"
+          },
+          {
+            $ref: "#/parameters/select"
+          },
+          {
+            $ref: "#/parameters/preferPost"
+          }
+        ],
+        responses: {
+          "201": {
+            description: "Created"
+          }
+        },
+        tags: ["searchIndex_C45Pup2UdtoupfRcdJzwEe"]
+      },
+      delete: {
+        parameters: [
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.id"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.entityType"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.entityId"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.title"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.description"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.link"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.tags"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.metadata"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.searchVector"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.createdAt"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.updatedAt"
+          },
+          {
+            $ref: "#/parameters/preferReturn"
+          }
+        ],
+        responses: {
+          "204": {
+            description: "No Content"
+          }
+        },
+        tags: ["searchIndex_C45Pup2UdtoupfRcdJzwEe"]
+      },
+      patch: {
+        parameters: [
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.id"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.entityType"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.entityId"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.title"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.description"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.link"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.tags"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.metadata"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.searchVector"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.createdAt"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.updatedAt"
+          },
+          {
+            $ref: "#/parameters/body.searchIndex_C45Pup2UdtoupfRcdJzwEe"
+          },
+          {
+            $ref: "#/parameters/preferReturn"
+          }
+        ],
+        responses: {
+          "204": {
+            description: "No Content"
+          }
+        },
+        tags: ["searchIndex_C45Pup2UdtoupfRcdJzwEe"]
+      }
+    },
     "/companyAccountsReceivableBillingAddress": {
       get: {
         parameters: [
@@ -103103,6 +103292,61 @@ export default {
       },
       type: "object"
     },
+    searchIndex_C45Pup2UdtoupfRcdJzwEe: {
+      required: ["id", "entityType", "entityId", "title", "link", "createdAt"],
+      properties: {
+        id: {
+          description: "Note:\nThis is a Primary Key.<pk/>",
+          format: "bigint",
+          type: "integer"
+        },
+        entityType: {
+          format: "text",
+          type: "string"
+        },
+        entityId: {
+          format: "text",
+          type: "string"
+        },
+        title: {
+          format: "text",
+          type: "string"
+        },
+        description: {
+          default: "",
+          format: "text",
+          type: "string"
+        },
+        link: {
+          format: "text",
+          type: "string"
+        },
+        tags: {
+          format: "text[]",
+          items: {
+            type: "string"
+          },
+          type: "array"
+        },
+        metadata: {
+          format: "jsonb"
+        },
+        searchVector: {
+          format: "tsvector",
+          type: "string"
+        },
+        createdAt: {
+          default: "now()",
+          format: "timestamp with time zone",
+          type: "string"
+        },
+        updatedAt: {
+          format: "timestamp with time zone",
+          type: "string"
+        }
+      },
+      type: "object"
+    },
     companyAccountsReceivableBillingAddress: {
       required: ["id"],
       properties: {
@@ -139228,6 +139472,81 @@ export default {
     },
     "rowFilter.user.phone": {
       name: "phone",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "body.searchIndex_C45Pup2UdtoupfRcdJzwEe": {
+      name: "searchIndex_C45Pup2UdtoupfRcdJzwEe",
+      description: "searchIndex_C45Pup2UdtoupfRcdJzwEe",
+      required: false,
+      in: "body",
+      schema: {
+        $ref: "#/definitions/searchIndex_C45Pup2UdtoupfRcdJzwEe"
+      }
+    },
+    "rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.id": {
+      name: "id",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.entityType": {
+      name: "entityType",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.entityId": {
+      name: "entityId",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.title": {
+      name: "title",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.description": {
+      name: "description",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.link": {
+      name: "link",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.tags": {
+      name: "tags",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.metadata": {
+      name: "metadata",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.searchVector": {
+      name: "searchVector",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.createdAt": {
+      name: "createdAt",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_C45Pup2UdtoupfRcdJzwEe.updatedAt": {
+      name: "updatedAt",
       required: false,
       in: "query",
       type: "string"

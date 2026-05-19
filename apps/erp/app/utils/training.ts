@@ -66,7 +66,7 @@ export const trainingConfig: Record<string, TrainingVideo> = {
     academyUrl: "https://learn.carbon.ms/course/buying/purchasing-basics"
   },
   parts: {
-    title: "Parts & Materials in Carbon",
+    title: "Parts & Materials in Dhivio",
     description:
       "Learn the differences between item types and when to use each one in your business processes.",
     videoUrl:
