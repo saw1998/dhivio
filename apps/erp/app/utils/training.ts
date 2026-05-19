@@ -14,9 +14,9 @@ export type TrainingVideo = {
  */
 export const trainingConfig: Record<string, TrainingVideo> = {
   quotes: {
-    title: "Quotes in Carbon",
+    title: "Quotes in Dhivio",
     description:
-      "Learn how to record and manage quotes from customers in Carbon.",
+      "Learn how to record and manage quotes from customers in Dhivio.",
     videoUrl:
       "https://www.loom.com/share/881c83e9df8044db848aee8c2ea782bd?sid=f4ca14ef-bc59-4a8f-94a6-d6e120ee3bb3",
     videoType: "loom",

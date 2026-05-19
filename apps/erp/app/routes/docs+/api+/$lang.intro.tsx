@@ -44,7 +44,7 @@ export default function Route() {
       <div className="doc-section">
         <article className="code-column text-foreground">
           <p>
-            Carbon provides an MCP server that you can connect to from any MCP
+            Dhivio provides an MCP server that you can connect to from any MCP
             client, such as Claude Code or Claude Desktop.
           </p>
           <p>To connect, run the following command with your API token:</p>

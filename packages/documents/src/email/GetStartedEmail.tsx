@@ -141,7 +141,7 @@ export const GetStartedEmail = ({
   firstName = "Huckleberry",
   academyUrl = "https://learn.carbon.ms"
 }: Props) => {
-  const preview = `Hi ${firstName}, here's how to get the most out of Carbon.`;
+  const preview = `Hi ${firstName}, here's how to get the most out of Dhivio.`;
   const themeClasses = getEmailThemeClasses();
   const lightStyles = getEmailInlineStyles("light");
 
@@ -154,7 +154,7 @@ export const GetStartedEmail = ({
     {
       href: `${academyUrl}/course/getting-started/setting-up-company`,
       title: "Setting up your company",
-      description: "Configure Carbon for your team in minutes."
+      description: "Configure Dhivio for your team in minutes."
     },
     {
       href: `${academyUrl}/course/parts-materials/defining-item`,
@@ -179,7 +179,7 @@ export const GetStartedEmail = ({
     {
       href: `${academyUrl}/course/developing/using-api`,
       title: "Using the API",
-      description: "Build custom apps on top of Carbon."
+      description: "Build custom apps on top of Dhivio."
     }
   ];
 
@@ -213,7 +213,7 @@ export const GetStartedEmail = ({
             className={`text-[24px] font-normal text-center tracking-tight p-0 mt-[40px] mb-[32px] mx-0 ${themeClasses.heading}`}
             style={{ color: lightStyles.text.color }}
           >
-            Get the most out of Carbon
+            Get the most out of Dhivio
           </Heading>
 
           <Section>
@@ -278,7 +278,7 @@ export const GetStartedEmail = ({
               className={`text-[14px] m-0 mb-[2px] ${themeClasses.text}`}
               style={{ color: lightStyles.text.color }}
             >
-              — The Carbon Team
+              — The Dhivio Team
             </Text>
           </Section>
         </Container>

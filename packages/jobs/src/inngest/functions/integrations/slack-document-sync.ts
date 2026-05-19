@@ -465,6 +465,6 @@ async function postToSlackThread(params: {
     channel: channelId,
     thread_ts: threadTs,
     blocks,
-    text: text || "Update from Carbon"
+    text: text || "Update from Dhivio"
   });
 }

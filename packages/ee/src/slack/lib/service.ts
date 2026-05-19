@@ -95,7 +95,7 @@ export async function createIssueSlackThread(
                   type: "button",
                   text: {
                     type: "plain_text",
-                    text: "View in Carbon"
+                    text: "View in Dhivio"
                   },
                   url: data.carbonUrl,
                   action_id: "view_in_carbon"
@@ -352,7 +352,7 @@ export async function getCarbonEmployeeFromSlackId(
 
     return job;
   } catch (error) {
-    console.error("Error getting Carbon employee from Slack ID:", error);
+    console.error("Error getting Dhivio employee from Slack ID:", error);
     return {
       data: null,
       error: error instanceof Error ? error.message : "Unknown error"

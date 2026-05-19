@@ -1085,9 +1085,6 @@ msgstr "por {byUser}"
 msgid "By accepting the invite, you agree to the <0>Terms of Service</0> and <1>Privacy Policy</1>."
 msgstr "Al aceptar la invitaciÃƒÆ’Ã‚Â³n, aceptas los <0>TÃƒÆ’Ã‚Â©rminos de Servicio</0> y la <1>PolÃƒÆ’Ã‚Â­tica de Privacidad</1>."
 
-msgid "By signing in, you agree to the <0>Terms of Service</0> and <1>Privacy Policy.</1>"
-msgstr "Al iniciar sesiÃƒÆ’Ã‚Â³n, aceptas los <0>TÃƒÆ’Ã‚Â©rminos de Servicio</0> y la <1>PolÃƒÆ’Ã‚Â­tica de Privacidad.</1>"
-
 msgid "CAD Model"
 msgstr "Modelo CAD"
 
@@ -1459,8 +1456,8 @@ msgstr "Confirmar importaciÃƒÆ’Ã‚Â³n"
 msgid "Confirm Password"
 msgstr "Confirmar ContraseÃƒÆ’Ã‚Â±a"
 
-msgid "Connect Carbon to your accounting, project management, and CAD tools and much more."
-msgstr "Conecta Carbon a tus herramientas de contabilidad, gestión de proyectos, CAD y mucho más."
+msgid "Connect Dhivio to your accounting, project management, and CAD tools and much more."
+msgstr "Conecta Dhivio a tus herramientas de contabilidad, gestión de proyectos, CAD y mucho más."
 
 msgid "Connect Jira issue"
 msgstr "Conectar problema de Jira"
@@ -5732,8 +5729,8 @@ msgstr "PÃƒÆ’Ã‚Âºblico"
 msgid "Publish"
 msgstr "Publicar"
 
-msgid "Published by Carbon"
-msgstr "Publicado por Carbon"
+msgid "Published by Dhivio"
+msgstr "Publicado por Dhivio"
 
 msgid "Pull From"
 msgstr "Extraer de"
@@ -6677,8 +6674,8 @@ msgstr "Seleccionado: {selectedSum} / restante despuÃƒÆ’Ã‚Â©s de divid
 msgid "Self Managed"
 msgstr "Autogestionado"
 
-msgid "Self-Onboarding with Carbon Academy"
-msgstr "IncorporaciÃƒÆ’Ã‚Â³n automÃƒÆ’Ã‚Â¡tica con Carbon Academy"
+msgid "Self-Onboarding with Dhivio Academy"
+msgstr ""
 
 msgid "Send"
 msgstr "Enviar"
@@ -8227,8 +8224,8 @@ msgstr "Promedio Ponderado"
 msgid "Weighted average cost over last year calculated when the invoice is posted"
 msgstr "Costo promedio ponderado del ÃƒÆ’Ã‚Âºltimo aÃƒÆ’Ã‚Â±o calculado cuando se registra la factura"
 
-msgid "Welcome to Carbon"
-msgstr "Bienvenido a Carbon"
+msgid "Welcome to Dhivio"
+msgstr "Bienvenido a Dhivio"
 
 msgid "When"
 msgstr "CuÃƒÆ’Ã‚Â¡ndo"

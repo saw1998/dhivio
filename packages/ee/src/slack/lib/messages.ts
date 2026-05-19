@@ -167,7 +167,7 @@ export function formatDocumentCreated(
         type: "button",
         text: {
           type: "plain_text",
-          text: "View in Carbon"
+          text: "View in Dhivio"
         },
         url: `${baseUrl}${typeInfo.urlPath}/${data.id}`,
         action_id: "view_in_carbon"

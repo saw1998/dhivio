@@ -542,7 +542,7 @@ export const documents = [
                                   content: [
                                     {
                                       type: "text",
-                                      text: "All internal documents are created as soft files (MS Word®, Google Drive, Carbon, etc.); it is recommended that files of a similar type follow the format of other documents in that type."
+                                      text: "All internal documents are created as soft files (MS Word®, Google Drive, Dhivio, etc.); it is recommended that files of a similar type follow the format of other documents in that type."
                                     }
                                   ]
                                 }

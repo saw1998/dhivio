@@ -11,7 +11,7 @@ export const Linear = defineIntegration({
   logo: Logo,
   description:
     "Linear is a project management software that allows you to create issues and track project progress seamlessly. With this integration, you can link issues from Carbon to Linear.",
-  shortDescription: "Sync issues from Carbon to Linear.",
+  shortDescription: "Sync issues from Dhivio to Linear.",
   setupInstructions: SetupInstructions,
   images: [],
   settings: [
@@ -41,7 +41,7 @@ function SetupInstructions({ companyId }: { companyId: string }) {
   return (
     <>
       <p className="text-sm text-muted-foreground">
-        To integrate Linear with Carbon, start by logging into your Linear
+        To integrate Linear with Dhivio, start by logging into your Linear
         account and navigating to the API settings page.
       </p>
       <p className="text-sm text-muted-foreground">

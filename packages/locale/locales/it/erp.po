@@ -1085,9 +1085,6 @@ msgstr "da {byUser}"
 msgid "By accepting the invite, you agree to the <0>Terms of Service</0> and <1>Privacy Policy</1>."
 msgstr "Accettando l'invito, accetti i <0>Termini di Servizio</0> e l'<1>Informativa sulla Privacy</1>."
 
-msgid "By signing in, you agree to the <0>Terms of Service</0> and <1>Privacy Policy.</1>"
-msgstr "Accedendo, accetti i <0>Termini di Servizio</0> e l'<1>Informativa sulla Privacy.</1>"
-
 msgid "CAD Model"
 msgstr "Modello CAD"
 
@@ -1459,8 +1456,8 @@ msgstr "Conferma importazione"
 msgid "Confirm Password"
 msgstr "Conferma Password"
 
-msgid "Connect Carbon to your accounting, project management, and CAD tools and much more."
-msgstr "Connetti Carbon ai tuoi strumenti di contabilità, gestione dei progetti, CAD e molto altro."
+msgid "Connect Dhivio to your accounting, project management, and CAD tools and much more."
+msgstr "Connetti Dhivio ai tuoi strumenti di contabilità, gestione dei progetti, CAD e molto altro."
 
 msgid "Connect Jira issue"
 msgstr "Connetti problema Jira"
@@ -5732,8 +5729,8 @@ msgstr "Pubblico"
 msgid "Publish"
 msgstr "Pubblica"
 
-msgid "Published by Carbon"
-msgstr "Pubblicato da Carbon"
+msgid "Published by Dhivio"
+msgstr "Pubblicato da Dhivio"
 
 msgid "Pull From"
 msgstr "Preleva da"
@@ -6677,8 +6674,8 @@ msgstr "Selezionato: {selectedSum} / rimanente dopo la divisione: {0}"
 msgid "Self Managed"
 msgstr "Gestito autonomamente"
 
-msgid "Self-Onboarding with Carbon Academy"
-msgstr "Onboarding autonomo con Carbon Academy"
+msgid "Self-Onboarding with Dhivio Academy"
+msgstr ""
 
 msgid "Send"
 msgstr "Invia"
@@ -8227,8 +8224,8 @@ msgstr "Media Ponderata"
 msgid "Weighted average cost over last year calculated when the invoice is posted"
 msgstr "Costo medio ponderato dell'ultimo anno calcolato al momento della registrazione della fattura"
 
-msgid "Welcome to Carbon"
-msgstr "Benvenuto in Carbon"
+msgid "Welcome to Dhivio"
+msgstr "Benvenuto in Dhivio"
 
 msgid "When"
 msgstr "Quando"

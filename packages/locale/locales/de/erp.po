@@ -483,7 +483,7 @@ msgid "API Keys"
 msgstr "API-SchlÃƒÆ’Ã‚Â¼ssel"
 
 msgid "API keys for programmatic access to your Carbon data."
-msgstr "API-Schlüssel für programmgesteuerten Zugriff auf Ihre Carbon-Daten."
+msgstr ""
 
 msgid "Applies to"
 msgstr "Gilt fÃƒÆ’Ã‚Â¼r"
@@ -1085,9 +1085,6 @@ msgstr "von {byUser}"
 msgid "By accepting the invite, you agree to the <0>Terms of Service</0> and <1>Privacy Policy</1>."
 msgstr "Durch Annahme der Einladung stimmen Sie den <0>Nutzungsbedingungen</0> und der <1>Datenschutzrichtlinie</1> zu."
 
-msgid "By signing in, you agree to the <0>Terms of Service</0> and <1>Privacy Policy.</1>"
-msgstr "Durch die Anmeldung stimmen Sie den <0>Nutzungsbedingungen</0> und der <1>Datenschutzrichtlinie</1> zu."
-
 msgid "CAD Model"
 msgstr "CAD-Modell"
 
@@ -1161,22 +1158,22 @@ msgid "Cannot upload to parts bucket without item ID"
 msgstr "Kann nicht in den Teile-Bucket ohne Element-ID hochgeladen werden"
 
 msgid "Carbon client is not available"
-msgstr "Carbon-Client ist nicht verfÃƒÆ’Ã‚Â¼gbar"
+msgstr ""
 
 msgid "Carbon client not available"
-msgstr "Carbon-Client nicht verfÃƒÆ’Ã‚Â¼gbar"
+msgstr ""
 
 msgid "Carbon client not found"
-msgstr "Carbon-Client nicht gefunden"
+msgstr ""
 
 msgid "Carbon column"
-msgstr "Carbon-Spalte"
+msgstr ""
 
 msgid "Carbon Logo"
-msgstr "Carbon-Logo"
+msgstr ""
 
 msgid "Carbon Value"
-msgstr "Carbon-Wert"
+msgstr ""
 
 msgid "Carrier"
 msgstr "Spediteur"
@@ -1459,8 +1456,8 @@ msgstr "Import bestÃƒÆ’Ã‚Â¤tigen"
 msgid "Confirm Password"
 msgstr "Passwort bestÃƒÆ’Ã‚Â¤tigen"
 
-msgid "Connect Carbon to your accounting, project management, and CAD tools and much more."
-msgstr "Verbinden Sie Carbon mit Ihren Buchhaltungs-, Projektmanagement- und CAD-Tools und vielem mehr."
+msgid "Connect Dhivio to your accounting, project management, and CAD tools and much more."
+msgstr "Verbinden Sie Dhivio mit Ihren Buchhaltungs-, Projektmanagement- und CAD-Tools und vielem mehr."
 
 msgid "Connect Jira issue"
 msgstr "Jira-Problem verbinden"
@@ -3263,7 +3260,7 @@ msgid "Failed to fetch suggestions"
 msgstr "Fehler beim Abrufen von VorschlÃƒÆ’Ã‚Â¤gen"
 
 msgid "Failed to initialize Carbon client"
-msgstr "Fehler beim Initialisieren des Carbon-Clients"
+msgstr ""
 
 msgid "Failed to insert quote line"
 msgstr "Fehler beim EinfÃƒÆ’Ã‚Â¼gen der Angebotszeile"
@@ -5732,8 +5729,8 @@ msgstr "ÃƒÆ’Ã¢â‚¬â€œffentlich"
 msgid "Publish"
 msgstr "VerÃƒÆ’Ã‚Â¶ffentlichen"
 
-msgid "Published by Carbon"
-msgstr "VerÃƒÆ’Ã‚Â¶ffentlicht von Carbon"
+msgid "Published by Dhivio"
+msgstr "VerÃƒÆ’Ã‚Â¶ffentlicht von Dhivio"
 
 msgid "Pull From"
 msgstr "Aus entnehmen"
@@ -6677,8 +6674,8 @@ msgstr "AusgewÃƒÆ’Ã‚Â¤hlt: {selectedSum} / verbleibend nach Aufteilung
 msgid "Self Managed"
 msgstr "Selbst verwaltet"
 
-msgid "Self-Onboarding with Carbon Academy"
-msgstr "SelbststÃƒÆ’Ã‚Â¤ndiges Onboarding mit Carbon Academy"
+msgid "Self-Onboarding with Dhivio Academy"
+msgstr ""
 
 msgid "Send"
 msgstr "Senden"
@@ -8227,8 +8224,8 @@ msgstr "Gewichteter Durchschnitt"
 msgid "Weighted average cost over last year calculated when the invoice is posted"
 msgstr "Gewichteter Durchschnittskostenwert des letzten Jahres, berechnet wenn die Rechnung gebucht wird"
 
-msgid "Welcome to Carbon"
-msgstr "Willkommen bei Carbon"
+msgid "Welcome to Dhivio"
+msgstr "Willkommen bei Dhivio"
 
 msgid "When"
 msgstr "Wann"

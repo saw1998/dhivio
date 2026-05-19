@@ -13,7 +13,7 @@ export const PaperlessParts = defineIntegration({
   logo: Logo,
   description:
     "Paperless Parts is an estimating and quoting platform that uses advanced geometric interrogation to generate accurate estimates for sheet metal fabrication, CNC machining, and more. This integration will sync data from Paperless Parts to Carbon.",
-  shortDescription: "Sync data from Paperless Parts to Carbon.",
+  shortDescription: "Sync data from Paperless Parts to Dhivio.",
   setupInstructions: SetupInstructions,
   images: [],
 

@@ -137,7 +137,7 @@ const IntegrationsList = ({
               </UpgradeOverlayTitle>
               <UpgradeOverlayDescription>
                 <Trans>
-                  Connect Carbon to your accounting, project management, and CAD
+                  Connect Dhivio to your accounting, project management, and CAD
                   tools and much more.
                 </Trans>
               </UpgradeOverlayDescription>

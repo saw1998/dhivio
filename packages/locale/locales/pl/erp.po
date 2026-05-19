@@ -1085,9 +1085,6 @@ msgstr "przez {byUser}"
 msgid "By accepting the invite, you agree to the <0>Terms of Service</0> and <1>Privacy Policy</1>."
 msgstr "AkceptujÃƒâ€žÃ¢â‚¬Â¦c zaproszenie, zgadzasz siÃƒâ€žÃ¢â€žÂ¢ na <0>Warunki UsÃƒâ€¦Ã¢â‚¬Å¡ugi</0> i <1>PolitykÃƒâ€žÃ¢â€žÂ¢ PrywatnoÃƒâ€¦Ã¢â‚¬Âºci</1>."
 
-msgid "By signing in, you agree to the <0>Terms of Service</0> and <1>Privacy Policy.</1>"
-msgstr "LogujÃƒâ€žÃ¢â‚¬Â¦c siÃƒâ€žÃ¢â€žÂ¢, wyraÃƒâ€¦Ã‚Â¼asz zgodÃƒâ€žÃ¢â€žÂ¢ na <0>Warunki korzystania z usÃƒâ€¦Ã¢â‚¬Å¡ugi</0> i <1>PolitykÃƒâ€žÃ¢â€žÂ¢ prywatnoÃƒâ€¦Ã¢â‚¬Âºci.</1>"
-
 msgid "CAD Model"
 msgstr "Model CAD"
 
@@ -1459,8 +1456,8 @@ msgstr "PotwierdÃƒâ€¦Ã‚Âº import"
 msgid "Confirm Password"
 msgstr "PotwierdÃƒâ€¦Ã‚Âº hasÃƒâ€¦Ã¢â‚¬Å¡o"
 
-msgid "Connect Carbon to your accounting, project management, and CAD tools and much more."
-msgstr "Połącz Carbon ze swoimi narzędziami księgowości, zarządzania projektami, CAD i wieloma innymi."
+msgid "Connect Dhivio to your accounting, project management, and CAD tools and much more."
+msgstr "Połącz Dhivio ze swoimi narzędziami księgowości, zarządzania projektami, CAD i wieloma innymi."
 
 msgid "Connect Jira issue"
 msgstr "PoÃƒâ€¦Ã¢â‚¬Å¡Ãƒâ€žÃ¢â‚¬Â¦cz problem Jiry"
@@ -5732,8 +5729,8 @@ msgstr "Publiczny"
 msgid "Publish"
 msgstr "Opublikuj"
 
-msgid "Published by Carbon"
-msgstr "Opublikowano przez Carbon"
+msgid "Published by Dhivio"
+msgstr "Opublikowano przez Dhivio"
 
 msgid "Pull From"
 msgstr "Pobierz z"
@@ -6677,8 +6674,8 @@ msgstr "Wybrane: {selectedSum} / pozostaÃƒâ€¦Ã¢â‚¬Å¡o po podziale:
 msgid "Self Managed"
 msgstr "Samodzielnie zarzÃƒâ€žÃ¢â‚¬Â¦dzane"
 
-msgid "Self-Onboarding with Carbon Academy"
-msgstr "Samodzielne wdraÃƒâ€¦Ã‚Â¼anie z Carbon Academy"
+msgid "Self-Onboarding with Dhivio Academy"
+msgstr ""
 
 msgid "Send"
 msgstr "Wyslij"
@@ -8227,8 +8224,8 @@ msgstr "Ãƒâ€¦Ã…Â¡rednia waÃƒâ€¦Ã‚Â¼ona"
 msgid "Weighted average cost over last year calculated when the invoice is posted"
 msgstr "Ãƒâ€¦Ã…Â¡redni waÃƒâ€¦Ã‚Â¼ony koszt z ostatniego roku obliczony podczas ksiÃƒâ€žÃ¢â€žÂ¢gowania faktury"
 
-msgid "Welcome to Carbon"
-msgstr "Witaj w Carbon"
+msgid "Welcome to Dhivio"
+msgstr "Witaj w Dhivio"
 
 msgid "When"
 msgstr "Kiedy"

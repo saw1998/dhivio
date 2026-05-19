@@ -1085,9 +1085,6 @@ msgstr "par {byUser}"
 msgid "By accepting the invite, you agree to the <0>Terms of Service</0> and <1>Privacy Policy</1>."
 msgstr "En acceptant l'invitation, vous acceptez les <0>Conditions d'utilisation</0> et la <1>Politique de confidentialitÃƒÆ’Ã‚Â©</1>."
 
-msgid "By signing in, you agree to the <0>Terms of Service</0> and <1>Privacy Policy.</1>"
-msgstr "En vous connectant, vous acceptez les <0>Conditions d'utilisation</0> et la <1>Politique de confidentialitÃƒÆ’Ã‚Â©.</1>"
-
 msgid "CAD Model"
 msgstr "ModÃƒÆ’Ã‚Â¨le CAO"
 
@@ -1459,8 +1456,8 @@ msgstr "Confirmer l'importation"
 msgid "Confirm Password"
 msgstr "Confirmer le mot de passe"
 
-msgid "Connect Carbon to your accounting, project management, and CAD tools and much more."
-msgstr "Connectez Carbon à vos outils de comptabilité, de gestion de projet, de CAO et bien d'autres."
+msgid "Connect Dhivio to your accounting, project management, and CAD tools and much more."
+msgstr "Connectez Dhivio à vos outils de comptabilité, de gestion de projet, de CAO et bien d'autres."
 
 msgid "Connect Jira issue"
 msgstr "Connecter un problÃƒÆ’Ã‚Â¨me Jira"
@@ -5732,8 +5729,8 @@ msgstr "Public"
 msgid "Publish"
 msgstr "Publier"
 
-msgid "Published by Carbon"
-msgstr "PubliÃƒÆ’Ã‚Â© par Carbon"
+msgid "Published by Dhivio"
+msgstr "PubliÃƒÆ’Ã‚Â© par Dhivio"
 
 msgid "Pull From"
 msgstr "PrÃƒÆ’Ã‚Â©lever de"
@@ -6677,8 +6674,8 @@ msgstr "SÃƒÆ’Ã‚Â©lectionnÃƒÆ’Ã‚Â© : {selectedSum} / restant 
 msgid "Self Managed"
 msgstr "AutogÃƒÆ’Ã‚Â©rÃƒÆ’Ã‚Â©"
 
-msgid "Self-Onboarding with Carbon Academy"
-msgstr "IntÃƒÆ’Ã‚Â©gration autonome avec Carbon Academy"
+msgid "Self-Onboarding with Dhivio Academy"
+msgstr ""
 
 msgid "Send"
 msgstr "Envoyer"
@@ -8227,8 +8224,8 @@ msgstr "Moyenne PondÃƒÆ’Ã‚Â©rÃƒÆ’Ã‚Â©e"
 msgid "Weighted average cost over last year calculated when the invoice is posted"
 msgstr "CoÃƒÆ’Ã‚Â»t moyen pondÃƒÆ’Ã‚Â©rÃƒÆ’Ã‚Â© de l'annÃƒÆ’Ã‚Â©e derniÃƒÆ’Ã‚Â¨re calculÃƒÆ’Ã‚Â© lors de la validation de la facture"
 
-msgid "Welcome to Carbon"
-msgstr "Bienvenue dans Carbon"
+msgid "Welcome to Dhivio"
+msgstr "Bienvenue dans Dhivio"
 
 msgid "When"
 msgstr "Quand"

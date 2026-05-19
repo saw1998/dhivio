@@ -54054,6 +54054,195 @@ export default {
         tags: ["documents"]
       }
     },
+    "/searchIndex_fG8S95BZLugmPn3ae8gnR": {
+      get: {
+        parameters: [
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.id"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.entityType"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.entityId"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.title"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.description"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.link"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.tags"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.metadata"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.searchVector"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.createdAt"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.updatedAt"
+          },
+          {
+            $ref: "#/parameters/select"
+          },
+          {
+            $ref: "#/parameters/order"
+          },
+          {
+            $ref: "#/parameters/range"
+          },
+          {
+            $ref: "#/parameters/rangeUnit"
+          },
+          {
+            $ref: "#/parameters/offset"
+          },
+          {
+            $ref: "#/parameters/limit"
+          },
+          {
+            $ref: "#/parameters/preferCount"
+          }
+        ],
+        responses: {
+          "200": {
+            description: "OK",
+            schema: {
+              items: {
+                $ref: "#/definitions/searchIndex_fG8S95BZLugmPn3ae8gnR"
+              },
+              type: "array"
+            }
+          },
+          "206": {
+            description: "Partial Content"
+          }
+        },
+        tags: ["searchIndex_fG8S95BZLugmPn3ae8gnR"]
+      },
+      post: {
+        parameters: [
+          {
+            $ref: "#/parameters/body.searchIndex_fG8S95BZLugmPn3ae8gnR"
+          },
+          {
+            $ref: "#/parameters/select"
+          },
+          {
+            $ref: "#/parameters/preferPost"
+          }
+        ],
+        responses: {
+          "201": {
+            description: "Created"
+          }
+        },
+        tags: ["searchIndex_fG8S95BZLugmPn3ae8gnR"]
+      },
+      delete: {
+        parameters: [
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.id"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.entityType"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.entityId"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.title"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.description"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.link"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.tags"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.metadata"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.searchVector"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.createdAt"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.updatedAt"
+          },
+          {
+            $ref: "#/parameters/preferReturn"
+          }
+        ],
+        responses: {
+          "204": {
+            description: "No Content"
+          }
+        },
+        tags: ["searchIndex_fG8S95BZLugmPn3ae8gnR"]
+      },
+      patch: {
+        parameters: [
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.id"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.entityType"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.entityId"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.title"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.description"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.link"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.tags"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.metadata"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.searchVector"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.createdAt"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.updatedAt"
+          },
+          {
+            $ref: "#/parameters/body.searchIndex_fG8S95BZLugmPn3ae8gnR"
+          },
+          {
+            $ref: "#/parameters/preferReturn"
+          }
+        ],
+        responses: {
+          "204": {
+            description: "No Content"
+          }
+        },
+        tags: ["searchIndex_fG8S95BZLugmPn3ae8gnR"]
+      }
+    },
     "/methodOperationStep": {
       get: {
         parameters: [
@@ -65881,6 +66070,195 @@ export default {
           }
         },
         tags: ["quotePayment"]
+      }
+    },
+    "/searchIndex_RKJXgdzgSJckckfFRqX5La": {
+      get: {
+        parameters: [
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.id"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.entityType"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.entityId"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.title"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.description"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.link"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.tags"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.metadata"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.searchVector"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.createdAt"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.updatedAt"
+          },
+          {
+            $ref: "#/parameters/select"
+          },
+          {
+            $ref: "#/parameters/order"
+          },
+          {
+            $ref: "#/parameters/range"
+          },
+          {
+            $ref: "#/parameters/rangeUnit"
+          },
+          {
+            $ref: "#/parameters/offset"
+          },
+          {
+            $ref: "#/parameters/limit"
+          },
+          {
+            $ref: "#/parameters/preferCount"
+          }
+        ],
+        responses: {
+          "200": {
+            description: "OK",
+            schema: {
+              items: {
+                $ref: "#/definitions/searchIndex_RKJXgdzgSJckckfFRqX5La"
+              },
+              type: "array"
+            }
+          },
+          "206": {
+            description: "Partial Content"
+          }
+        },
+        tags: ["searchIndex_RKJXgdzgSJckckfFRqX5La"]
+      },
+      post: {
+        parameters: [
+          {
+            $ref: "#/parameters/body.searchIndex_RKJXgdzgSJckckfFRqX5La"
+          },
+          {
+            $ref: "#/parameters/select"
+          },
+          {
+            $ref: "#/parameters/preferPost"
+          }
+        ],
+        responses: {
+          "201": {
+            description: "Created"
+          }
+        },
+        tags: ["searchIndex_RKJXgdzgSJckckfFRqX5La"]
+      },
+      delete: {
+        parameters: [
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.id"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.entityType"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.entityId"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.title"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.description"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.link"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.tags"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.metadata"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.searchVector"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.createdAt"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.updatedAt"
+          },
+          {
+            $ref: "#/parameters/preferReturn"
+          }
+        ],
+        responses: {
+          "204": {
+            description: "No Content"
+          }
+        },
+        tags: ["searchIndex_RKJXgdzgSJckckfFRqX5La"]
+      },
+      patch: {
+        parameters: [
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.id"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.entityType"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.entityId"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.title"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.description"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.link"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.tags"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.metadata"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.searchVector"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.createdAt"
+          },
+          {
+            $ref: "#/parameters/rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.updatedAt"
+          },
+          {
+            $ref: "#/parameters/body.searchIndex_RKJXgdzgSJckckfFRqX5La"
+          },
+          {
+            $ref: "#/parameters/preferReturn"
+          }
+        ],
+        responses: {
+          "204": {
+            description: "No Content"
+          }
+        },
+        tags: ["searchIndex_RKJXgdzgSJckckfFRqX5La"]
       }
     },
     "/quote": {
@@ -103390,6 +103768,61 @@ export default {
       },
       type: "object"
     },
+    searchIndex_fG8S95BZLugmPn3ae8gnR: {
+      required: ["id", "entityType", "entityId", "title", "link", "createdAt"],
+      properties: {
+        id: {
+          description: "Note:\nThis is a Primary Key.<pk/>",
+          format: "bigint",
+          type: "integer"
+        },
+        entityType: {
+          format: "text",
+          type: "string"
+        },
+        entityId: {
+          format: "text",
+          type: "string"
+        },
+        title: {
+          format: "text",
+          type: "string"
+        },
+        description: {
+          default: "",
+          format: "text",
+          type: "string"
+        },
+        link: {
+          format: "text",
+          type: "string"
+        },
+        tags: {
+          format: "text[]",
+          items: {
+            type: "string"
+          },
+          type: "array"
+        },
+        metadata: {
+          format: "jsonb"
+        },
+        searchVector: {
+          format: "tsvector",
+          type: "string"
+        },
+        createdAt: {
+          default: "now()",
+          format: "timestamp with time zone",
+          type: "string"
+        },
+        updatedAt: {
+          format: "timestamp with time zone",
+          type: "string"
+        }
+      },
+      type: "object"
+    },
     methodOperationStep: {
       required: [
         "id",
@@ -109184,6 +109617,61 @@ export default {
         },
         customFields: {
           format: "jsonb"
+        }
+      },
+      type: "object"
+    },
+    searchIndex_RKJXgdzgSJckckfFRqX5La: {
+      required: ["id", "entityType", "entityId", "title", "link", "createdAt"],
+      properties: {
+        id: {
+          description: "Note:\nThis is a Primary Key.<pk/>",
+          format: "bigint",
+          type: "integer"
+        },
+        entityType: {
+          format: "text",
+          type: "string"
+        },
+        entityId: {
+          format: "text",
+          type: "string"
+        },
+        title: {
+          format: "text",
+          type: "string"
+        },
+        description: {
+          default: "",
+          format: "text",
+          type: "string"
+        },
+        link: {
+          format: "text",
+          type: "string"
+        },
+        tags: {
+          format: "text[]",
+          items: {
+            type: "string"
+          },
+          type: "array"
+        },
+        metadata: {
+          format: "jsonb"
+        },
+        searchVector: {
+          format: "tsvector",
+          type: "string"
+        },
+        createdAt: {
+          default: "now()",
+          format: "timestamp with time zone",
+          type: "string"
+        },
+        updatedAt: {
+          format: "timestamp with time zone",
+          type: "string"
         }
       },
       type: "object"
@@ -139550,6 +140038,81 @@ export default {
       in: "query",
       type: "string"
     },
+    "body.searchIndex_fG8S95BZLugmPn3ae8gnR": {
+      name: "searchIndex_fG8S95BZLugmPn3ae8gnR",
+      description: "searchIndex_fG8S95BZLugmPn3ae8gnR",
+      required: false,
+      in: "body",
+      schema: {
+        $ref: "#/definitions/searchIndex_fG8S95BZLugmPn3ae8gnR"
+      }
+    },
+    "rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.id": {
+      name: "id",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.entityType": {
+      name: "entityType",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.entityId": {
+      name: "entityId",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.title": {
+      name: "title",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.description": {
+      name: "description",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.link": {
+      name: "link",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.tags": {
+      name: "tags",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.metadata": {
+      name: "metadata",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.searchVector": {
+      name: "searchVector",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.createdAt": {
+      name: "createdAt",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_fG8S95BZLugmPn3ae8gnR.updatedAt": {
+      name: "updatedAt",
+      required: false,
+      in: "query",
+      type: "string"
+    },
     "body.methodOperationStep": {
       name: "methodOperationStep",
       description: "methodOperationStep",
@@ -145972,6 +146535,81 @@ export default {
     },
     "rowFilter.quotePayment.customFields": {
       name: "customFields",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "body.searchIndex_RKJXgdzgSJckckfFRqX5La": {
+      name: "searchIndex_RKJXgdzgSJckckfFRqX5La",
+      description: "searchIndex_RKJXgdzgSJckckfFRqX5La",
+      required: false,
+      in: "body",
+      schema: {
+        $ref: "#/definitions/searchIndex_RKJXgdzgSJckckfFRqX5La"
+      }
+    },
+    "rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.id": {
+      name: "id",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.entityType": {
+      name: "entityType",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.entityId": {
+      name: "entityId",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.title": {
+      name: "title",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.description": {
+      name: "description",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.link": {
+      name: "link",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.tags": {
+      name: "tags",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.metadata": {
+      name: "metadata",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.searchVector": {
+      name: "searchVector",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.createdAt": {
+      name: "createdAt",
+      required: false,
+      in: "query",
+      type: "string"
+    },
+    "rowFilter.searchIndex_RKJXgdzgSJckckfFRqX5La.updatedAt": {
+      name: "updatedAt",
       required: false,
       in: "query",
       type: "string"

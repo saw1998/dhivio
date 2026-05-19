@@ -36,7 +36,7 @@ export const InviteEmail = ({
   ip = "38.38.38.38",
   location = "Tombstone, AZ"
 }: Props) => {
-  const preview = <Preview>{`Join ${companyName} on Carbon`}</Preview>;
+  const preview = <Preview>{`Join ${companyName} on Dhivio`}</Preview>;
   const themeClasses = getEmailThemeClasses();
   const lightStyles = getEmailInlineStyles("light");
 

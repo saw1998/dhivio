@@ -135,11 +135,11 @@ export const paperlessPartsFunction = inngest.createFunction(
     ]);
 
     if (company.error || !company.data) {
-      throw new Error("Failed to fetch company from Carbon");
+      throw new Error("Failed to fetch company from Dhivio");
     }
 
     if (integration.error || !integration.data) {
-      throw new Error("Failed to fetch integration from Carbon");
+      throw new Error("Failed to fetch integration from Dhivio");
     }
 
     const integrationData = integrationSchema.safeParse(
@@ -197,7 +197,7 @@ export const paperlessPartsFunction = inngest.createFunction(
         if (!ppQuote.data.contact) {
           // This should never happen based on the validation rules in Paperless Parts
           throw new Error(
-            "Quote contact not found in Paperless Parts - cannot create Carbon Quote"
+            "Quote contact not found in Paperless Parts - cannot create Dhivio Quote"
           );
         }
 
@@ -430,7 +430,7 @@ export const paperlessPartsFunction = inngest.createFunction(
           break;
         }
 
-        console.info("New Carbon quote created from Paperless Parts");
+        console.info("New Dhivio quote created from Paperless Parts");
 
         result = {
           success: true,
@@ -723,7 +723,7 @@ export const paperlessPartsFunction = inngest.createFunction(
           break;
         }
 
-        console.info("New Carbon sales order created from Paperless Parts");
+        console.info("New Dhivio sales order created from Paperless Parts");
 
         result = {
           success: true,
