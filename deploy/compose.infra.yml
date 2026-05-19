@@ -62,6 +62,22 @@ services:
       interval: 10s
       timeout: 5s
       retries: 20
+    networks:
+      # Expose postgres under TWO DNS names on dhivio_net:
+      #   - `postgres` — the historical name we use everywhere in app code
+      #     and other compose services (SUPABASE_DB_URL, gotrue, postgrest,
+      #     storage, realtime, meta, etc. all dial `postgres:5432`).
+      #   - `db` — the name the upstream supabase/postgres-meta image hard-
+      #     codes as its default connection profile when Studio sends queries
+      #     with `?pg=db`. Without this alias, Studio's "Failed to load
+      #     schemas" surfaces (meta logs flood with `getaddrinfo ENOTFOUND
+      #     db`). Adding the alias is the smallest-blast-radius fix because
+      #     it doesn't touch any existing connection string — both names
+      #     resolve to the same container IP on dhivio_net.
+      default:
+        aliases:
+          - postgres
+          - db
 
   gotrue:
     image: supabase/gotrue:v2.189.0

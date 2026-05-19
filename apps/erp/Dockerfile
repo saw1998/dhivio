@@ -54,7 +54,7 @@ ARG VITE_POSTHOG_KEY
 ARG VITE_POSTHOG_HOST
 ARG SUPABASE_URL
 ARG SUPABASE_ANON_KEY
-ARG CARBON_EDITION=community
+ARG CARBON_EDITION=cloud
 # Placeholder used only at build time; the real value is injected at runtime
 ARG SESSION_SECRET=build-time-placeholder-not-used-at-runtime
 
@@ -66,7 +66,7 @@ ENV VITE_CLOUDFLARE_TURNSTILE_SITE_KEY=$VITE_CLOUDFLARE_TURNSTILE_SITE_KEY \
     SUPABASE_ANON_KEY=$SUPABASE_ANON_KEY \
     CARBON_EDITION=$CARBON_EDITION \
     SESSION_SECRET=$SESSION_SECRET \
-    NODE_OPTIONS=--max-old-space-size=4096
+    NODE_OPTIONS=--max-old-space-size=8024
 
 RUN pnpm turbo run build --filter=erp
 

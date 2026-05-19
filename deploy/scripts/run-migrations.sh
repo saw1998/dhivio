@@ -125,10 +125,32 @@ else
 fi
 
 # ── 5. Edge functions ─────────────────────────────────────────────────────
+# IMPORTANT: --exclude=main keeps the local-only `main/` stub directory that
+# edge-runtime's --main-service points at. The Dhivio codebase doesn't ship a
+# `main` function; if we let rsync --delete remove it, edge-runtime crash-loops
+# with "could not find an appropriate entrypoint".
 if [[ -d "$FUNCS_DIR" ]]; then
-  echo "▶ syncing edge functions → $ROOT/functions/"
+  echo "▶ syncing edge functions → $ROOT/functions/  (preserving main/ stub)"
   mkdir -p "$ROOT/functions"
-  rsync -a --delete "$FUNCS_DIR/" "$ROOT/functions/"
+  rsync -a --delete --exclude='main' --exclude='main/**' "$FUNCS_DIR/" "$ROOT/functions/"
+
+  # Re-seed main/ stub if missing (e.g. fresh VPS bootstrap). This ensures
+  # edge-runtime always has a valid entrypoint regardless of repo state.
+  if [[ ! -f "$ROOT/functions/main/index.ts" ]]; then
+    mkdir -p "$ROOT/functions/main"
+    cat > "$ROOT/functions/main/index.ts" <<'STUB'
+// Auto-generated stub kept by run-migrations.sh. edge-runtime requires a
+// `main` service entrypoint even when no Dhivio function is invoked here.
+// All real functions live in sibling directories (mrp/, sync/, etc.) and
+// are routed by Kong via /functions/v1/<name>.
+Deno.serve(() => new Response(
+  JSON.stringify({ status: "no-functions-deployed" }),
+  { headers: { "content-type": "application/json" } },
+));
+STUB
+    echo "▶ re-seeded main/ stub"
+  fi
+
   echo "▶ restarting dhivio-edge-runtime"
   docker restart dhivio-edge-runtime >/dev/null
 fi

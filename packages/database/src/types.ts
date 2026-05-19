@@ -4423,7 +4423,7 @@ export type Database = {
           customerTypeId: string | null
           customFields: Json | null
           defaultCc: string[] | null
-          embedding: unknown
+          embedding: string | null
           fax: string | null
           id: string
           intercompanyCompanyId: string | null
@@ -4448,7 +4448,7 @@ export type Database = {
           customerTypeId?: string | null
           customFields?: Json | null
           defaultCc?: string[] | null
-          embedding?: unknown
+          embedding?: string | null
           fax?: string | null
           id?: string
           intercompanyCompanyId?: string | null
@@ -4473,7 +4473,7 @@ export type Database = {
           customerTypeId?: string | null
           customFields?: Json | null
           defaultCc?: string[] | null
-          embedding?: unknown
+          embedding?: string | null
           fax?: string | null
           id?: string
           intercompanyCompanyId?: string | null
@@ -10907,7 +10907,7 @@ export type Database = {
           createdBy: string
           defaultMethodType: Database["public"]["Enums"]["methodType"] | null
           description: string | null
-          embedding: unknown
+          embedding: string | null
           id: string
           itemTrackingType: Database["public"]["Enums"]["itemTrackingType"]
           modelUploadId: string | null
@@ -10933,7 +10933,7 @@ export type Database = {
           createdBy: string
           defaultMethodType?: Database["public"]["Enums"]["methodType"] | null
           description?: string | null
-          embedding?: unknown
+          embedding?: string | null
           id?: string
           itemTrackingType: Database["public"]["Enums"]["itemTrackingType"]
           modelUploadId?: string | null
@@ -10959,7 +10959,7 @@ export type Database = {
           createdBy?: string
           defaultMethodType?: Database["public"]["Enums"]["methodType"] | null
           description?: string | null
-          embedding?: unknown
+          embedding?: string | null
           id?: string
           itemTrackingType?: Database["public"]["Enums"]["itemTrackingType"]
           modelUploadId?: string | null
@@ -38573,7 +38573,7 @@ export type Database = {
           currencyCode: string | null
           customFields: Json | null
           defaultCc: string[] | null
-          embedding: unknown
+          embedding: string | null
           fax: string | null
           id: string
           intercompanyCompanyId: string | null
@@ -38600,7 +38600,7 @@ export type Database = {
           currencyCode?: string | null
           customFields?: Json | null
           defaultCc?: string[] | null
-          embedding?: unknown
+          embedding?: string | null
           fax?: string | null
           id?: string
           intercompanyCompanyId?: string | null
@@ -38627,7 +38627,7 @@ export type Database = {
           currencyCode?: string | null
           customFields?: Json | null
           defaultCc?: string[] | null
-          embedding?: unknown
+          embedding?: string | null
           fax?: string | null
           id?: string
           intercompanyCompanyId?: string | null
@@ -56298,7 +56298,7 @@ export type Database = {
           },
           {
             foreignKeyName: "address_countryCode_fkey"
-            columns: ["invoiceCountryCode"]
+            columns: ["customerCountryCode"]
             isOneToOne: false
             referencedRelation: "country"
             referencedColumns: ["alpha2"]
@@ -59145,7 +59145,7 @@ export type Database = {
           currencyCode: string | null
           customFields: Json | null
           defaultCc: string[] | null
-          embedding: unknown
+          embedding: string | null
           eori: string | null
           externalId: Json | null
           fax: string | null
