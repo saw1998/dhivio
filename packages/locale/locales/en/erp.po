@@ -482,8 +482,8 @@ msgstr "API Key"
 msgid "API Keys"
 msgstr "API Keys"
 
-msgid "API keys for programmatic access to your Dhivio data."
-msgstr "API keys for programmatic access to your Dhivio data."
+msgid "API keys for programmatic access to your Carbon data."
+msgstr "API keys for programmatic access to your Carbon data."
 
 msgid "Applies to"
 msgstr "Applies to"
@@ -1157,23 +1157,23 @@ msgstr "Cannot send RFQ"
 msgid "Cannot upload to parts bucket without item ID"
 msgstr "Cannot upload to parts bucket without item ID"
 
-msgid "Dhivio client is not available"
-msgstr "Dhivio client is not available"
+msgid "Carbon client is not available"
+msgstr "Carbon client is not available"
 
-msgid "Dhivio client not available"
-msgstr "Dhivio client not available"
+msgid "Carbon client not available"
+msgstr "Carbon client not available"
 
-msgid "Dhivio client not found"
-msgstr "Dhivio client not found"
+msgid "Carbon client not found"
+msgstr "Carbon client not found"
 
-msgid "Dhivio column"
-msgstr "Dhivio column"
+msgid "Carbon column"
+msgstr "Carbon column"
 
-msgid "Dhivio Logo"
-msgstr "Dhivio Logo"
+msgid "Carbon Logo"
+msgstr "Carbon Logo"
 
-msgid "Dhivio Value"
-msgstr "Dhivio Value"
+msgid "Carbon Value"
+msgstr "Carbon Value"
 
 msgid "Carrier"
 msgstr "Carrier"
@@ -3259,8 +3259,8 @@ msgstr "Failed to fetch risks"
 msgid "Failed to fetch suggestions"
 msgstr "Failed to fetch suggestions"
 
-msgid "Failed to initialize Dhivio client"
-msgstr "Failed to initialize Dhivio client"
+msgid "Failed to initialize Carbon client"
+msgstr "Failed to initialize Carbon client"
 
 msgid "Failed to insert quote line"
 msgstr "Failed to insert quote line"

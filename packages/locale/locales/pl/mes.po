@@ -131,9 +131,6 @@ msgstr "Logując się, akceptujesz <0>Regulamin</0> i <1>Politykę prywatności.
 msgid "Cancel"
 msgstr "Anuluj"
 
-msgid "Dhivio Logo"
-msgstr ""
-
 msgid "Cards"
 msgstr "Karty"
 
@@ -249,6 +246,9 @@ msgstr "Opis"
 msgid "Details"
 msgstr "Szczegóły"
 
+msgid "Dhivio Logo"
+msgstr ""
+
 msgid "Dispatch not found"
 msgstr "Nie znaleziono zlecenia"
 
@@ -345,7 +345,7 @@ msgstr "Filtr"
 msgid "Forgot to Clock Out?"
 msgstr "Zapomniałeś zakończyć zmianę?"
 
-msgid "Have a technical issue? Contact <0>Dhivio Support.</0>"
+msgid "Have a technical issue? Contact <0>Carbon Support.</0>"
 msgstr ""
 
 msgid "I understand and want to complete without issuing"

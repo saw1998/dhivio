@@ -131,9 +131,6 @@ msgstr "Al iniciar sesión, acepta los <0>Términos de servicio</0> y la <1>Pol�
 msgid "Cancel"
 msgstr "Cancelar"
 
-msgid "Dhivio Logo"
-msgstr ""
-
 msgid "Cards"
 msgstr "Tarjetas"
 
@@ -249,6 +246,9 @@ msgstr "Descripción"
 msgid "Details"
 msgstr "Detalles"
 
+msgid "Dhivio Logo"
+msgstr ""
+
 msgid "Dispatch not found"
 msgstr "Despacho no encontrado"
 
@@ -345,7 +345,7 @@ msgstr "Filtrar"
 msgid "Forgot to Clock Out?"
 msgstr "¿Olvidó registrar la salida?"
 
-msgid "Have a technical issue? Contact <0>Dhivio Support.</0>"
+msgid "Have a technical issue? Contact <0>Carbon Support.</0>"
 msgstr ""
 
 msgid "I understand and want to complete without issuing"

@@ -21,7 +21,7 @@ import type { Theme } from "@carbon/utils";
 import { modeValidator, themes } from "@carbon/utils";
 import { I18nProvider } from "@react-aria/i18n";
 import { QueryClient } from "@tanstack/react-query";
-import { Analytics } from "@vercel/analytics/react";
+// import { Analytics } from "@vercel/analytics/react";
 import type React from "react";
 import type {
   ActionFunctionArgs,
@@ -222,7 +222,7 @@ export function Document({
         <Toaster position="bottom-right" visibleToasts={5} />
         <ScrollRestoration />
         <Scripts />
-        {!CONTROLLED_ENVIRONMENT && <Analytics />}
+        {/*{!CONTROLLED_ENVIRONMENT && <Analytics />}*/}
       </body>
     </html>
   );

@@ -131,9 +131,6 @@ msgstr "By signing in, you agree to the <0>Terms of Service</0> and <1>Privacy P
 msgid "Cancel"
 msgstr "Cancel"
 
-msgid "Dhivio Logo"
-msgstr "Dhivio Logo"
-
 msgid "Cards"
 msgstr "Cards"
 
@@ -249,6 +246,9 @@ msgstr "Description"
 msgid "Details"
 msgstr "Details"
 
+msgid "Dhivio Logo"
+msgstr "Dhivio Logo"
+
 msgid "Dispatch not found"
 msgstr "Dispatch not found"
 
@@ -345,8 +345,8 @@ msgstr "Filter"
 msgid "Forgot to Clock Out?"
 msgstr "Forgot to Clock Out?"
 
-msgid "Have a technical issue? Contact <0>Dhivio Support.</0>"
-msgstr "Have a technical issue? Contact <0>Dhivio Support.</0>"
+msgid "Have a technical issue? Contact <0>Carbon Support.</0>"
+msgstr "Have a technical issue? Contact <0>Carbon Support.</0>"
 
 msgid "I understand and want to complete without issuing"
 msgstr "I understand and want to complete without issuing"

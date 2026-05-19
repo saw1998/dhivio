@@ -63,7 +63,6 @@ biome.jsonc
 examples
 ci
 supabase
-packages/dev
 packages/database/supabase/seed.sql
 
 # --- App-specific build dirs (also covered by **/build above) ---

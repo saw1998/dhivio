@@ -30,7 +30,7 @@
   },
   "private": true,
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run build --no-cache",
     "build:erp": "turbo run build --filter=erp",
     "build:mes": "turbo run build --filter=mes",
     "ci:migrations": "pnpm --filter ci ci:migrations",

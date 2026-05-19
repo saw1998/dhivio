@@ -126,11 +126,11 @@
     "zod": "catalog:",
     "zod-form-data": "catalog:",
     "zod-to-json-schema": "3.25.2",
-    "zustand": "catalog:"
+    "zustand": "catalog:",
+    "@carbon/dev": "workspace:*"
   },
   "devDependencies": {
     "@carbon/config": "workspace:*",
-    "@carbon/dev": "workspace:*",
     "@lingui/macro": "catalog:",
     "@lingui/vite-plugin": "catalog:",
     "@react-router/dev": "catalog:",

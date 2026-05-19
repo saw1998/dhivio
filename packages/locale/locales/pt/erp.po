@@ -482,8 +482,8 @@ msgstr "Chave de API"
 msgid "API Keys"
 msgstr "Chaves de API"
 
-msgid "API keys for programmatic access to your Dhivio data."
-msgstr "Chaves de API para acesso programático aos seus dados do Dhivio."
+msgid "API keys for programmatic access to your Carbon data."
+msgstr ""
 
 msgid "Applies to"
 msgstr "Aplica-se a"
@@ -1157,22 +1157,22 @@ msgstr "NÃƒÆ’Ã‚Â£o ÃƒÆ’Ã‚Â© possÃƒÆ’Ã‚Â­vel enviar
 msgid "Cannot upload to parts bucket without item ID"
 msgstr "NÃƒÆ’Ã‚Â£o ÃƒÆ’Ã‚Â© possÃƒÆ’Ã‚Â­vel fazer upload para o bucket de peÃƒÆ’Ã‚Â§as sem ID do item"
 
-msgid "Dhivio client is not available"
-msgstr "Cliente Dhivio nÃƒÆ’Ã‚Â£o estÃƒÆ’Ã‚Â¡ disponÃƒÆ’Ã‚Â­vel"
-
-msgid "Dhivio client not available"
-msgstr "Cliente Dhivio nÃƒÆ’Ã‚Â£o disponÃƒÆ’Ã‚Â­vel"
-
-msgid "Dhivio client not found"
-msgstr "Cliente Dhivio nÃƒÆ’Ã‚Â£o encontrado"
-
-msgid "Dhivio column"
+msgid "Carbon client is not available"
 msgstr ""
 
-msgid "Dhivio Logo"
-msgstr "LogÃƒÆ’Ã‚Â³tipo do Dhivio"
+msgid "Carbon client not available"
+msgstr ""
 
-msgid "Dhivio Value"
+msgid "Carbon client not found"
+msgstr ""
+
+msgid "Carbon column"
+msgstr ""
+
+msgid "Carbon Logo"
+msgstr ""
+
+msgid "Carbon Value"
 msgstr ""
 
 msgid "Carrier"
@@ -3259,7 +3259,7 @@ msgstr "Falha ao buscar riscos"
 msgid "Failed to fetch suggestions"
 msgstr "Falha ao buscar sugestÃƒÆ’Ã‚Âµes"
 
-msgid "Failed to initialize Dhivio client"
+msgid "Failed to initialize Carbon client"
 msgstr ""
 
 msgid "Failed to insert quote line"

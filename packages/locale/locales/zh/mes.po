@@ -131,9 +131,6 @@ msgstr "登录即表示您同意<0>服务条款</0>和<1>隐私政策。</1>"
 msgid "Cancel"
 msgstr "取消"
 
-msgid "Dhivio Logo"
-msgstr ""
-
 msgid "Cards"
 msgstr "卡片"
 
@@ -249,6 +246,9 @@ msgstr "描述"
 msgid "Details"
 msgstr "详情"
 
+msgid "Dhivio Logo"
+msgstr ""
+
 msgid "Dispatch not found"
 msgstr "未找到工单"
 
@@ -345,7 +345,7 @@ msgstr "筛选"
 msgid "Forgot to Clock Out?"
 msgstr "忘记打卡下班了？"
 
-msgid "Have a technical issue? Contact <0>Dhivio Support.</0>"
+msgid "Have a technical issue? Contact <0>Carbon Support.</0>"
 msgstr ""
 
 msgid "I understand and want to complete without issuing"

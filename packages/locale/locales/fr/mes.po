@@ -131,9 +131,6 @@ msgstr "En vous connectant, vous acceptez les <0>Conditions d'utilisation</0> et
 msgid "Cancel"
 msgstr "Annuler"
 
-msgid "Dhivio Logo"
-msgstr ""
-
 msgid "Cards"
 msgstr "Cartes"
 
@@ -249,6 +246,9 @@ msgstr "Description"
 msgid "Details"
 msgstr "Détails"
 
+msgid "Dhivio Logo"
+msgstr ""
+
 msgid "Dispatch not found"
 msgstr "Intervention non trouvée"
 
@@ -345,7 +345,7 @@ msgstr "Filtre"
 msgid "Forgot to Clock Out?"
 msgstr "Oubli de pointer la sortie ?"
 
-msgid "Have a technical issue? Contact <0>Dhivio Support.</0>"
+msgid "Have a technical issue? Contact <0>Carbon Support.</0>"
 msgstr ""
 
 msgid "I understand and want to complete without issuing"
