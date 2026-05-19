@@ -173,7 +173,7 @@ export const INNGEST_EVENT_KEY = getEnv("INNGEST_EVENT_KEY", {
 
 export const ERP_URL =
   getEnv("ERP_URL", { isRequired: false, isSecret: false }) ??
-  "https://app.dhivio.com";
+  "https://erp.dhivio.com";
 export const MES_URL =
   getEnv("MES_URL", { isRequired: false, isSecret: false }) ??
   "https://mes.dhivio.com";
@@ -384,7 +384,7 @@ export function getAppUrl() {
       ? ERP_URL
       : CONTROLLED_ENVIRONMENT
         ? "https://itar.dhivio.com"
-        : "https://app.dhivio.com";
+        : "https://erp.dhivio.com";
   }
 
   if (VERCEL_ENV === "preview") {

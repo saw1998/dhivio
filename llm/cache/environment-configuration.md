@@ -105,7 +105,7 @@ Some services access `process.env` directly:
 
 - Development: Uses `http://localhost:3000` and local Supabase instance
 - Preview: Uses Vercel preview URLs
-- Production: Uses `https://app.dhivio.com` and production services
+- Production: Uses `https://erp.dhivio.com` and production services
 
 ## Adding New Environment Variables
 

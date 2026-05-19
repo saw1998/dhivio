@@ -267,7 +267,7 @@ Display in `/apps/erp/app/modules/quality/ui/Issue/IssueTask.tsx`:
 
 1. Login to Linear account
 2. Navigate to Settings → Webhooks
-3. Create new webhook with URL: `https://app.dhivio.com/api/webhook/linear/{companyId}`
+3. Create new webhook with URL: `https://erp.dhivio.com/api/webhook/linear/{companyId}`
 4. Go to Settings → Security and access → API
 5. Generate new API key
 6. In Carbon, go to Settings → Integrations → Linear

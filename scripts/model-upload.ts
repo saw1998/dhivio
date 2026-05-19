@@ -10,7 +10,7 @@ const carbonApiUrl = "http://localhost:54321"; // https://api.dhivio.com
 const carbonPublicKey =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0";
 
-const apiUrl = "http://localhost:3000/api/model/upload"; // https://app.dhivio.com/api/model/upload
+const apiUrl = "http://localhost:3000/api/model/upload"; // https://erp.dhivio.com/api/model/upload
 
 const filePath = "~/Downloads/test.stl";
 
