@@ -37,9 +37,32 @@ export function getPostgresConnectionPool(connections: number): Pool {
     case "deno": {
       // @ts-expect-error -- Deno global is only available in Deno runtime
       const url = Deno.env.get("SUPABASE_DB_URL")!;
-      const connectionPoolerUrl = url.includes("supabase.co")
-        ? url.replace("5432", "6543")
+      const isHostedSupabase = url.includes("supabase.co");
+      let connectionPoolerUrl = isHostedSupabase
+        ? url.replace("5432", "6543")  // hosted: route via pgbouncer pooler
         : url;
+      // Self-hosted postgres (e.g. supabase/postgres in our docker stack)
+      // ships with `ssl = off` on the internal port. deno-postgres v0.17.0
+      // defaults to `sslmode=prefer` which initiates a TLS handshake; when
+      // the server replies "no SSL", the partial handshake leaves the
+      // WebCrypto layer in a state where loading the (nonexistent) key
+      // throws "No suitable key or wrong key type" — and every edge
+      // function that uses this pool (seed-company, mrp, schedule, sync,
+      // post-*, etc.) crashes at module-load time of getDatabaseClient.
+      //
+      // Force `sslmode=disable` whenever the URL doesn't already specify
+      // an sslmode AND we're NOT talking to hosted Supabase (which
+      // mandates TLS over the public internet). The node branch below
+      // doesn't need this because npm `pg` defaults to no-TLS unless
+      // `ssl` is set explicitly.
+      if (
+        !isHostedSupabase &&
+        !/[?&]sslmode=/.test(connectionPoolerUrl)
+      ) {
+        connectionPoolerUrl +=
+          (connectionPoolerUrl.includes("?") ? "&" : "?") +
+          "sslmode=disable";
+      }
       // @ts-ignore Compat
       return new Pool(connectionPoolerUrl, connections);
     }

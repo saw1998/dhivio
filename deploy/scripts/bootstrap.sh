@@ -60,7 +60,20 @@ gen_b64() {   # gen_b64 <bytes>  (URL-safe, no padding)
 # Mint an HS256 JWT — payload is hardcoded apart from `role` and `exp`.
 # Mirrors packages/dev/src/lib/jwt.ts::signJwt — issuer "supabase-demo",
 # iat = now, exp = now + 10y.
-mint_jwt() {  # mint_jwt <role> <secret_hex>
+#
+# CRITICAL: gotrue / postgrest / supabase-js HMAC the JWT using the secret
+# treated as a *literal UTF-8 string* (so for a 64-char hex string, that's
+# 64 bytes of key material). The previous implementation here used
+# `openssl dgst ... -macopt hexkey:$secret` which decoded the hex string
+# into 24 raw bytes and HMAC'd with that — producing signatures that
+# gotrue silently rejected with "bad_jwt: signature is invalid" on every
+# JWT-verifying endpoint (e.g. POST /auth/v1/admin/users from ERP signup).
+# The bug was latent because /auth/v1/health and /rest/v1/ reads-with-
+# apikey don't verify signatures.
+#
+# Use `-hmac "$secret"` (NOT `-macopt hexkey:`) to match every other
+# Supabase tool's behavior. The secret is passed as raw text.
+mint_jwt() {  # mint_jwt <role> <secret>
   local role="$1" secret="$2"
   local iat exp header payload h p data sig
   iat=$(date +%s)
@@ -70,7 +83,7 @@ mint_jwt() {  # mint_jwt <role> <secret_hex>
   h=$(printf '%s' "$header"  | openssl base64 -A | tr '+/' '-_' | tr -d '=')
   p=$(printf '%s' "$payload" | openssl base64 -A | tr '+/' '-_' | tr -d '=')
   data="$h.$p"
-  sig=$(printf '%s' "$data" | openssl dgst -sha256 -mac HMAC -macopt "hexkey:$secret" -binary \
+  sig=$(printf '%s' "$data" | openssl dgst -sha256 -hmac "$secret" -binary \
         | openssl base64 -A | tr '+/' '-_' | tr -d '=')
   printf '%s.%s' "$data" "$sig"
 }
@@ -151,7 +164,17 @@ fi
 info "rendering postgres/init.sql from template"
 sed "s|\${POSTGRES_PASSWORD}|$POSTGRES_PASSWORD|g" \
   "$ROOT/postgres/init.sql.template" > "$ROOT/postgres/init.sql"
-chmod 640 "$ROOT/postgres/init.sql"
+# IMPORTANT: must be world-readable (0644), NOT 0640. The supabase/postgres
+# container runs initdb as the in-container `postgres` user (UID 999), which
+# is neither root nor in root's group on the host. With 0640, psql inside
+# the container fails with "Permission denied" on /docker-entrypoint-initdb.d/
+# zz-dhivio-01-roles.sql, the script is silently skipped, the supabase
+# factory passwords for supabase_auth_admin / supabase_storage_admin /
+# authenticator remain in pg_authid, and gotrue/postgrest/storage crash-loop
+# with SASL "password authentication failed". Confinement is provided by the
+# parent dir /srv/dhivio/postgres (mode 750 root:root) — only root on the
+# host can traverse to the file, so 0644 leaks nothing.
+chmod 644 "$ROOT/postgres/init.sql"
 
 # ── 4. Render /srv/dhivio/.env ─────────────────────────────────────────────
 info "writing $ENV_FILE"
