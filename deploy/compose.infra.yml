@@ -337,7 +337,7 @@ services:
       KONG_PROXY_LISTEN: "0.0.0.0:8000"
     volumes:
       - ./kong/kong.yml:/home/kong/kong.yml:ro
-    mem_limit: 256m
+    mem_limit: 512m
 
   redis:
     image: redis:7-alpine
@@ -384,4 +384,4 @@ services:
       postgres:
         condition: service_healthy
     # Run-history queries + websocket fan-out to ERP can spike past 256 MB.
-    mem_limit: 384m
+    mem_limit: 512m

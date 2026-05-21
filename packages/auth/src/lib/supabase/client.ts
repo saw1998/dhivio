@@ -74,12 +74,12 @@ const fetchWithRetry: typeof fetch = async (input, init) => {
 };
 
 
-const composedFetch = debugFetch(fetchWithRetry);
+// const composedFetch = debugFetch(fetchWithRetry);
 
-// const composedFetch =
-//   process.env.NODE_ENV === "development"
-//     ? debugFetch(fetchWithRetry)
-//     : fetchWithRetry;
+const composedFetch =
+  process.env.NODE_ENV === "development"
+    ? debugFetch(fetchWithRetry)
+    : fetchWithRetry;
 
 export const getCarbonClient = (
   supabaseKey: string,
