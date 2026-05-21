@@ -47,10 +47,20 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./postgres/postgresql.conf:/etc/postgresql/postgresql.conf:ro
-      # Two init scripts, executed in lexical order on first cluster init.
-      # Prefixed `zz-` so they run after Supabase's own seed files.
+      # Three init scripts, executed in lexical order on first cluster init.
+      # Prefixed `zz-` so they run after Supabase's own seed files
+      # (which install pgmq, _realtime ddl prereqs, etc).
+      # 01 = ALTER service-role passwords from .env (renders to 0644 by bootstrap.sh).
+      # 02 = create _realtime schema (required by supabase/realtime container).
+      #      Without this mount, dhivio-realtime crash-loops with
+      #      `(invalid_schema_name) no schema has been selected to create in`.
+      # 03 = grant pgmq DML to `postgres` + `service_role`. Without this,
+      #      ERP's Inngest cron logs `permission denied for table q_event_system`
+      #      on every tick because pgmq functions are SECURITY INVOKER and the
+      #      app connects as `postgres` (no default DML on pgmq.q_*).
       - ./postgres/init.sql:/docker-entrypoint-initdb.d/zz-dhivio-01-roles.sql:ro
-      # - ./postgres/02-realtime-schema.sql:/docker-entrypoint-initdb.d/zz-dhivio-02-realtime.sql:ro
+      - ./postgres/02-realtime-schema.sql:/docker-entrypoint-initdb.d/zz-dhivio-02-realtime.sql:ro
+      - ./postgres/03-pgmq-grants.sql:/docker-entrypoint-initdb.d/zz-dhivio-03-pgmq-grants.sql:ro
     command:
       - postgres
       - -c
@@ -292,9 +302,19 @@ services:
       - start
       - --main-service
       - /home/deno/functions/main
-    # Deno host + per-function worker pool (dispatcher caps each worker at
-    # 512 MB); give the container slack above any single worker.
-    mem_limit: 384m
+    # Deno host process + per-function worker isolates share one cgroup.
+    # The main dispatcher (main/index.ts) caps each worker at 256 MB
+    # (EDGE_WORKER_MEMORY_MB), and our heaviest function — seed-company —
+    # imports lib/types.ts (~2 MB of generated Supabase types) plus the
+    # full seed.data.ts dataset. Compile + module graph for that worker
+    # peaks well above 384 MB and the cgroup OOM-killed the WHOLE Deno
+    # process, manifesting to kong as "upstream prematurely closed
+    # connection" / HTTP 502 with zero function logs.
+    #
+    # Budget: 1024 MB = dispatcher (~30 MB) + 1 active heavy worker (up to
+    # ~512 MB) + headroom for concurrent lighter workers (mrp/schedule/etc).
+    # If you raise EDGE_WORKER_MEMORY_MB above 512, raise this too.
+    mem_limit: 1024m
 
   kong:
     image: kong:2.8.1
@@ -317,7 +337,7 @@ services:
       KONG_PROXY_LISTEN: "0.0.0.0:8000"
     volumes:
       - ./kong/kong.yml:/home/kong/kong.yml:ro
-    mem_limit: 256m
+    mem_limit: 512m
 
   redis:
     image: redis:7-alpine
@@ -364,4 +384,4 @@ services:
       postgres:
         condition: service_healthy
     # Run-history queries + websocket fan-out to ERP can spike past 256 MB.
-    mem_limit: 384m
+    mem_limit: 512m

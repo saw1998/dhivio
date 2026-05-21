@@ -126,30 +126,59 @@ else
 fi
 
 # ── 5. Edge functions ─────────────────────────────────────────────────────
-# IMPORTANT: --exclude=main keeps the local-only `main/` stub directory that
-# edge-runtime's --main-service points at. The Dhivio codebase doesn't ship a
-# `main` function; if we let rsync --delete remove it, edge-runtime crash-loops
-# with "could not find an appropriate entrypoint".
+# IMPORTANT: --exclude=main keeps the local-only `main/` dispatcher directory
+# that edge-runtime's --main-service points at. The Dhivio codebase doesn't
+# ship a `main` function under packages/database/supabase/functions/; if we
+# let rsync --delete remove it, edge-runtime crash-loops with "could not
+# find an appropriate entrypoint" AND every /functions/v1/* call fails.
+#
+# The dispatcher itself lives at deploy/edge-runtime/main/index.ts (one
+# source of truth), which bootstrap.sh seeded into $ROOT/edge-runtime/main/
+# on first boot. We re-copy it on every migrations run so dispatcher
+# improvements ship without requiring a full re-bootstrap.
 if [[ -d "$FUNCS_DIR" ]]; then
-  echo "▶ syncing edge functions → $ROOT/functions/  (preserving main/ stub)"
+  echo "▶ syncing edge functions → $ROOT/functions/  (preserving main/ dispatcher)"
   mkdir -p "$ROOT/functions"
   rsync -a --delete --exclude='main' --exclude='main/**' "$FUNCS_DIR/" "$ROOT/functions/"
 
-  # Re-seed main/ stub if missing (e.g. fresh VPS bootstrap). This ensures
-  # edge-runtime always has a valid entrypoint regardless of repo state.
-  if [[ ! -f "$ROOT/functions/main/index.ts" ]]; then
-    mkdir -p "$ROOT/functions/main"
-    cat > "$ROOT/functions/main/index.ts" <<'STUB'
-// Auto-generated stub kept by run-migrations.sh. edge-runtime requires a
-// `main` service entrypoint even when no Dhivio function is invoked here.
-// All real functions live in sibling directories (mrp/, sync/, etc.) and
-// are routed by Kong via /functions/v1/<name>.
-Deno.serve(() => new Response(
-  JSON.stringify({ status: "no-functions-deployed" }),
-  { headers: { "content-type": "application/json" } },
-));
-STUB
-    echo "▶ re-seeded main/ stub"
+  # Refresh the main/ dispatcher from the canonical copy at
+  # $ROOT/edge-runtime/main/index.ts (synced into $ROOT by bootstrap.sh's
+  # rsync of deploy/). Fallback to a minimal inline dispatcher if for some
+  # reason the file is missing — better than letting edge-runtime crash.
+  mkdir -p "$ROOT/functions/main"
+  if [[ -f "$ROOT/edge-runtime/main/index.ts" ]]; then
+    cp "$ROOT/edge-runtime/main/index.ts" "$ROOT/functions/main/index.ts"
+    echo "▶ refreshed main/ dispatcher from $ROOT/edge-runtime/main/index.ts"
+  elif [[ ! -f "$ROOT/functions/main/index.ts" ]]; then
+    cat > "$ROOT/functions/main/index.ts" <<'FALLBACK'
+// Auto-generated FALLBACK dispatcher. The canonical dispatcher at
+// $ROOT/edge-runtime/main/index.ts was missing during this migrations
+// run, so run-migrations.sh wrote this minimal router instead. Re-run
+// bootstrap.sh to restore the canonical copy.
+declare const EdgeRuntime: any;
+Deno.serve(async (req) => {
+  const fn = new URL(req.url).pathname.split("/").filter(Boolean)[0];
+  if (!fn) {
+    return new Response(JSON.stringify({ error: "missing function name" }),
+      { status: 400, headers: { "content-type": "application/json" } });
+  }
+  try {
+    const worker = await EdgeRuntime.userWorkers.create({
+      servicePath: `/home/deno/functions/${fn}`,
+      memoryLimitMb: 256,
+      workerTimeoutMs: 150000,
+      noModuleCache: false,
+      importMapPath: null,
+      envVars: Object.entries(Deno.env.toObject()),
+    });
+    return await worker.fetch(req);
+  } catch (e) {
+    return new Response(JSON.stringify({ error: String(e), function: fn }),
+      { status: 500, headers: { "content-type": "application/json" } });
+  }
+});
+FALLBACK
+    echo "▶ wrote fallback main/ dispatcher (canonical copy missing)"
   fi
 
   # Sync database package source → /srv/dhivio/src/, mounted at /home/src in
